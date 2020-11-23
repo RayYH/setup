@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 WORKING_DIR=$(dirname "${BASH_SOURCE[0]}")
 WORKING_DIR=$(cd "$WORKING_DIR" && pwd)
 
@@ -21,14 +20,77 @@ fi
 
 [ ! -f "SET_UP_CONFIG_FILE" ] && SET_UP_CONFIG_FILE="$SET_UP/.setuprc"
 
-#####################################################
-# TODO: load essentials
-
 # Load helper
 [ -f "$SET_UP/helper.bash" ] && source "$SET_UP/helper.bash"
-
 # Load configurations
 [ -f "$SET_UP_CONFIG_FILE" ] && source "$SET_UP_CONFIG_FILE" 2>/dev/null
+
+#####################################################
+# Load orders: environments -> aliases -> completions -> plugins
+
+# Load environments
+test -e "$SET_UP"/environments/common.env.bash && source "$SET_UP"/environments/common.env.bash
+if [ ${#environments[@]} -eq 0 ]; then
+    # load all environments
+    for exe_file in "$SET_UP"/environments/*.env.bash; do
+        test -e "$exe_file" && source "$exe_file"
+    done
+else
+    for env in "${environments[@]}"; do
+        exe_file="$SET_UP"/environments/"$env".env.bash
+        custom_exe_file="$SET_UP"/custom/environments/"$env".env.bash
+        test -e "$exe_file" && source "$exe_file"
+        test -e "$custom_exe_file" && source "$custom_exe_file"
+    done
+fi
+
+# Load aliases
+test -e "$SET_UP"/aliases/common.aliases.bash && source "$SET_UP"/aliases/common.aliases.bash
+if [ ${#aliases[@]} -eq 0 ]; then
+    for exe_file in "$SET_UP"/aliases/*.aliases.bash; do
+        test -e "$exe_file" && source "$exe_file"
+    done
+else
+    for aliases in "${aliases[@]}"; do
+        exe_file="$SET_UP"/aliases/"$aliases".aliases.bash
+        custom_exe_file="$SET_UP"/custom/aliases/"$aliases".aliases.bash
+        test -e "$exe_file" && source "$exe_file"
+        test -e "$custom_exe_file" && source "$custom_exe_file"
+    done
+fi
+
+# Load completions
+test -e "$SET_UP"/completions/common.completion.bash && source "$SET_UP"/completions/common.completion.bash
+if [ ${#completions[@]} -eq 0 ]; then
+    # load all completions
+    for exe_file in "$SET_UP"/completions/*.completion.bash; do
+        test -e "$exe_file" && source "$exe_file"
+    done
+else
+    for completion in "${completions[@]}"; do
+        exe_file="$SET_UP"/completions/"$completion".completion.bash
+        custom_exe_file="$SET_UP"/custom/completions/"$completion".completion.bash
+        test -e "$exe_file" && source "$exe_file"
+        test -e "$custom_exe_file" && source "$custom_exe_file"
+    done
+fi
+
+# Load plugins
+test -e "$SET_UP"/plugins/common.plugin.bash && source "$SET_UP"/plugins/common.plugin.bash
+if [ ${#plugins[@]} -eq 0 ]; then
+    for exe_file in "$SET_UP"/plugins/*.plugin.bash; do
+        test -e "$exe_file" && . "$exe_file"
+    done
+else
+    for plugin in "${plugins[@]}"; do
+        exe_file="$SET_UP"/plugins/"$plugin".plugin.bash
+        custom_exe_file="$SET_UP"/custom/plugins/"$plugin".plugin.bash
+        test -e "$exe_file" && . "$exe_file"
+        test -e "$custom_exe_file" && . "$custom_exe_file"
+    done
+fi
+
+phpi
 
 #####################################################
 # Load themes

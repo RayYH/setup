@@ -1,2 +1,26 @@
+
+
+# SET_UP_CONFIG_FILE="$HOME/.setuprc"
+
+# Theme
 SET_UP_THEME='agnoster'
+
+# Fallback theme
+# when theme provided but can noly be used when launched `iTerm2.app`
+# we should switch to a theme can be used in a non-iTerm2 app to avoid
+# broken styles
 FALLBACK_SET_UP_THEME='dotfiles'
+
+# empty means load all envs, plugins, ..
+environments=(
+)
+
+completions=(
+)
+
+aliases=(
+)
+
+plugins=(
+)
+
