@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Common helpful functions
+# Essential helpful plugins
 # shellcheck disable=SC2145
 
 # mkdir then cd in

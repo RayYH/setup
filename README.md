@@ -2,6 +2,20 @@
 
 This repo sets up the development environment **I** need for daily programming.
 
+## Structure
+
+```
+.
+├── aliases       # aliases
+├── backup        # backup .bashrc or .bash_profile
+├── config        # global config files
+├── custom        # custom scripts
+├── environments  # exports
+├── plugins       # plugins
+├── setup.sh      # bootstrap script
+└── themes        # themes
+```
+
 ## Todos
 
 + [x] color util

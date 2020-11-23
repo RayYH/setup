@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# osx related functions
+# osx related plugins
 
 # change dir to the folder opened in Finder
 function cdf() {

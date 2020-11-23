@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Git related functions
+# Git related plugins
 
 function git_aliases() {
-	git config --get-regexp alias | awk '{first = $1; $1 = ""; printf "%-20s %s\n", first, $0; }'
+    git config --get-regexp alias | awk '{first = $1; $1 = ""; printf "%-20s %s\n", first, $0; }'
 }
 
 # use git diff to diff files/folders
