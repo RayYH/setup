@@ -1,6 +1,5 @@
-
-
-# SET_UP_CONFIG_FILE="$HOME/.setuprc"
+# Config file
+SET_UP_CONFIG_FILE="$HOME/.setuprc"
 
 # Theme
 SET_UP_THEME='agnoster'

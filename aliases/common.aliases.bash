@@ -7,5 +7,3 @@ else
     # Others - I use mac and ubuntu, so, this means linux
     alias chrome=google-chrome
 fi
-
-alias phpi='php --ini'
