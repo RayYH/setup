@@ -14,11 +14,14 @@ if [[ -z "$SET_UP_CUSTOM" ]]; then
     SET_UP_CUSTOM="$SET_UP/custom"
 fi
 
+SET_UP_CONFIG_FILE="$HOME/.setuprc"
+
 if [[ -z "$SET_UP_CONFIG_FILE" ]]; then
+    # if file not exists, we use config file provided by repo
     SET_UP_CONFIG_FILE="$SET_UP/.setuprc"
 fi
 
-[ ! -f "SET_UP_CONFIG_FILE" ] && SET_UP_CONFIG_FILE="$SET_UP/.setuprc"
+[ ! -f "$SET_UP_CONFIG_FILE" ] && SET_UP_CONFIG_FILE="$SET_UP/.setuprc"
 
 # Load helper
 [ -f "$SET_UP/helper.bash" ] && source "$SET_UP/helper.bash"
