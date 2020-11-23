@@ -35,3 +35,9 @@ function is_plugin() {
     local name=$2
     test -f "$base_dir/plugins/$name.plugin.bash"
 }
+
+function is_theme() {
+    local base_dir=$1
+    local name=$2
+    test -f "$base_dir/themes/$name/$name.theme.bash"
+}

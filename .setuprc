@@ -1,1 +1,2 @@
 SETUP_THEME='agnoster'
+FALLBACK_SETUP_THEME='dotfiles'
