@@ -2,6 +2,20 @@
 
 This repo sets up the development environment **I** need for daily programming.
 
+## Structure
+
+```
+.
+├── aliases       # aliases
+├── backup        # backup .bashrc or .bash_profile
+├── config        # global config files
+├── custom        # custom scripts
+├── environments  # exports
+├── plugins       # plugins
+├── setup.sh      # bootstrap script
+└── themes        # themes
+```
+
 ## Installation
 
 ```bash
@@ -37,20 +51,6 @@ plugins=(
 GIT_AUTHOR_NAME="rayyh"
 GIT_AUTHOR_EMAIL="rayyounghong@gmail.com"
 GIT_SIGNING_KEY="XXXXXXXXXXXXXXXX"
-```
-
-## Structure
-
-```
-.
-├── aliases       # aliases
-├── backup        # backup .bashrc or .bash_profile
-├── config        # global config files
-├── custom        # custom scripts
-├── environments  # exports
-├── plugins       # plugins
-├── setup.sh      # bootstrap script
-└── themes        # themes
 ```
 
 ## Todos
