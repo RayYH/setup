@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+WORKING_DIR=$(dirname "${BASH_SOURCE[0]}")
+WORKING_DIR=$(cd "$WORKING_DIR" && pwd)
+
 if [ -z "$SET_UP" ]; then
-    export SET_UP="$(cd "$(dirname "$0")" && pwd)"
+    export SET_UP="$WORKING_DIR"
 fi
 
 if [ -z "$SET_UP_BACKUP" ]; then
@@ -22,7 +25,7 @@ fi
 # TODO: load essentials
 
 # Load helper
-[ -f "$SET_UP/helper.sh" ] && source "$SET_UP/helper.bash"
+[ -f "$SET_UP/helper.bash" ] && source "$SET_UP/helper.bash"
 
 # Load configurations
 [ -f "$SET_UP_CONFIG_FILE" ] && source "$SET_UP_CONFIG_FILE" 2>/dev/null
