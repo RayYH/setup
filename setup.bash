@@ -16,11 +16,13 @@ if [[ -z "$SETUP_CONFIG_FILE" ]]; then
     SETUP_CONFIG_FILE="$SETUP/.setuprc"
 fi
 
+[ ! -f "SETUP_CONFIG_FILE" ] && SETUP_CONFIG_FILE="$SETUP/.setuprc"
+
 #####################################################
 # TODO: load essentials
 
 # Load helper
-[ -f "$SETUP/helper.sh" ] && source "$SETUP/helper.sh"
+[ -f "$SETUP/helper.sh" ] && source "$SETUP/helper.bash"
 
 # Load configurations
 [ -f "$SETUP_CONFIG_FILE" ] && source "$SETUP_CONFIG_FILE" 2>/dev/null

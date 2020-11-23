@@ -1,2 +1,4 @@
+SETUP="$HOME/.setup"
+SETUP_CONFIG_FILE="$HOME/.setuprc"
 SETUP_THEME='agnoster'
 FALLBACK_SETUP_THEME='dotfiles'

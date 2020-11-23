@@ -2,6 +2,19 @@
 
 This repo sets up the development environment **I** need for daily programming.
 
+## Installation
+
+```bash
+git clone https://github.com/rayyh/setup ~/.setup
+cp ~/.setup/.setuprc ~/
+```
+
+Now add below lines to your `.bash_profile` or your `.bashrc`:
+
+```
+test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
+```
+
 ## Structure
 
 ```
