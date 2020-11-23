@@ -6,6 +6,10 @@ PROMPT_DIRTRIM=2
 
 # Theme Variable
 SET_UP_THEME_GIT_PROMPT_DIRTY=" ●"
+SET_UP_THEME_GIT_PROMPT_AHEAD="＋"
+SET_UP_THEME_GIT_COMMITS_AHEAD_PREFIX="＋"
+SET_UP_THEME_GIT_PROMPT_BEHIND="−"
+SET_UP_THEME_GIT_COMMITS_BEHIND_PREFIX="−"
 
 DEBUG=0
 debug() {
@@ -134,7 +138,11 @@ prompt_virtualenv() {
 prompt_context() {
     local user=$(whoami)
     if [[ $user != "$DEFAULT_USER" || -n $SSH_CLIENT ]]; then
-        prompt_segment black default "$user@\h"
+        if [[ "${SSH_TTY}" ]]; then
+            prompt_segment magenta black "$user@\h"
+        else
+            prompt_segment white black "$user@\h"
+        fi
     fi
 }
 
@@ -150,7 +158,7 @@ prompt_git() {
         else
             prompt_segment green black
         fi
-        PR="$PR${ref/refs\/heads\// }$dirty"
+        PR="$PR${ref/refs\/heads\// }${git_commits_ahead}${git_commits_behind}$dirty"
     fi
 }
 
