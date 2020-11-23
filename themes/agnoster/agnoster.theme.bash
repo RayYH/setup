@@ -6,10 +6,8 @@ PROMPT_DIRTRIM=2
 
 # Theme Variable
 SET_UP_THEME_GIT_PROMPT_DIRTY=" ●"
-SET_UP_THEME_GIT_PROMPT_AHEAD="＋"
-SET_UP_THEME_GIT_COMMITS_AHEAD_PREFIX="＋"
-SET_UP_THEME_GIT_PROMPT_BEHIND="−"
-SET_UP_THEME_GIT_COMMITS_BEHIND_PREFIX="−"
+SET_UP_THEME_GIT_COMMITS_AHEAD_PREFIX="↥"
+SET_UP_THEME_GIT_COMMITS_BEHIND_PREFIX="↧"
 
 DEBUG=0
 debug() {
@@ -148,7 +146,7 @@ prompt_context() {
 
 # Git: branch/detached head, dirty status
 prompt_git() {
-    local ref dirty
+    local ref dirty ahead behind
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         # See themes/git.plugin.bash
         dirty=$(parse_git_dirty)
@@ -158,7 +156,15 @@ prompt_git() {
         else
             prompt_segment green black
         fi
-        PR="$PR${ref/refs\/heads\// }${git_commits_ahead}${git_commits_behind}$dirty"
+        ahead=$(git_commits_ahead)
+        behind=$(git_commits_behind)
+        if [ -n "$ahead" ]; then
+            PR="$PR${ref/refs\/heads\// } ${SET_UP_THEME_GIT_COMMITS_AHEAD_PREFIX}$dirty"
+        elif [ -n "$behind" ]; then
+            PR="$PR${ref/refs\/heads\// } ${SET_UP_THEME_GIT_COMMITS_BEHIND_PREFIX}$dirty"
+        else
+            PR="$PR${ref/refs\/heads\// } $dirty"
+        fi
     fi
 }
 
