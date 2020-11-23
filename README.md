@@ -34,7 +34,7 @@ test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 + [x] color util
 + [x] git functionality for prompt
 + [ ] bootstrap script
-+ [ ] load theme elegantly
++ [x] load theme elegantly
 + [x] basic themes: dotfiles for Terminal, agnoster for iTerm
 + [ ] more themes...
 + [ ] load plugins (aliases, completion, functions...)
