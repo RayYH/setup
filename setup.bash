@@ -1,36 +1,36 @@
 #!/usr/bin/env bash
 
-if [ -z "$SETUP" ]; then
-    export SETUP="$(cd "$(dirname "$0")" && pwd)"
+if [ -z "$SET_UP" ]; then
+    export SET_UP="$(cd "$(dirname "$0")" && pwd)"
 fi
 
-if [ -z "$SETUP_BACKUP" ]; then
-    export SETUP_BACKUP="$SETUP/backup"
+if [ -z "$SET_UP_BACKUP" ]; then
+    export SET_UP_BACKUP="$SET_UP/backup"
 fi
 
-if [[ -z "$SETUP_CUSTOM" ]]; then
-    SETUP_CUSTOM="$SETUP/custom"
+if [[ -z "$SET_UP_CUSTOM" ]]; then
+    SET_UP_CUSTOM="$SET_UP/custom"
 fi
 
-if [[ -z "$SETUP_CONFIG_FILE" ]]; then
-    SETUP_CONFIG_FILE="$SETUP/.setuprc"
+if [[ -z "$SET_UP_CONFIG_FILE" ]]; then
+    SET_UP_CONFIG_FILE="$SET_UP/.setuprc"
 fi
 
-[ ! -f "SETUP_CONFIG_FILE" ] && SETUP_CONFIG_FILE="$SETUP/.setuprc"
+[ ! -f "SET_UP_CONFIG_FILE" ] && SET_UP_CONFIG_FILE="$SET_UP/.setuprc"
 
 #####################################################
 # TODO: load essentials
 
 # Load helper
-[ -f "$SETUP/helper.sh" ] && source "$SETUP/helper.bash"
+[ -f "$SET_UP/helper.sh" ] && source "$SET_UP/helper.bash"
 
 # Load configurations
-[ -f "$SETUP_CONFIG_FILE" ] && source "$SETUP_CONFIG_FILE" 2>/dev/null
+[ -f "$SET_UP_CONFIG_FILE" ] && source "$SET_UP_CONFIG_FILE" 2>/dev/null
 
 #####################################################
 # Load themes
-SETUP_THEME=${SETUP_THEME:=agnoster}
-FALLBACK_SETUP_THEME=${FALLBACK_SETUP_THEME:=dotfiles}
+SET_UP_THEME=${SET_UP_THEME:=agnoster}
+FALLBACK_SET_UP_THEME=${FALLBACK_SET_UP_THEME:=dotfiles}
 
 # themes only used inside iTerm2
 ONLY_IN_ITERM2=(
@@ -42,19 +42,19 @@ if [ "iTerm.app" != "$TERM_PROGRAM" ]; then
     # only inside iTerm, enable the provided theme
     for iterm2_theme in "${ONLY_IN_ITERM2[@]}"; do
         # the theme only for iTerm2 should be switched to dotfiles theme
-        [[ "$SETUP_THEME" == "$iterm2_theme" ]] && export SETUP_THEME="$FALLBACK_SETUP_THEME"
+        [[ "$SET_UP_THEME" == "$iterm2_theme" ]] && export SET_UP_THEME="$FALLBACK_SET_UP_THEME"
     done
 fi
 
 # load utils
-source "$SETUP/themes/colors.bash"
-source "$SETUP/themes/git.bash"
-source "$SETUP/themes/base.bash"
+source "$SET_UP/themes/colors.bash"
+source "$SET_UP/themes/git.bash"
+source "$SET_UP/themes/base.bash"
 
-if is_theme "$SETUP_CUSTOM" "$SETUP_THEME"; then
-    source "$SETUP_CUSTOM/themes/$SETUP_THEME/$SETUP_THEME.theme.bash"
+if is_theme "$SET_UP_CUSTOM" "$SET_UP_THEME"; then
+    source "$SET_UP_CUSTOM/themes/$SET_UP_THEME/$SET_UP_THEME.theme.bash"
 else
-    if is_theme "$SETUP" "$SETUP_THEME"; then
-        source "$SETUP/themes/$SETUP_THEME/$SETUP_THEME.theme.bash"
+    if is_theme "$SET_UP" "$SET_UP_THEME"; then
+        source "$SET_UP/themes/$SET_UP_THEME/$SET_UP_THEME.theme.bash"
     fi
 fi

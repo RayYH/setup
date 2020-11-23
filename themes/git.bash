@@ -31,9 +31,9 @@ function parse_git_dirty() {
         STATUS=$(__git_prompt_git status "${FLAGS[@]}" 2>/dev/null | tail -n1)
     fi
     if [[ -n $STATUS ]]; then
-        echo "$SETUP_THEME_GIT_PROMPT_DIRTY"
+        echo "$SET_UP_THEME_GIT_PROMPT_DIRTY"
     else
-        echo "$SETUP_THEME_GIT_PROMPT_CLEAN"
+        echo "$SET_UP_THEME_GIT_PROMPT_CLEAN"
     fi
 }
 
@@ -43,7 +43,7 @@ function git_prompt_info() {
     if [[ "$(__git_prompt_git config --get setup.hideStatus 2>/dev/null)" != "true" ]]; then
         ref=$(__git_prompt_git symbolic-ref HEAD 2>/dev/null) ||
             ref=$(__git_prompt_git rev-parse --short HEAD 2>/dev/null) || return 0
-        echo "$SETUP_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$SETUP_THEME_GIT_PROMPT_SUFFIX"
+        echo "$SET_UP_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$SET_UP_THEME_GIT_PROMPT_SUFFIX"
     fi
 }
 
@@ -57,20 +57,20 @@ function git_remote_status() {
         ahead=$(__git_prompt_git rev-list "${hook_com[branch]}@{upstream}..HEAD" 2>/dev/null | wc -l)
         behind=$(__git_prompt_git rev-list "HEAD..${hook_com[branch]}@{upstream}" 2>/dev/null | wc -l)
         if [[ $ahead -eq 0 ]] && [[ $behind -eq 0 ]]; then
-            git_remote_status="$SETUP_THEME_GIT_PROMPT_EQUAL_REMOTE"
+            git_remote_status="$SET_UP_THEME_GIT_PROMPT_EQUAL_REMOTE"
         elif [[ $ahead -gt 0 ]] && [[ $behind -eq 0 ]]; then
-            git_remote_status="$SETUP_THEME_GIT_PROMPT_AHEAD_REMOTE"
-            git_remote_status_detailed="$SETUP_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$SETUP_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))${reset_color}"
+            git_remote_status="$SET_UP_THEME_GIT_PROMPT_AHEAD_REMOTE"
+            git_remote_status_detailed="$SET_UP_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$SET_UP_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))${reset_color}"
         elif [[ $behind -gt 0 ]] && [[ $ahead -eq 0 ]]; then
-            git_remote_status="$SETUP_THEME_GIT_PROMPT_BEHIND_REMOTE"
-            git_remote_status_detailed="$SETUP_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$SETUP_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))${reset_color}"
+            git_remote_status="$SET_UP_THEME_GIT_PROMPT_BEHIND_REMOTE"
+            git_remote_status_detailed="$SET_UP_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$SET_UP_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))${reset_color}"
         elif [[ $ahead -gt 0 ]] && [[ $behind -gt 0 ]]; then
-            git_remote_status="$SETUP_THEME_GIT_PROMPT_DIVERGED_REMOTE"
-            git_remote_status_detailed="$SETUP_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$SETUP_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))${reset_color}$SETUP_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$SETUP_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))${reset_color}"
+            git_remote_status="$SET_UP_THEME_GIT_PROMPT_DIVERGED_REMOTE"
+            git_remote_status_detailed="$SET_UP_THEME_GIT_PROMPT_AHEAD_REMOTE_COLOR$SET_UP_THEME_GIT_PROMPT_AHEAD_REMOTE$((ahead))${reset_color}$SET_UP_THEME_GIT_PROMPT_BEHIND_REMOTE_COLOR$SET_UP_THEME_GIT_PROMPT_BEHIND_REMOTE$((behind))${reset_color}"
         fi
 
-        if [[ -n $SETUP_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED ]]; then
-            git_remote_status="$SETUP_THEME_GIT_PROMPT_REMOTE_STATUS_PREFIX$remote$git_remote_status_detailed$SETUP_THEME_GIT_PROMPT_REMOTE_STATUS_SUFFIX"
+        if [[ -n $SET_UP_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED ]]; then
+            git_remote_status="$SET_UP_THEME_GIT_PROMPT_REMOTE_STATUS_PREFIX$remote$git_remote_status_detailed$SET_UP_THEME_GIT_PROMPT_REMOTE_STATUS_SUFFIX"
         fi
 
         echo "$git_remote_status"
@@ -101,7 +101,7 @@ function git_commits_ahead() {
     if __git_prompt_git rev-parse --git-dir &>/dev/null; then
         local commits="$(__git_prompt_git rev-list --count "@{upstream}..HEAD" 2>/dev/null)"
         if [[ -n "$commits" && "$commits" != 0 ]]; then
-            echo "$SETUP_THEME_GIT_COMMITS_AHEAD_PREFIX$commits$SETUP_THEME_GIT_COMMITS_AHEAD_SUFFIX"
+            echo "$SET_UP_THEME_GIT_COMMITS_AHEAD_PREFIX$commits$SET_UP_THEME_GIT_COMMITS_AHEAD_SUFFIX"
         fi
     fi
 }
@@ -111,7 +111,7 @@ function git_commits_behind() {
     if __git_prompt_git rev-parse --git-dir &>/dev/null; then
         local commits="$(__git_prompt_git rev-list --count "HEAD..@{upstream}" 2>/dev/null)"
         if [[ -n "$commits" && "$commits" != 0 ]]; then
-            echo "$SETUP_THEME_GIT_COMMITS_BEHIND_PREFIX$commits$SETUP_THEME_GIT_COMMITS_BEHIND_SUFFIX"
+            echo "$SET_UP_THEME_GIT_COMMITS_BEHIND_PREFIX$commits$SET_UP_THEME_GIT_COMMITS_BEHIND_SUFFIX"
         fi
     fi
 }
@@ -119,23 +119,23 @@ function git_commits_behind() {
 # Outputs if current branch is ahead of remote
 function git_prompt_ahead() {
     if [[ -n "$(__git_prompt_git rev-list "origin/$(git_current_branch)..HEAD" 2>/dev/null)" ]]; then
-        echo "$SETUP_THEME_GIT_PROMPT_AHEAD"
+        echo "$SET_UP_THEME_GIT_PROMPT_AHEAD"
     fi
 }
 
 # Outputs if current branch is behind remote
 function git_prompt_behind() {
     if [[ -n "$(__git_prompt_git rev-list "HEAD..origin/$(git_current_branch)" 2>/dev/null)" ]]; then
-        echo "$SETUP_THEME_GIT_PROMPT_BEHIND"
+        echo "$SET_UP_THEME_GIT_PROMPT_BEHIND"
     fi
 }
 
 # Outputs if current branch exists on remote or not
 function git_prompt_remote() {
     if [[ -n "$(__git_prompt_git show-ref "origin/$(git_current_branch)" 2>/dev/null)" ]]; then
-        echo "$SETUP_THEME_GIT_PROMPT_REMOTE_EXISTS"
+        echo "$SET_UP_THEME_GIT_PROMPT_REMOTE_EXISTS"
     else
-        echo "$SETUP_THEME_GIT_PROMPT_REMOTE_MISSING"
+        echo "$SET_UP_THEME_GIT_PROMPT_REMOTE_MISSING"
     fi
 }
 
@@ -150,13 +150,13 @@ function git_long_sha() {
 # Formats themes string for current git commit short SHA
 function git_prompt_short_sha() {
     local SHA
-    SHA=$(git_short_sha) && echo "$SETUP_THEME_GIT_PROMPT_SHA_BEFORE$SHA$SETUP_THEME_GIT_PROMPT_SHA_AFTER"
+    SHA=$(git_short_sha) && echo "$SET_UP_THEME_GIT_PROMPT_SHA_BEFORE$SHA$SET_UP_THEME_GIT_PROMPT_SHA_AFTER"
 }
 
 # Formats themes string for current git commit long SHA
 function git_prompt_long_sha() {
     local SHA
-    SHA=$(git_long_sha) && echo "$SETUP_THEME_GIT_PROMPT_SHA_BEFORE$SHA$SETUP_THEME_GIT_PROMPT_SHA_AFTER"
+    SHA=$(git_long_sha) && echo "$SET_UP_THEME_GIT_PROMPT_SHA_BEFORE$SHA$SET_UP_THEME_GIT_PROMPT_SHA_AFTER"
 }
 
 # Outputs the name of the current user
@@ -207,16 +207,16 @@ function git_prompt_status() {
     # Maps the internal constant to the themes theme
     local -A constant_prompt_map
     constant_prompt_map=(
-        ['UNTRACKED']="$SETUP_THEME_GIT_PROMPT_UNTRACKED"
-        ['ADDED']="$SETUP_THEME_GIT_PROMPT_ADDED"
-        ['MODIFIED']="$SETUP_THEME_GIT_PROMPT_MODIFIED"
-        ['RENAMED']="$SETUP_THEME_GIT_PROMPT_RENAMED"
-        ['DELETED']="$SETUP_THEME_GIT_PROMPT_DELETED"
-        ['UNMERGED']="$SETUP_THEME_GIT_PROMPT_UNMERGED"
-        ['AHEAD']="$SETUP_THEME_GIT_PROMPT_AHEAD"
-        ['BEHIND']="$SETUP_THEME_GIT_PROMPT_BEHIND"
-        ['DIVERGED']="$SETUP_THEME_GIT_PROMPT_DIVERGED"
-        ['STASHED']="$SETUP_THEME_GIT_PROMPT_STASHED"
+        ['UNTRACKED']="$SET_UP_THEME_GIT_PROMPT_UNTRACKED"
+        ['ADDED']="$SET_UP_THEME_GIT_PROMPT_ADDED"
+        ['MODIFIED']="$SET_UP_THEME_GIT_PROMPT_MODIFIED"
+        ['RENAMED']="$SET_UP_THEME_GIT_PROMPT_RENAMED"
+        ['DELETED']="$SET_UP_THEME_GIT_PROMPT_DELETED"
+        ['UNMERGED']="$SET_UP_THEME_GIT_PROMPT_UNMERGED"
+        ['AHEAD']="$SET_UP_THEME_GIT_PROMPT_AHEAD"
+        ['BEHIND']="$SET_UP_THEME_GIT_PROMPT_BEHIND"
+        ['DIVERGED']="$SET_UP_THEME_GIT_PROMPT_DIVERGED"
+        ['STASHED']="$SET_UP_THEME_GIT_PROMPT_STASHED"
     )
 
     # The order that the themes displays should be added to the themes
