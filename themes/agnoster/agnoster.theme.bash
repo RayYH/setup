@@ -142,7 +142,7 @@ prompt_context() {
 prompt_git() {
     local ref dirty
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-        # See git.bash
+        # See themes/git.plugin.bash
         dirty=$(parse_git_dirty)
         ref=$(git symbolic-ref HEAD 2>/dev/null) || ref="➦ $(git show-ref --head -s --abbrev | head -n1 2>/dev/null)"
         if [[ -n $dirty ]]; then
