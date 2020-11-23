@@ -15,7 +15,29 @@ Now add below lines to your `.bash_profile` or your `.bashrc`:
 test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 ```
 
-> For your development, you should use `ln -s `
+## `.setuprc` Example
+
+```bash
+SET_UP_THEME='agnoster'
+
+FALLBACK_SET_UP_THEME='dotfiles'
+
+environments=(
+)
+
+completions=(
+)
+
+aliases=(
+)
+
+plugins=(
+)
+
+GIT_AUTHOR_NAME="rayyh"
+GIT_AUTHOR_EMAIL="rayyounghong@gmail.com"
+GIT_SIGNING_KEY="XXXXXXXXXXXXXXXX"
+```
 
 ## Structure
 
