@@ -21,3 +21,7 @@ aliases=(
 plugins=(
 )
 
+# Modify below git configurations
+GIT_AUTHOR_NAME=""
+GIT_AUTHOR_EMAIL=""
+GIT_SIGNING_KEY=""

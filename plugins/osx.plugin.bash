@@ -26,3 +26,8 @@ function chromep() {
         return 1
     fi
 }
+
+# move file to Trash bin
+function trash() {
+    command mv "$@" ~/.Trash
+}

@@ -62,6 +62,25 @@ else
     done
 fi
 
+# When envs and aliases has already been loaded
+# -s (set) -u (unset)
+# http://www.hep.by/gnu/bash/The-Shopt-Builtin.html#The-Shopt-Builtin
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Enable some Bash 4 features when possible:
+# `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+    shopt -s "$option" 2>/dev/null
+done
+
 # Load completions
 test -e "$SET_UP"/completions/common.completion.bash && source "$SET_UP"/completions/common.completion.bash
 if [ ${#completions[@]} -eq 0 ]; then
@@ -93,6 +112,10 @@ else
     done
 fi
 
+# unset local variables
+unset exe_file
+unset custom_exe_file
+
 #####################################################
 # Load themes
 SET_UP_THEME=${SET_UP_THEME:=agnoster}
@@ -123,4 +146,19 @@ else
     if is_theme "$SET_UP" "$SET_UP_THEME"; then
         source "$SET_UP/themes/$SET_UP_THEME/$SET_UP_THEME.theme.bash"
     fi
+fi
+
+# Set git configurations
+if [ -n "$GIT_AUTHOR_NAME" ] && [ "$GIT_AUTHOR_NAME" != " " ]; then
+    GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+    git config --global user.name "$GIT_AUTHOR_NAME"
+fi
+
+if [ -n "$GIT_AUTHOR_EMAIL" ] && [ "$GIT_AUTHOR_EMAIL" != " " ]; then
+    GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+    git config --global user.email "$GIT_AUTHOR_EMAIL"
+fi
+
+if [ -n "$GIT_SIGNING_KEY" ] && [ "$GIT_SIGNING_KEY" != " " ]; then
+    git config --global user.signingkey "$GIT_SIGNING_KEY"
 fi

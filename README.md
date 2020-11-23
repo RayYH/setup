@@ -15,6 +15,8 @@ Now add below lines to your `.bash_profile` or your `.bashrc`:
 test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 ```
 
+> For your development, you should use `ln -s `
+
 ## Structure
 
 ```
@@ -40,6 +42,7 @@ test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 + [x] load plugins (aliases, completion, functions...)
 + [ ] upgrade script
 + [ ] steal useful code (old dotfiles repo)
++ [ ] sync global config files
 
 ## Thanks to
 
