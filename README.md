@@ -35,14 +35,16 @@ test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 
 + [x] color util
 + [x] git functionality for prompt
-+ [ ] bootstrap script
++ [x] bootstrap script
 + [x] load theme elegantly
 + [x] basic themes: dotfiles for Terminal, agnoster for iTerm
 + [ ] more themes...
 + [x] load plugins (aliases, completion, functions...)
 + [ ] upgrade script
-+ [ ] steal useful code (old dotfiles repo)
++ [x] steal useful code (old dotfiles repo)
 + [ ] sync global config files
++ [ ] provide image for themes
++ [ ] write a wiki
 
 ## Thanks to
 
