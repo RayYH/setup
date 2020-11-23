@@ -90,8 +90,6 @@ else
     done
 fi
 
-phpi
-
 #####################################################
 # Load themes
 SET_UP_THEME=${SET_UP_THEME:=agnoster}
