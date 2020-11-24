@@ -1,0 +1,92 @@
+# Setup
+
+[English](README.md) | 简体中文
+
+---
+
+该仓库用于快速设置 **我的** 开发环境，只针对 macos 和 linux (ubuntu)，未在 windows 下测试，但是 windows terminal + WSL 应该可以使用。
+
+## 目录结构
+
+```
+.
+├── aliases       # 别名
+├── backup        # 备份目录
+├── config        # 一些插件的全局配置文件
+├── custom        # 用户自定义脚本
+├── environments  # 环境变量
+├── plugins       # 插件目录
+├── setup.sh      # 启动脚本
+└── themes        # 主题目录
+```
+
+## 安装
+
+如果你正在使用其他 Shell（可以使用 `echo $SHELL` 命令查看当前 Shell），比如 mac 新版本就默认使用 `zsh` 而不是 `bash`，你需要先切换到 `bash`：
+
+```bash
+chsh -s /bin/bash
+```
+
+然后你可以通过 `git` 来安装本库（确保你已安装了 `git`）：
+
+
+```bash
+git clone https://github.com/rayyh/setup ~/.setup
+cp ~/.setup/.setuprc ~/
+```
+
+> 我喜欢把该库放在 `~/Code/projects/shell/setup`, 然后通过 `ln -s` 命令链接到 `~/.setup`.
+
+接下来你需要把下面的一行代码放在你的 `.bash_profile` (macos) 或 `.bashrc` (linux) 文件的末尾：
+
+```
+test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
+```
+
+然后重启终端，或者执行下面的命令：
+
+```bash
+# mac
+suorce ~/.bash_profile
+
+# linux
+source ~/.bashrc
+```
+
+## 升级
+
+在终端执行命令 `upgrade_set_up` 即可。
+
+## `.setuprc` 示例
+
+```bash
+SET_UP_THEME='agnoster'
+
+FALLBACK_SET_UP_THEME='dotfiles'
+
+environments=(
+)
+
+completions=(
+)
+
+aliases=(
+)
+
+plugins=(
+)
+
+GIT_AUTHOR_NAME="rayyh"
+GIT_AUTHOR_EMAIL="rayyounghong@gmail.com"
+GIT_SIGNING_KEY="XXXXXXXXXXXXXXXX"
+```
+
+## 致谢
+
++ [bash-it](https://github.com/Bash-it/bash-it)
++ [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+
+## License
+
+本库是一个开源项目，遵循 [MIT](LICENSE) 许可协议发布。

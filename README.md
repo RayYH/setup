@@ -1,4 +1,8 @@
-# [WIP] Setup
+# Setup
+
+English | [简体中文](README_zh_CN.md)
+
+---
 
 This repo sets up the development environment **I** need for daily programming.
 
@@ -21,6 +25,7 @@ This repo sets up the development environment **I** need for daily programming.
 If you use other shells, switch to `bash` first:
 
 ```bash
+# check current shell: echo $SHELL
 chsh -s /bin/bash
 # or
 chsh -s /usr/local/bin/bash
@@ -41,7 +46,7 @@ Now add below lines to your `.bash_profile` or your `.bashrc`:
 test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 ```
 
-Restart the terminal session or `suorce ~/.bash_profile`/`source ~/.bashrc`
+`suorce ~/.bash_profile` (macos) or `source ~/.bashrc` (linux).
 
 ## Upgrade
 
