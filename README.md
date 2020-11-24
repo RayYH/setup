@@ -23,6 +23,8 @@ git clone https://github.com/rayyh/setup ~/.setup
 cp ~/.setup/.setuprc ~/
 ```
 
+> I like to keep it in `~/Code/projects/shell/setup`, with `~/.setup` as a symlink.
+
 Now add below lines to your `.bash_profile` or your `.bashrc`:
 
 ```

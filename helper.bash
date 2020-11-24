@@ -24,18 +24,6 @@ function is_environment() {
     test -f "$base_dir/environments/$name.env.bash"
 }
 
-function is_completion() {
-    local base_dir=$1
-    local name=$2
-    test -f "$base_dir/completions/$name.completion.bash"
-}
-
-function is_plugin() {
-    local base_dir=$1
-    local name=$2
-    test -f "$base_dir/plugins/$name.plugin.bash"
-}
-
 function is_theme() {
     local base_dir=$1
     local name=$2

@@ -148,6 +148,13 @@ else
     fi
 fi
 
+# Here, unset helper functions
+unset -f is_plugin
+unset -f is_aliases
+unset -f is_completion
+unset -f is_environment
+unset -f is_theme
+
 # Set git configurations
 if [ -n "$GIT_AUTHOR_NAME" ] && [ "$GIT_AUTHOR_NAME" != " " ]; then
     GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
