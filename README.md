@@ -18,6 +18,16 @@ This repo sets up the development environment **I** need for daily programming.
 
 ## Installation
 
+If you use other shells, switch to `bash` first:
+
+```bash
+chsh -s /bin/bash
+# or
+chsh -s /usr/local/bin/bash
+```
+
+Then install `setup` via `git` tool (make sure you have `git` installed).
+
 ```bash
 git clone https://github.com/rayyh/setup ~/.setup
 cp ~/.setup/.setuprc ~/
@@ -82,7 +92,6 @@ GIT_SIGNING_KEY="XXXXXXXXXXXXXXXX"
 
 + [bash-it](https://github.com/Bash-it/bash-it)
 + [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-+ [oh-my-bash](https://github.com/ohmybash/oh-my-bash)
 
 ## License
 
