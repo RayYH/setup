@@ -35,3 +35,10 @@ function append_path() {
         PATH="${PATH:+"$PATH:"}$1"
     fi
 }
+
+function upgrade_set_up() {
+    local branch=${SET_UP_ENABLED_BRANCH:=master}
+    cd "$SET_UP" || return
+    [ -d ".git" ] && git pull origin $branch
+    cd - >/dev/null || return
+}

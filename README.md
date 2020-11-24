@@ -7,7 +7,7 @@ This repo sets up the development environment **I** need for daily programming.
 ```
 .
 ├── aliases       # aliases
-├── backup        # backup .bashrc or .bash_profile
+├── backup        # backup files (not used yet)
 ├── config        # global config files
 ├── custom        # custom scripts
 ├── environments  # exports
@@ -32,6 +32,12 @@ test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 ```
 
 Restart the terminal session or `suorce ~/.bash_profile`/`source ~/.bashrc`
+
+## Upgrade
+
+```bash
+$ upgrade_set_up
+```
 
 ## `.setuprc` Example
 
@@ -66,10 +72,10 @@ GIT_SIGNING_KEY="XXXXXXXXXXXXXXXX"
 + [x] basic themes: dotfiles for Terminal, agnoster for iTerm
 + [ ] more themes...
 + [x] load plugins (aliases, completion, functions...)
-+ [ ] upgrade script
++ [x] upgrade script (use git pull, not backup)
 + [x] steal useful code (old dotfiles repo)
 + [ ] sync global config files
-+ [ ] provide image for themes
++ [ ] provide images for themes
 + [ ] write a wiki
 
 ## Thanks to
