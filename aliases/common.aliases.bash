@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2139
 # Merge PDF files, preserving hyperlinks, Usage: `mergepdf input{1,2,3}.pdf`
 alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
 # URL-encode strings
@@ -58,13 +59,13 @@ alias ls='command ls ${colorflag}'                            # colorful ls
 alias l='ls -lF ${colorflag}'                                 # List all files colorized in long format
 alias la='ls -lAF ${colorflag}'                               # List all files colorized in long format, excluding . and ..
 alias lsd='ls -lF ${colorflag} | grep --color=never "^d"'     # List only directories
+alias l1='ls -1 ${colorflag}'                                 # List one column
 alias grep='grep --color=auto'                                # Always enable colored `grep` output
 alias fgrep='fgrep --color=auto'                              # Always enable colored `fgrep` output
 alias egrep='egrep --color=auto'                              # Always enable colored `egrep` output
 alias python3="PYTHONPATH=. python3"                          # Always append current dir to PYTHONPATH when exec python scripts
 alias pdflatex='pdflatex -shell-escape'                       # Preferred 'pdflatex' implementation
 # Commands
-alias editHosts='sudo vim /etc/hosts'                         # Edit /etc/hosts file
 alias qfind="find . -name "                                   # Quickly search for file
 alias sudo='sudo '                                            # Enable aliases to be sudo’ed
 alias week='date +%V'                                         # Get week number
@@ -85,3 +86,22 @@ alias localip="ipconfig getifaddr en0"                        # localip:      sh
 alias ipInfo0='ipconfig getpacket en0'                        # ipInfo0:      en0 info
 alias ipInfo1='ipconfig getpacket en1'                        # ipInfo1:      en1 info
 alias openPorts='sudo lsof -i | grep LISTEN'                  # openPorts:    show sockets with LISTEN state
+# Others
+alias _="sudo"
+alias vbrc="vim ~/.bashrc"
+alias vbpf="vim ~/.bash_profile"
+alias editHosts='sudo vim /etc/hosts'
+alias c='clear'
+alias k='clear'
+alias cls='clear'
+alias edit="$EDITOR"
+alias pager="$PAGER"
+alias q='exit'
+alias rb='ruby'
+alias py='python'
+alias ipy='ipython'
+alias h='history'
+alias rd='rmdir'
+alias xt="extract"
+alias svim="sudo vim"
+alias snano="sudo nano"

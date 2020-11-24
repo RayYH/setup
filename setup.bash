@@ -167,6 +167,9 @@ unset -f is_completion
 unset -f is_environment
 unset -f is_theme
 
+# unset alias helper func
+unset -f _set_pkg_aliases
+
 # Set git configurations
 if [ -n "$GIT_AUTHOR_NAME" ] && [ "$GIT_AUTHOR_NAME" != " " ]; then
     GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"

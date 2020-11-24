@@ -2,7 +2,7 @@
 
 # Git related plugins
 
-function git_aliases() {
+function git-aliases() {
     git config --get-regexp alias | awk '{first = $1; $1 = ""; printf "%-20s %s\n", first, $0; }'
 }
 
@@ -12,3 +12,7 @@ if [ ! "$(hash git &>/dev/null)" ]; then
         git diff --no-index --color-words "$@"
     }
 fi
+
+function git-dv() {
+    git diff -w "$@" | vim -R -
+}
