@@ -25,15 +25,15 @@
 如果你正在使用其他 Shell（可以使用 `echo $SHELL` 命令查看当前 Shell），比如 mac 新版本就默认使用 `zsh` 而不是 `bash`，你需要先切换到 `bash`：
 
 ```bash
-chsh -s /bin/bash
+$ chsh -s /bin/bash
 ```
 
 然后你可以通过 `git` 来安装本库（确保你已安装了 `git`）：
 
 
 ```bash
-git clone https://github.com/rayyh/setup ~/.setup
-cp ~/.setup/.setuprc ~/
+$ git clone https://github.com/rayyh/setup ~/.setup
+$ cp ~/.setup/.setuprc ~/
 ```
 
 > 我喜欢把该库放在 `~/Code/projects/shell/setup`, 然后通过 `ln -s` 命令链接到 `~/.setup`.
@@ -48,15 +48,28 @@ test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 
 ```bash
 # mac
-suorce ~/.bash_profile
+$ suorce ~/.bash_profile
 
 # linux
-source ~/.bashrc
+$ source ~/.bashrc
 ```
 
 ## 升级
 
 在终端执行命令 `upgrade_set_up` 即可。
+
+## 同步全局配置文件
+
+
+## Sync global configuration files
+
+```bash
+# 同步 .gitconifg, .gitignore 等文件到 Home 目录
+$ sync_set_up_configs 
+
+# 清除所有已备份的文件
+$ clean_set_up_backup_files
+```
 
 ## `.setuprc` 示例
 
