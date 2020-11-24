@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
 # brew
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+append_path "/usr/local/bin"
+append_path "/usr/local/sbin"
 
 # mysql
-[ -d "/usr/local/opt/mysql-client/bin" ] && export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+append_path "/usr/local/opt/mysql-client/bin"
 
 # curl
-[ -d "/usr/local/opt/curl/bin" ] && export PATH="/usr/local/opt/curl/bin:$PATH"
+append_path "/usr/local/opt/curl/bin"
 
 # qt
-[ -d "/usr/local/opt/qt/bin" ] && export PATH="/usr/local/opt/qt/bin:$PATH"
+append_path "/usr/local/opt/qt/bin"
 
 # go
-[ -d "$HOME/Code/projects/go" ] && export GOPATH=$HOME/Code/projects/go && export PATH="$GOPATH/bin:$PATH"
+[ -d "$HOME/Code/projects/go" ] && export GOPATH="$HOME/Code/projects/go" && append_path "$GOPATH/bin"
 
 # rust
-[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+append_path "$HOME/.cargo/bin"
 
 # Custom Path
-export PATH="$HOME/Bin:$PATH"
+append_path "$HOME/Bin"

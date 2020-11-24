@@ -29,3 +29,9 @@ function is_theme() {
     local name=$2
     test -f "$base_dir/themes/$name/$name.theme.bash"
 }
+
+function append_path() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}

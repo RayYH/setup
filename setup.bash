@@ -38,6 +38,9 @@ if [ ${#environments[@]} -eq 0 ]; then
     for exe_file in "$SET_UP"/environments/*.env.bash; do
         test -e "$exe_file" && source "$exe_file"
     done
+    for exe_file in "$SET_UP"/custom/environments/*.env.bash; do
+        test -e "$exe_file" && source "$exe_file"
+    done
 else
     for env in "${environments[@]}"; do
         exe_file="$SET_UP"/environments/"$env".env.bash
@@ -51,6 +54,9 @@ fi
 test -e "$SET_UP"/aliases/common.aliases.bash && source "$SET_UP"/aliases/common.aliases.bash
 if [ ${#aliases[@]} -eq 0 ]; then
     for exe_file in "$SET_UP"/aliases/*.aliases.bash; do
+        test -e "$exe_file" && source "$exe_file"
+    done
+    for exe_file in "$SET_UP"/custom/aliases/*.aliases.bash; do
         test -e "$exe_file" && source "$exe_file"
     done
 else
@@ -88,6 +94,9 @@ if [ ${#completions[@]} -eq 0 ]; then
     for exe_file in "$SET_UP"/completions/*.completion.bash; do
         test -e "$exe_file" && source "$exe_file"
     done
+    for exe_file in "$SET_UP"/custom/completions/*.completion.bash; do
+        test -e "$exe_file" && source "$exe_file"
+    done
 else
     for completion in "${completions[@]}"; do
         exe_file="$SET_UP"/completions/"$completion".completion.bash
@@ -101,6 +110,9 @@ fi
 test -e "$SET_UP"/plugins/common.plugin.bash && source "$SET_UP"/plugins/common.plugin.bash
 if [ ${#plugins[@]} -eq 0 ]; then
     for exe_file in "$SET_UP"/plugins/*.plugin.bash; do
+        test -e "$exe_file" && . "$exe_file"
+    done
+    for exe_file in "$SET_UP"/custom/plugins/*.plugin.bash; do
         test -e "$exe_file" && . "$exe_file"
     done
 else
