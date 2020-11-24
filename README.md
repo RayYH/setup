@@ -11,7 +11,7 @@ This repo sets up the development environment **I** need for daily programming.
 ```
 .
 ├── aliases       # aliases
-├── backup        # backup files (not used yet)
+├── backup        # backup files (backup old files will be replaced)
 ├── config        # global config files
 ├── custom        # custom scripts
 ├── environments  # exports
@@ -64,13 +64,27 @@ $ sync_set_up_configs
 $ clean_set_up_backup_files
 ```
 
-## `.setuprc` Example
+## Configuration
+
+Below is my `~/.setuprc` file.
 
 ```bash
+# Theme
 SET_UP_THEME='agnoster'
 
+# Fallback theme
+# when theme provided but can noly be used when launched `iTerm2.app`
+# we should switch to a theme can be used in a non-iTerm2 app to avoid
+# broken styles, if you are sure your terminal supports powerline, you
+# can still switch to a theme like `agnoster` by modifying below value
 FALLBACK_SET_UP_THEME='dotfiles'
 
+# empty means load all envs, plugins, ..
+# or you can use syntax like this:
+# plugins=(
+#   git
+#   docker
+# )
 environments=(
 )
 

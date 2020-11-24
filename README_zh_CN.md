@@ -71,13 +71,25 @@ $ sync_set_up_configs
 $ clean_set_up_backup_files
 ```
 
-## `.setuprc` 示例
+## 配置项
+
+下面是我的 `~/.setuprc` 文件：
 
 ```bash
+# 主题
 SET_UP_THEME='agnoster'
 
+# 备选主题，之所以提供该配置，是因为有些默认的 terminal 不支持
+# powerline 字体，比如我喜欢的 agnoster 主题就不能很好地显示
+# 此时，我们就要选择一个可以在任何终端环境都能显示的主题
 FALLBACK_SET_UP_THEME='dotfiles'
 
+# 配置环境变量、别名、插件... 为空表示加载所有插件
+# 你也可以只加载部分插件：
+# plugins=(
+#   git
+#   docker
+# )
 environments=(
 )
 
@@ -90,6 +102,7 @@ aliases=(
 plugins=(
 )
 
+# 下面的配置项，前两个是必须配置的，第三个是你开启了签名需要配置的，留空则不开启签名
 GIT_AUTHOR_NAME="rayyh"
 GIT_AUTHOR_EMAIL="rayyounghong@gmail.com"
 GIT_SIGNING_KEY="XXXXXXXXXXXXXXXX"
