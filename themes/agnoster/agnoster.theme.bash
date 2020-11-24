@@ -150,15 +150,15 @@ prompt_git() {
     local ref dirty ahead behind
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         # See themes/git.plugin.bash
-        dirty=$(parse_git_dirty)
+        dirty=$(_parse_git_dirty)
         ref=$(git symbolic-ref HEAD 2>/dev/null) || ref="➦ $(git show-ref --head -s --abbrev | head -n1 2>/dev/null)"
         if [[ -n $dirty ]]; then
             prompt_segment yellow black
         else
             prompt_segment green black
         fi
-        ahead=$(git_commits_ahead)
-        behind=$(git_commits_behind)
+        ahead=$(_git_commits_ahead)
+        behind=$(_git_commits_behind)
         if [ -n "$ahead" ] && [ -n "$behind" ]; then
             PR="$PR${ref/refs\/heads\// } ${SET_UP_THEME_GIT_COMMITS_AHEAD_BEHIND_SYMBOL}$dirty"
         elif [ -n "$ahead" ]; then

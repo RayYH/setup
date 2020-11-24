@@ -152,10 +152,19 @@ source "$SET_UP/themes/colors.bash"
 source "$SET_UP/themes/git.bash"
 source "$SET_UP/themes/base.bash"
 
+if [ "$SET_UP_THEME" == "random" ]; then
+    theme=$(find "$SET_UP/themes" -type d | shuf -n 1)
+    SET_UP_THEME=$(basename "$theme")
+fi
+
+echo "$SET_UP_THEME"
+
 if is_theme "$SET_UP_CUSTOM" "$SET_UP_THEME"; then
+    [ -f "$SET_UP_CUSTOM/themes/$SET_UP_THEME/base.theme.bash" ] && source "$SET_UP_CUSTOM/themes/$SET_UP_THEME/base.theme.bash"
     source "$SET_UP_CUSTOM/themes/$SET_UP_THEME/$SET_UP_THEME.theme.bash"
 else
     if is_theme "$SET_UP" "$SET_UP_THEME"; then
+        [ -f "$SET_UP/themes/$SET_UP_THEME/base.theme.bash" ] && source "$SET_UP/themes/$SET_UP_THEME/base.theme.bash"
         source "$SET_UP/themes/$SET_UP_THEME/$SET_UP_THEME.theme.bash"
     fi
 fi

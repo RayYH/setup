@@ -36,9 +36,6 @@ function append_path() {
     fi
 }
 
-function upgrade_set_up() {
-    local branch=${SET_UP_ENABLED_BRANCH:=master}
-    cd "$SET_UP" || return
-    [ -d ".git" ] && git pull origin $branch
-    cd - >/dev/null || return
+function _command_exists (){
+  type "$1" &> /dev/null
 }

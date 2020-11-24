@@ -46,3 +46,10 @@ function clean_set_up_backup_files() {
         fi
     fi
 }
+
+function upgrade_set_up() {
+    local branch=${SET_UP_ENABLED_BRANCH:=master}
+    cd "$SET_UP" || return
+    [ -d ".git" ] && git pull origin $branch
+    cd - >/dev/null || return
+}
