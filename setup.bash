@@ -160,5 +160,5 @@ if [ -n "$GIT_AUTHOR_EMAIL" ] && [ "$GIT_AUTHOR_EMAIL" != " " ]; then
 fi
 
 if [ -n "$GIT_SIGNING_KEY" ] && [ "$GIT_SIGNING_KEY" != " " ]; then
-    git config --global user.signingkey "$GIT_SIGNING_KEY"
+    git config --global commit.gpgsign true && git config --global user.signingkey "$GIT_SIGNING_KEY"
 fi
