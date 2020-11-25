@@ -153,8 +153,13 @@ source "$SET_UP/themes/git.bash"
 source "$SET_UP/themes/base.bash"
 
 if [ "$SET_UP_THEME" == "random" ]; then
-    theme=$(find "$SET_UP/themes" -type d | shuf -n 1)
-    SET_UP_THEME=$(basename "$theme")
+    if command -v shuf &>/dev/null; then
+        theme=$(find "$SET_UP/themes" -type d | shuf -n 1)
+        SET_UP_THEME=$(basename "$theme")
+    else
+        # `shuf` command not found, switch to FALLBACK_SET_UP_THEME
+        SET_UP_THEME="$FALLBACK_SET_UP_THEME"
+    fi
 fi
 
 if is_theme "$SET_UP_CUSTOM" "$SET_UP_THEME"; then

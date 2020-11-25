@@ -1,4 +1,8 @@
-# Theme
+# Theme, you can set this variable to `random` to get a random theme
+# If you are working on mac, you should install coreutils via brew:
+# `brew install coreutils` since we use the `shuf` command to pick
+# a random theme. You can always get current theme name via
+# `echo $SET_UP_THEME` command
 SET_UP_THEME='agnoster'
 
 # Fallback theme

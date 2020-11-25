@@ -76,7 +76,9 @@ $ clean_set_up_backup_files
 下面是我的 `~/.setuprc` 文件：
 
 ```bash
-# 主题
+# 主题，你可以将主题设置为 random，这样你会随机使用我们提供的一个主题。
+# 如果你使用 mac，你需要安装 coreutils: `brew install coreutils`。
+# 你可以通过命令 `echo $SET_UP_THEME` 来获得当前的主题名称。
 SET_UP_THEME='agnoster'
 
 # 备选主题，之所以提供该配置，是因为有些默认的 terminal 不支持
