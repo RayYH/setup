@@ -37,19 +37,9 @@ alias DELETE="lwp-request -m 'DELETE'"                        # DELETE
 alias TRACE="lwp-request -m 'TRACE'"                          # TRACE
 alias OPTIONS="lwp-request -m 'OPTIONS'"                      # OPTIONS
 # Folder Navigation
-alias e="cd ~/Code/env && clear"                              # Docker/Vagrant/Kubernetes
 alias dl="cd ~/Downloads && clear"                            # Download
 alias dt="cd ~/Desktop && clear"                              # Desktop
 alias one="cd ~/OneDrive && clear"                            # OneDrive
-alias p="cd ~/Code/projects && clear"                         # projects
-alias pc="cd ~/Code/projects/c && clear"                      # C projects
-alias pcpp="cd ~/Code/projects/cpp && clear"                  # CPP projects
-alias pphp="cd ~/Code/projects/php && clear"                  # PHP projects
-alias ppython="cd ~/Code/projects/python && clear"            # Python projects
-alias pjava="cd ~/Code/projects/java && clear"                # Java projects
-alias pjs="cd ~/Code/projects/javascript && clear"            # JavaScript projects
-alias pshell="cd ~/Code/projects/shell && clear"              # Shell projects
-alias pgo="cd ~/Code/projects/go && clear"                    # go projects
 # Preferred Commands, colorflag see common.env.bash
 alias cp='cp -iv'                                             # Preferred 'cp' implementation
 alias mv='mv -iv'                                             # Preferred 'mv' implementation
