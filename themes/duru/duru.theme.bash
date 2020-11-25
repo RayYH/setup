@@ -6,15 +6,15 @@ SCM_THEME_PROMPT_DIRTY=" ${red}with changes"
 SCM_THEME_PROMPT_CLEAN=""
 
 venv() {
-  if [ ! -z "$VIRTUAL_ENV" ]
-  then
+  if [ -n "$VIRTUAL_ENV" ]; then
     local env=$VIRTUAL_ENV
     echo "${gray} in ${orange}${env##*/} "
   fi
 }
 
 last_two_dirs() {
-  pwd|rev|awk -F / '{print $1,$2}'|rev|sed s_\ _/_|sed "s|$(sed 's,\/,,'<<<$HOME)|~|g"
+  # shellcheck disable=SC2001
+  pwd | rev | awk -F / '{print $1,$2}' | rev | sed s_\ _/_ | sed "s|$(sed 's,\/,,' <<<$HOME)|~|g"
 }
 
 prompt() {

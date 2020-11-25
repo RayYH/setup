@@ -32,37 +32,37 @@
 #*color7: #E5E5E5
 
 # ----------------------------------------------------------------- DEF COLOR
-RCol='\e[0m'    # Text Reset
+RCol='\e[0m' # Text Reset
 
 # Regular
-Bla='\e[0;30m';
-Red='\e[0;31m';
-Gre='\e[0;32m';
-Yel='\e[0;33m';
-Blu='\e[0;34m';
-Pur='\e[0;35m';
-Cya='\e[0;36m';
-Whi='\e[0;37m';
+Bla='\e[0;30m'
+Red='\e[0;31m'
+Gre='\e[0;32m'
+Yel='\e[0;33m'
+Blu='\e[0;34m'
+Pur='\e[0;35m'
+Cya='\e[0;36m'
+Whi='\e[0;37m'
 
 # Bold
-BBla='\e[1;30m';
-BRed='\e[1;31m';
-BYel='\e[1;33m';
-BGre='\e[1;32m';
-BBlu='\e[1;34m';
-BPur='\e[1;35m';
-BCya='\e[1;36m';
-BWhi='\e[1;37m';
+BBla='\e[1;30m'
+BRed='\e[1;31m'
+BYel='\e[1;33m'
+BGre='\e[1;32m'
+BBlu='\e[1;34m'
+BPur='\e[1;35m'
+BCya='\e[1;36m'
+BWhi='\e[1;37m'
 
 # High Intensity
-IBla='\e[0;90m';
-IRed='\e[0;91m';
-IGre='\e[0;92m';
-IYel='\e[0;93m';
-IBlu='\e[0;94m';
-IPur='\e[0;95m';
-ICya='\e[0;96m';
-IWhi='\e[0;97m';
+IBla='\e[0;90m'
+IRed='\e[0;91m'
+IGre='\e[0;92m'
+IYel='\e[0;93m'
+IBlu='\e[0;94m'
+IPur='\e[0;95m'
+ICya='\e[0;96m'
+IWhi='\e[0;97m'
 
 # ----------------------------------------------------------------- COLOR CONF
 D_DEFAULT_COLOR="${Whi}"
@@ -80,17 +80,16 @@ D_VIMSHELL_COLOR="${Cya}"
 
 # ------------------------------------------------------------------ FUNCTIONS
 case $TERM in
-  xterm*)
-      TITLEBAR="\033]0;\w\007"
-      ;;
-  *)
-      TITLEBAR=""
-      ;;
+xterm*)
+  TITLEBAR="\033]0;\w\007"
+  ;;
+*)
+  TITLEBAR=""
+  ;;
 esac
 
 is_vim_shell() {
-  if [ ! -z "$VIMRUNTIME" ];
-  then
+  if [ -n "$VIMRUNTIME" ]; then
     echo "${D_INTERMEDIATE_COLOR}on ${D_VIMSHELL_COLOR}\
 vim shell${D_DEFAULT_COLOR} "
   fi
@@ -98,8 +97,7 @@ vim shell${D_DEFAULT_COLOR} "
 
 mitsuhikos_lastcommandfailed() {
   code=$?
-  if [ $code != 0 ];
-  then
+  if [ $code != 0 ]; then
     echo "${D_INTERMEDIATE_COLOR}exited ${D_CMDFAIL_COLOR}\
 $code ${D_DEFAULT_COLOR}"
   fi
@@ -107,8 +105,7 @@ $code ${D_DEFAULT_COLOR}"
 
 # vcprompt for scm instead of bash_it default
 demula_vcprompt() {
-  if [ ! -z "$VCPROMPT_EXECUTABLE" ];
-  then
+  if [ -n "$VCPROMPT_EXECUTABLE" ]; then
     local D_VCPROMPT_FORMAT="on ${D_SCM_COLOR}%s${D_INTERMEDIATE_COLOR}:\
 ${D_BRANCH_COLOR}%b %r ${D_CHANGES_COLOR}%m%u ${D_DEFAULT_COLOR}"
     $VCPROMPT_EXECUTABLE -f "$D_VCPROMPT_FORMAT"
@@ -117,60 +114,62 @@ ${D_BRANCH_COLOR}%b %r ${D_CHANGES_COLOR}%m%u ${D_DEFAULT_COLOR}"
 
 # checks if the plugin is installed before calling battery_charge
 safe_battery_charge() {
-  if command_exists battery_charge ;
-  then
+  if command_exists battery_charge; then
     battery_charge
   fi
 }
 
 prompt_git() {
-	local s='';
-	local branchName='';
+  local s=''
+  local branchName=''
 
-	# Check if the current directory is in a Git repository.
-	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+  # Check if the current directory is in a Git repository.
+  if [ "$(
+    git rev-parse --is-inside-work-tree &>/dev/null
+    echo "${?}"
+  )" == '0' ]; then
 
-		# check if the current directory is in .git before running git checks
-		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+    # check if the current directory is in .git before running git checks
+    if [ "$(git rev-parse --is-inside-git-dir 2>/dev/null)" == 'false' ]; then
 
-			# Ensure the index is up to date.
-			git update-index --really-refresh -q &>/dev/null;
+      # Ensure the index is up to date.
+      git update-index --really-refresh -q &>/dev/null
 
-			# Check for uncommitted changes in the index.
-			if ! $(git diff --quiet --ignore-submodules --cached); then
-				s+='+';
-			fi;
+      # Check for uncommitted changes in the index.
+      if ! git diff --quiet --ignore-submodules --cached; then
+        s+='+'
+      fi
 
-			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
-				s+='!';
-			fi;
+      # Check for unstaged changes.
+      if ! git diff-files --quiet --ignore-submodules --; then
+        s+='!'
+      fi
 
-			# Check for untracked files.
-			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				s+='?';
-			fi;
+      # Check for untracked files.
+      if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        s+='?'
+      fi
 
-			# Check for stashed files.
-			if $(git rev-parse --verify refs/stash &>/dev/null); then
-				s+='$';
-			fi;
+      # Check for stashed files.
+      if git rev-parse --verify refs/stash &>/dev/null; then
+        s+='$'
+      fi
 
-		fi;
+    fi
 
-		# Get the short symbolic ref.
-		# If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
-		# Otherwise, just give up.
-		branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-			git rev-parse --short HEAD 2> /dev/null || \
-			echo '(unknown)')";
+    # Get the short symbolic ref.
+    # If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
+    # Otherwise, just give up.
+    branchName="$(git symbolic-ref --quiet --short HEAD 2>/dev/null ||
+      git rev-parse --short HEAD 2>/dev/null ||
+      echo '(unknown)')"
 
-		[ -n "${s}" ] && s=" [${s}]";
+    [ -n "${s}" ] && s=" [${s}]"
 
-		echo -e "${1}${branchName}${Cya}${s}";
-	else
-		return;
-	fi;
+    echo -e "${1}${branchName}${Cya}${s}"
+  else
+    return
+  fi
 }
 
 # -------------------------------------------------------------- PROMPT OUTPUT
@@ -181,8 +180,7 @@ prompt() {
   local MOVE_CURSOR_RIGHTMOST='\033[500C'
   local MOVE_CURSOR_5_LEFT='\033[5D'
 
-  if [ $(uname) = "Linux" ];
-  then
+  if [ "$(uname)" = "Linux" ]; then
     PS1="${TITLEBAR}
 ${SAVE_CURSOR}${MOVE_CURSOR_RIGHTMOST}${MOVE_CURSOR_5_LEFT}\
 $(safe_battery_charge)${RESTORE_CURSOR}\

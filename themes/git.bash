@@ -421,7 +421,7 @@ function git_friendly_ref() {
 __git_eread() {
   local f="$1"
   shift
-  test -r "$f" && read "$@" <"$f"
+  test -r "$f" && read -r "$@" <"$f"
 }
 __git_ps1() {
   # preserve exit status
@@ -580,7 +580,7 @@ __git_ps1() {
           describe)
             git describe HEAD
             ;;
-          * | default)
+          *)
             git describe --tags --exact-match HEAD
             ;;
           esac 2>/dev/null
@@ -651,12 +651,15 @@ __git_ps1() {
 
   if [ $pcmode = yes ]; then
     if [ "${__git_printf_supports_v-}" != yes ]; then
+      # shellcheck disable=SC2059
       gitstring=$(printf -- "$printf_format" "$gitstring")
     else
+      # shellcheck disable=SC2059
       printf -v gitstring -- "$printf_format" "$gitstring"
     fi
     PS1="$ps1pc_start$gitstring$ps1pc_end"
   else
+    # shellcheck disable=SC2059
     printf -- "$printf_format" "$gitstring"
   fi
 

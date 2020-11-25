@@ -50,20 +50,20 @@ icon_end="└❯ "
 # FUNCTIONS ===================================================================
 
 # Display virtual environment info
-function virtualenv_prompt {
+function virtualenv_prompt() {
   if [[ -n "$VIRTUAL_ENV" ]]; then
-    virtualenv=`basename "$VIRTUAL_ENV"`
+    virtualenv=$(basename "$VIRTUAL_ENV")
     echo -e "$VIRTUALENV_CHAR$virtualenv "
   fi
 }
 
 # Rename tab
-function tabname {
+function tabname() {
   printf "\e]1;$1\a"
 }
 
 # Rename window
-function winname {
+function winname() {
   printf "\e]2;$1\a"
 }
 

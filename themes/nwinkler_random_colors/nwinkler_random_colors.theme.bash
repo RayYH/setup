@@ -17,54 +17,53 @@
 
 RANDOM_COLOR_FILE=$HOME/.nwinkler_random_colors
 
-function randomize_nwinkler {
+function randomize_nwinkler() {
   declare -a AVAILABLE_COLORS
 
   AVAILABLE_COLORS=(
-    $black
-    $red
-    $green
-    $yellow
-    $blue
-    $purple
-    $cyan
-    $white
-    $orange
-    $bold_black
-    $bold_red
-    $bold_green
-    $bold_yellow
-    $bold_blue
-    $bold_purple
-    $bold_cyan
-    $bold_white
-    $bold_orange
+    "$black"
+    "$red"
+    "$green"
+    "$yellow"
+    "$blue"
+    "$purple"
+    "$cyan"
+    "$white"
+    "$orange"
+    "$bold_black"
+    "$bold_red"
+    "$bold_green"
+    "$bold_yellow"
+    "$bold_blue"
+    "$bold_purple"
+    "$bold_cyan"
+    "$bold_white"
+    "$bold_orange"
   )
   # Uncomment these to allow underlines:
-    #$underline_black
-    #$underline_red
-    #$underline_green
-    #$underline_yellow
-    #$underline_blue
-    #$underline_purple
-    #$underline_cyan
-    #$underline_white
-    #$underline_orange
+  #$underline_black
+  #$underline_red
+  #$underline_green
+  #$underline_yellow
+  #$underline_blue
+  #$underline_purple
+  #$underline_cyan
+  #$underline_white
+  #$underline_orange
   #)
 
-  USERNAME_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]} ]}
-  HOSTNAME_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]} ]}
-  TIME_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]} ]}
+  USERNAME_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]}]}
+  HOSTNAME_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]}]}
+  TIME_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]}]}
   THEME_CLOCK_COLOR=$TIME_COLOR
-  PATH_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]} ]}
+  PATH_COLOR=${AVAILABLE_COLORS[$RANDOM % ${#AVAILABLE_COLORS[@]}]}
 
-  echo "$USERNAME_COLOR,$HOSTNAME_COLOR,$TIME_COLOR,$PATH_COLOR," > $RANDOM_COLOR_FILE
+  echo "$USERNAME_COLOR,$HOSTNAME_COLOR,$TIME_COLOR,$PATH_COLOR," >"$RANDOM_COLOR_FILE"
 }
 
-if [ -f $RANDOM_COLOR_FILE ];
-then
+if [ -f "$RANDOM_COLOR_FILE" ]; then
   # read the colors already stored in the file
-  IFS=',' read -ra COLORS < $RANDOM_COLOR_FILE
+  IFS=',' read -ra COLORS <"$RANDOM_COLOR_FILE"
   USERNAME_COLOR=${COLORS[0]}
   HOSTNAME_COLOR=${COLORS[1]}
   TIME_COLOR=${COLORS[2]}
@@ -92,8 +91,10 @@ function prompt_end() {
 
 prompt_setter() {
   local exit_status=$?
-  if [[ $exit_status -eq 0 ]]; then PROMPT_END=$PROMPT_END_CLEAN
-    else PROMPT_END=$PROMPT_END_DIRTY
+  if [[ $exit_status -eq 0 ]]; then
+    PROMPT_END=$PROMPT_END_CLEAN
+  else
+    PROMPT_END=$PROMPT_END_DIRTY
   fi
   # Save history
   history -a

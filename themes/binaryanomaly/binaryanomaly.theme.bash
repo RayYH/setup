@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-
 # Detect whether a reboot is required
 function show_reboot_required() {
-  if [ ! -z "$_bf_prompt_reboot_info" ]; then
+  if [ -n "$_bf_prompt_reboot_info" ]; then
     if [ -f /var/run/reboot-required ]; then
       printf "Reboot required!"
     fi
@@ -13,32 +12,31 @@ function show_reboot_required() {
 # Set different host color for local and remote sessions
 function set_host_color() {
   # Detect if connection is through SSH
-  if [[ ! -z $SSH_CLIENT ]]; then
-    printf "${lime_yellow}"
+  if [[ -n $SSH_CLIENT ]]; then
+    printf "%s" "${lime_yellow}"
   else
-    printf "${light_orange}"
+    printf "%s" "${light_orange}"
   fi
 }
 
 # Set different username color for users and root
 function set_user_color() {
   case $(id -u) in
-    0)
-      printf "${red}"
-      ;;
-    *)
-      printf "${cyan}"
-      ;;
+  0)
+    printf "%s" "${red}"
+    ;;
+  *)
+    printf "%s" "${cyan}"
+    ;;
   esac
 }
 
 scm_prompt() {
   CHAR=$(scm_char)
-  if [ $CHAR = $SCM_NONE_CHAR ]
-    then
-      return
-    else
-      echo "[$(scm_char)$(scm_prompt_info)]"
+  if [ "$CHAR" = "$SCM_NONE_CHAR" ]; then
+    return
+  else
+    echo "[$(scm_char)$(scm_prompt_info)]"
   fi
 }
 
@@ -57,7 +55,7 @@ function set_custom_colors() {
 }
 
 __ps_time() {
-  echo "$(clock_prompt)${normal}\n"
+  printf "%s" "$(clock_prompt)${normal}\n"
 }
 
 function prompt_command() {

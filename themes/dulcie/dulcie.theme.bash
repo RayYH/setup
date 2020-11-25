@@ -12,7 +12,7 @@
 #
 # Configuration. Change these by adding them in your .bash_profile
 
-DULCIE_COLOR=${DULCIE_COLOR:=1} # 0 = monochrome, 1 = colorful
+DULCIE_COLOR=${DULCIE_COLOR:=1}         # 0 = monochrome, 1 = colorful
 DULCIE_MULTILINE=${DULCIE_MULTILINE:=1} # 0 = Single line, 1 = SCM in separate line
 
 dulcie_color() {
@@ -77,7 +77,7 @@ dulcie_prompt() {
   printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"
 
   # Open the new terminal in the same directory
-  declare -f __vte_osc7 > /dev/null && __vte_osc7
+  declare -f __vte_osc7 >/dev/null && __vte_osc7
 
   PS1="${reset_color}[${DULCIE_USER}@${DULCIE_HOST}$(scm_prompt_info)${reset_color} ${DULCIE_WORKINGDIR}]"
   if [[ "${DULCIE_MULTILINE}" -eq "1" ]]; then

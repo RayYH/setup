@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+# see https://github.com/Bash-it/bash-it
 # SCM means supply chain management
+# use default
+unset PROMPT_DIRTRIM
 SCM=
 SCM_CHECK=${SCM_CHECK:=true}
 THEME_PROMPT_HOST='\H'

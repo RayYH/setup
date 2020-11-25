@@ -4,24 +4,23 @@ SCM_THEME_PROMPT_CLEAN="${bold_green} ✓${normal}"
 SCM_GIT_CHAR="${green}±${normal}"
 
 scm_prompt() {
-    CHAR=$(scm_char)
-    if [ $CHAR = $SCM_NONE_CHAR ]
-        then
-            return
-        else
-            echo " [$(scm_char)$(scm_prompt_info)]"
-    fi
+  CHAR=$(scm_char)
+  if [ "$CHAR" = "$SCM_NONE_CHAR" ]; then
+    return
+  else
+    echo " [$(scm_char)$(scm_prompt_info)]"
+  fi
 }
 
 mark_prompt() {
-    echo "${green}\$${normal}"
+  echo "${green}\$${normal}"
 }
 
 user_host_path_prompt() {
-    ps_user="${green}\u${normal}";
-    ps_host="${blue}\H${normal}";
-    ps_path="${yellow}\w${normal}";
-    echo "$ps_user@$ps_host:$ps_path"
+  ps_user="${green}\u${normal}"
+  ps_host="${blue}\H${normal}"
+  ps_path="${yellow}\w${normal}"
+  echo "$ps_user@$ps_host:$ps_path"
 }
 
 prompt() {

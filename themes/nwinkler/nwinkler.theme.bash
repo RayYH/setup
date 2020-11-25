@@ -15,7 +15,6 @@
 # The exit code functionality currently doesn't work if you are using the 'fasd' plugin,
 # since 'fasd' is messing with the $PROMPT_COMMAND
 
-
 PROMPT_END_CLEAN="${green}→${reset_color}"
 PROMPT_END_DIRTY="${red}→${reset_color}"
 
@@ -25,8 +24,10 @@ function prompt_end() {
 
 prompt_setter() {
   local exit_status=$?
-  if [[ $exit_status -eq 0 ]]; then PROMPT_END=$PROMPT_END_CLEAN
-    else PROMPT_END=$PROMPT_END_DIRTY
+  if [[ $exit_status -eq 0 ]]; then
+    PROMPT_END=$PROMPT_END_CLEAN
+  else
+    PROMPT_END=$PROMPT_END_DIRTY
   fi
   # Save history
   history -a
