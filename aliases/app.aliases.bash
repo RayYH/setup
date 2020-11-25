@@ -2,7 +2,7 @@
 
 # Application aliases
 
-if [ ! "$(uname -s)" = 'Darwin' ]; then
+if [ "$(uname -s)" == 'Darwin' ]; then
     # Mac
     alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 else
