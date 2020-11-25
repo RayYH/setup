@@ -175,3 +175,9 @@ function o() {
 function tre() {
     tree -aC -I '.git|node_modules|bower_components|vendor' --dirsfirst "$@" | less -FRNX
 }
+
+# url decode
+function urldecode() {
+    : "${*//+/ }"
+    echo -e "${_//%/\\x}"
+}
