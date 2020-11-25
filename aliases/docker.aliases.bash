@@ -22,9 +22,9 @@ alias dksp='docker system prune -a -f'                                          
 
 case $OSTYPE in
 darwin* | *bsd* | *BSD*)
-    alias dkrmui='docker images -q -f dangling=true | xargs docker rmi' # Delete all untagged Docker images
-    ;;
+  alias dkrmui='docker images -q -f dangling=true | xargs docker rmi' # Delete all untagged Docker images
+  ;;
 *)
-    alias dkrmui='docker images -q -f dangling=true | xargs -r docker rmi' # Delete all untagged Docker images
-    ;;
+  alias dkrmui='docker images -q -f dangling=true | xargs -r docker rmi' # Delete all untagged Docker images
+  ;;
 esac

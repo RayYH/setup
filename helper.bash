@@ -36,6 +36,6 @@ function append_path() {
     fi
 }
 
-function _command_exists (){
-  type "$1" &> /dev/null
+function command_exists() {
+    type "$1" &>/dev/null
 }

@@ -164,7 +164,7 @@ ___atomic_prompt_clock() {
 }
 
 ___atomic_prompt_battery() {
-  ! _command_exists battery_percentage ||
+  ! command_exists battery_percentage ||
   [ "${THEME_SHOW_BATTERY}" != "true" ] ||
   [ "$(battery_percentage)" = "no" ] && return
 

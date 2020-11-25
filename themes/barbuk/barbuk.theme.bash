@@ -32,7 +32,7 @@ GIT_THEME_PROMPT_CLEAN=" ${bold_green}✓"
 GIT_THEME_PROMPT_PREFIX="${cyan}"
 GIT_THEME_PROMPT_SUFFIX="${cyan}"
 SCM_THEME_BRANCH_TRACK_PREFIX="${normal} ⤏  ${cyan}"
-SCM_THEME_CURRENT_USER_PREFFIX='  '
+SCM_THEME_CURRENT_USER_PREFIX='  '
 SCM_GIT_SHOW_CURRENT_USER=false
 
 function _git-uptream-remote-logo {

@@ -5,10 +5,10 @@
 PROMPT_DIRTRIM=2
 
 # Theme Variable
-SET_UP_THEME_GIT_PROMPT_DIRTY=" ●"
-SET_UP_THEME_GIT_COMMITS_AHEAD_SYMBOL="⬆"
-SET_UP_THEME_GIT_COMMITS_BEHIND_SYMBOL="⬇"
-SET_UP_THEME_GIT_COMMITS_AHEAD_BEHIND_SYMBOL="⇵"
+SCM_GIT_PROMPT_DIRTY=" ●"
+SCM_GIT_COMMITS_AHEAD_SYMBOL="⬆"
+SCM_GIT_COMMITS_BEHIND_SYMBOL="⬇"
+SCM_GIT_COMMITS_AHEAD_BEHIND_SYMBOL="⇵"
 
 DEBUG=0
 debug() {
@@ -160,11 +160,11 @@ prompt_git() {
         ahead=$(_git_commits_ahead)
         behind=$(_git_commits_behind)
         if [ -n "$ahead" ] && [ -n "$behind" ]; then
-            PR="$PR${ref/refs\/heads\// } ${SET_UP_THEME_GIT_COMMITS_AHEAD_BEHIND_SYMBOL}$dirty"
+            PR="$PR${ref/refs\/heads\// } ${SCM_GIT_COMMITS_AHEAD_BEHIND_SYMBOL}$dirty"
         elif [ -n "$ahead" ]; then
-            PR="$PR${ref/refs\/heads\// } ${SET_UP_THEME_GIT_COMMITS_AHEAD_SYMBOL}$dirty"
+            PR="$PR${ref/refs\/heads\// } ${SCM_GIT_COMMITS_AHEAD_SYMBOL}$dirty"
         elif [ -n "$behind" ]; then
-            PR="$PR${ref/refs\/heads\// } ${SET_UP_THEME_GIT_COMMITS_BEHIND_SYMBOL}$dirty"
+            PR="$PR${ref/refs\/heads\// } ${SCM_GIT_COMMITS_BEHIND_SYMBOL}$dirty"
         else
             PR="$PR${ref/refs\/heads\// } $dirty"
         fi
