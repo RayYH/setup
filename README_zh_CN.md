@@ -60,9 +60,6 @@ $ source ~/.bashrc
 
 ## 同步全局配置文件
 
-
-## Sync global configuration files
-
 ```bash
 # 同步 .gitconifg, .gitignore 等文件到 Home 目录
 $ sync_set_up_configs 
