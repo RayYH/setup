@@ -66,7 +66,7 @@ $ clean_set_up_backup_files
 
 ## Configuration
 
-Below is my `~/.setuprc` file.
+Below is my `~/.setuprc` file, refer to [our wiki](https://github.com/RayYH/setup/wiki) for more information.
 
 ```bash
 # Theme, you can set this variable to `random` to get a random theme
