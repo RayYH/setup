@@ -60,9 +60,6 @@ $ source ~/.bashrc
 
 ## 同步全局配置文件
 
-
-## Sync global configuration files
-
 ```bash
 # 同步 .gitconifg, .gitignore 等文件到 Home 目录
 $ sync_set_up_configs 
@@ -73,7 +70,7 @@ $ clean_set_up_backup_files
 
 ## 配置项
 
-下面是我的 `~/.setuprc` 文件：
+下面是我的 `~/.setuprc` 文件，查看我们的 [wiki](https://github.com/RayYH/setup/wiki) 以获得更多信息。
 
 ```bash
 # 主题，你可以将主题设置为 random，这样你会随机使用我们提供的一个主题。
