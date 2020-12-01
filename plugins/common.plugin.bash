@@ -193,7 +193,8 @@ function cjson() {
   res=$(echo "${str//[[:blank:]]/}" | tr -d '\n')
   if command -v pbcopy &>/dev/null; then
     echo "$res" | pbcopy
-    pbpaste
+    # when compress, don't display the info
+    # pbpaste
   else
     echo "$res"
   fi
