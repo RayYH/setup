@@ -199,6 +199,7 @@ function cjson() {
   fi
 }
 
+# pretty json
 function pjson() {
   if command -v python &>/dev/null; then
     local str res
