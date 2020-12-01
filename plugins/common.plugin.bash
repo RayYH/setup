@@ -181,3 +181,44 @@ function urldecode() {
   : "${*//+/ }"
   echo -e "${_//%/\\x}"
 }
+
+# compress json
+function cjson() {
+  local str res
+  if command -v pbpaste &>/dev/null; then
+    str=$(pbpaste)
+  else
+    str="$1"
+  fi
+  res=$(echo "${str//[[:blank:]]/}" | tr -d '\n')
+  if command -v pbcopy &>/dev/null; then
+    echo "$res" | pbcopy
+    pbpaste
+  else
+    echo "$res"
+  fi
+}
+
+function pjson() {
+  if command -v python &>/dev/null; then
+    local str res
+    if command -v pbpaste &>/dev/null; then
+      str=$(pbpaste)
+    else
+      str="$1"
+    fi
+    if [ -f "$str" ]; then
+      res=$(python -m json.tool "$str")
+    else
+      res=$(echo "$str" | python -m json.tool)
+    fi
+    if command -v pbcopy &>/dev/null; then
+      echo "$res" | pbcopy
+      pbpaste
+    else
+      echo "$res"
+    fi
+  else
+    echo "python not found!" && return
+  fi
+}
