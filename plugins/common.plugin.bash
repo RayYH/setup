@@ -185,11 +185,11 @@ function urldecode() {
 # compress json
 function cjson() {
   local str res
+  str="$1"
   if command -v pbpaste &>/dev/null; then
-    str=$(pbpaste)
-  else
-    str="$1"
+    [ -z "$str" ] && str=$(pbpaste)
   fi
+  [ -f "$str" ] && str=$(cat "$str")
   res=$(echo "${str//[[:blank:]]/}" | tr -d '\n')
   if command -v pbcopy &>/dev/null; then
     echo "$res" | pbcopy
@@ -202,25 +202,29 @@ function cjson() {
 
 # pretty json
 function pjson() {
-  if command -v python &>/dev/null; then
-    local str res
-    if command -v pbpaste &>/dev/null; then
-      str=$(pbpaste)
+  local str res
+  str="$1"
+  if command -v pbpaste &>/dev/null; then
+    [ -z "$str" ] && str=$(pbpaste)
+  fi
+  # if jq installed
+  if command -v jq &>/dev/null; then
+    if [ -f "$str" ]; then
+      res=$(jq . <"$str")
     else
-      str="$1"
+      res=$(echo "$str" | jq .)
     fi
+  else
     if [ -f "$str" ]; then
       res=$(python -m json.tool "$str")
     else
       res=$(echo "$str" | python -m json.tool)
     fi
-    if command -v pbcopy &>/dev/null; then
-      echo "$res" | pbcopy
-      pbpaste
-    else
-      echo "$res"
-    fi
+  fi
+  if command -v pbcopy &>/dev/null; then
+    echo "$res" | pbcopy
+    pbpaste
   else
-    echo "python not found!" && return
+    echo "$res"
   fi
 }
