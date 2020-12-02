@@ -42,7 +42,12 @@ if grep -q ".setup/setup.bash" "$BASH_PROFILE"; then
     echo "You've already enabled setup"
 else
     # shellcheck disable=SC2016
-    echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
+    if command -v test &>/dev/null; then
+        echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
+    else
+        # some macos release not support test -e
+        echo 'source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
+    fi
 fi
 
 source "$BASH_PROFILE"
