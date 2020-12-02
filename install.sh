@@ -50,4 +50,7 @@ else
     fi
 fi
 
+# debug
+cat "$BASH_PROFILE"
+echo "$PATH"
 source "$BASH_PROFILE"
