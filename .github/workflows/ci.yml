@@ -1,0 +1,23 @@
+name: CI
+on:
+  - pull_request
+  - push
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    needs: csfix
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ ubuntu-latest, macos-latest ]
+    name: Setup installation & theme tests on ${{ matrix.operating-system }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Installation
+        run: ./install.sh
+        shell: bash
+
+      - name: Tests
+        run: ./test.sh
