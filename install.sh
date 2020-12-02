@@ -41,16 +41,10 @@ esac
 if grep -q ".setup/setup.bash" "$BASH_PROFILE"; then
     echo "You've already enabled setup"
 else
+    # write empty line first
+    echo >>"$BASH_PROFILE"
     # shellcheck disable=SC2016
-    if command -v test &>/dev/null; then
-        echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
-    else
-        # some macos release not support test -e
-        echo 'source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
-    fi
+    echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
 fi
 
-# debug
-cat "$BASH_PROFILE"
-echo "$PATH"
 source "$BASH_PROFILE"
