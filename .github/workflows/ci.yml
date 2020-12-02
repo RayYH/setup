@@ -3,9 +3,8 @@ on:
   - pull_request
   - push
 jobs:
-  build:
+  test:
     runs-on: ${{ matrix.operating-system }}
-    needs: csfix
     strategy:
       fail-fast: false
       matrix:
