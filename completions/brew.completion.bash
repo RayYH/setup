@@ -6,12 +6,14 @@ fi
 
 command_exists brew || return 0
 
-BREW_PREFIX=${BREW_PREFIX:-$(brew --prefix)}
-
-if [[ -r "$BREW_PREFIX"/etc/bash_completion.d/brew ]]; then
-  source "$BREW_PREFIX"/etc/bash_completion.d/brew
-elif [[ -r "$BREW_PREFIX"/Library/Contributions/brew_bash_completion.sh ]]; then
-  source "$BREW_PREFIX"/Library/Contributions/brew_bash_completion.sh
-elif [[ -f "$BREW_PREFIX"/completions/bash/brew ]]; then
-  source "$BREW_PREFIX"/completions/bash/brew
+# TODO: BUG FIXES
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
 fi

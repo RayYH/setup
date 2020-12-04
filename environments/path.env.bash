@@ -21,3 +21,7 @@ append_path "$HOME/.cargo/bin"
 
 # Custom Path
 append_path "$HOME/Bin"
+
+# sed: illegal option -- r
+# you should install gnu-sed first via command: brew install gnu-sed
+append_path "/usr/local/opt/gnu-sed/libexec/gnubin"
