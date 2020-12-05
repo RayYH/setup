@@ -12,8 +12,8 @@ fi
 if [[ "$SHELL" == *bash ]]; then
     echo "Your current shell is bash"
 else
-    [ -x "/bin/bash" ] && chsh -s /bin/bash
-    [ -x "/usr/local/bin/bash" ] && chsh -s /usr/local/bin/bash
+    command -v bash | sudo tee -a /etc/shells
+    chsh -s "$(command -v bash)"
 fi
 
 if [ -d "$HOME/.setup" ]; then

@@ -35,7 +35,8 @@ If you use other shells, switch to `bash` first:
 ```bash
 # check current shell: echo $SHELL
 $ chsh -s /bin/bash
-# or
+# or - Make sure your `etc/shells` file contains `/usr/local/bin/bash` item
+# sudo echo /usr/local/bin/bash >> /etc/shells
 $ chsh -s /usr/local/bin/bash
 ```
 

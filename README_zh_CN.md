@@ -22,10 +22,21 @@
 
 ## 安装
 
+### 快速安装
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+```
+
+### 手动安装
+
 如果你正在使用其他 Shell（可以使用 `echo $SHELL` 命令查看当前 Shell），比如 mac 新版本就默认使用 `zsh` 而不是 `bash`，你需要先切换到 `bash`：
 
 ```bash
 $ chsh -s /bin/bash
+# 或者使用通过 brew 或者其他方式安装的 bash，确保 `etc/shells` 已经包含 `/usr/local/bin/bash`
+# # sudo echo /usr/local/bin/bash >> /etc/shells
+$ chsh -s /usr/local/bin/bash
 ```
 
 然后你可以通过 `git` 来安装本库（确保你已安装了 `git`）：
