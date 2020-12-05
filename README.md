@@ -122,4 +122,4 @@ GIT_SIGNING_KEY="XXXXXXXXXXXXXXXX"
 
 ## License
 
-This project is open-source software licensed under the [MIT License](LICENSE).
+This project is open-sourced software licensed under the [MIT license](LICENSE).
