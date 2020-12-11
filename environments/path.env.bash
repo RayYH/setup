@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
+# snap
+append_path "/snap/bin"
+
 # brew
 append_path "/usr/local/bin"
 append_path "/usr/local/sbin"
-
-# snap
-append_path "/snap/bin"
 
 # mysql
 append_path "/usr/local/opt/mysql-client/bin"

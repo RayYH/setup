@@ -36,6 +36,12 @@ function append_path() {
     fi
 }
 
+function unshift_path() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1${PATH:+"$PATH:"}"
+    fi
+}
+
 function command_exists() {
     type "$1" &>/dev/null
 }
