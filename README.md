@@ -55,7 +55,7 @@ Now add below lines to your `.bash_profile` or your `.bashrc`:
 test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 ```
 
-`suorce ~/.bash_profile` (macos) or `source ~/.bashrc` (linux).
+Run command `suorce ~/.bash_profile` (macos) or `source ~/.bashrc` (linux) in your terminal.
 
 ## Upgrade
 

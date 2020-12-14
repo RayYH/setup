@@ -35,12 +35,11 @@
 ```bash
 $ chsh -s /bin/bash
 # 或者使用通过 brew 或者其他方式安装的 bash，确保 `etc/shells` 已经包含 `/usr/local/bin/bash`
-# # sudo echo /usr/local/bin/bash >> /etc/shells
+# sudo echo /usr/local/bin/bash >> /etc/shells
 $ chsh -s /usr/local/bin/bash
 ```
 
-然后你可以通过 `git` 来安装本库（确保你已安装了 `git`）：
-
+然后你可以通过 `git` 来安装本库：
 
 ```bash
 $ git clone https://github.com/rayyh/setup ~/.setup
@@ -49,13 +48,13 @@ $ cp ~/.setup/.setuprc ~/
 
 > 我喜欢把该库放在 `~/Code/projects/shell/setup`, 然后通过 `ln -s` 命令链接到 `~/.setup`.
 
-接下来你需要把下面的一行代码放在你的 `.bash_profile` (macos) 或 `.bashrc` (linux) 文件的末尾：
+接下来你需要把下面的一行代码添加你的 `.bash_profile` (macos) 或 `.bashrc` (linux) 文件的末尾：
 
 ```
 test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
 ```
 
-然后重启终端，或者执行下面的命令：
+最后，重启终端，或者执行下面的命令：
 
 ```bash
 # mac
@@ -67,7 +66,7 @@ $ source ~/.bashrc
 
 ## 升级
 
-在终端执行命令 `upgrade_set_up` 即可。
+在终端执行 `upgrade_set_up` 命令。
 
 ## 同步全局配置文件
 
@@ -81,7 +80,7 @@ $ clean_set_up_backup_files
 
 ## 配置项
 
-下面是我的 `~/.setuprc` 文件，查看我们的 [wiki](https://github.com/RayYH/setup/wiki) 以获得更多信息。
+下面是我的 `~/.setuprc` 文件，查看 [wiki](https://github.com/RayYH/setup/wiki) 以获得更多信息。
 
 ```bash
 # 主题，你可以将主题设置为 random，这样你会随机使用我们提供的一个主题。
