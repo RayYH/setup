@@ -5,7 +5,7 @@ if ! command -v go &>/dev/null; then
   case $OSTYPE in
   darwin*)
     brew update
-    brew install go go
+    brew install go
     ;;
   # other systems
   *)
