@@ -22,13 +22,13 @@ This repo sets up the development environment **I** need for daily programming.
 
 ## Installation
 
-### Quick Installation
+### Installing using `install.sh`
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
 ```
 
-### Manually Installation
+### Installing manually
 
 If you use other shells, switch to `bash` first:
 
