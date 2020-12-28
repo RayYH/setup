@@ -312,7 +312,7 @@ function _git_prompt_status() {
     local branch_statuses
     match=${BASH_REMATCH[1]}
     IFS=',' read -ra branch_statuses <<<"$match"
-    for branch_status in $branch_statuses; do
+    for branch_status in "${branch_statuses[@]}"; do
       tmp_regex="(behind|diverged|ahead) ([0-9]+)?"
       if [[ ! $branch_status =~ $tmp_regex ]]; then
         continue

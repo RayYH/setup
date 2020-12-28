@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The bootstrap script
+
 # Get the dir name where this script locates
 WORKING_DIR=$(dirname "${BASH_SOURCE[0]}")
 WORKING_DIR=$(cd "$WORKING_DIR" && pwd)
@@ -143,6 +143,9 @@ if [ "$SET_UP_THEME" == "random" ]; then
     theme=$(find "$SET_UP/themes" -type d | shuf -n 1)
     SET_UP_THEME=$(basename "$theme")
   else
+    find "$SET_UP/themes" -type d | sort -R | tail -1 | while read -r theme; do
+      SET_UP_THEME=$(basename "$theme")
+    done
     # `shuf` command not found, switch to FALLBACK_SET_UP_THEME
     SET_UP_THEME="$FALLBACK_SET_UP_THEME"
   fi

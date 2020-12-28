@@ -2,6 +2,10 @@
 SET_UP_BASE="$HOME/.setup"
 SETUP_CONFIG="$HOME/.setuprc"
 
+# ensure setup folder and config file exists
+[ -d "$SET_UP_BASE" ] || exit
+[ -f "$SETUP_CONFIG" ] || exit
+
 # Test themes
 while IFS= read -r -d '' file; do
     theme="$(basename "$file")"
