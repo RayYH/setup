@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # https://github.com/speedenator/agnoster-bash
 
-# see https://stackoverflow.com/questions/5687446/how-can-i-shortern-my-command-line-prompts-current-directory
-PROMPT_DIRTRIM=2
+# https://stackoverflow.com/questions/5687446/how-can-i-shortern-my-command-line-prompts-current-directory
+PROMPT_DIRTRIM=${SETUP_PROMPT_DIRTRIM:-2}
 
 # Theme Variable
 SCM_GIT_PROMPT_DIRTY=" ●"
@@ -21,8 +21,6 @@ CURRENT_BG='NONE'
 CURRENT_RBG='NONE'
 SEGMENT_SEPARATOR=''
 RIGHT_SEPARATOR=''
-LEFT_SUBSEG=''
-RIGHT_SUBSEG=''
 
 text_effect() {
   case "$1" in
