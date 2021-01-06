@@ -16,3 +16,29 @@ fi
 function git-dv() {
   git diff -w "$@" | vim -R -
 }
+
+function transform-git-ro() {
+  origin=$(git remote -v | grep "origin" | head -n1)
+  url=""
+  # convert git to https
+  if echo "$origin" | grep "git@" &>/dev/null; then
+    regex=".+git@([0-9a-zA-Z\-\_\.]+):([0-9a-zA-Z\-\_]+)/([0-9a-zA-Z\-]+)\.git"
+    if [[ $origin =~ $regex ]]; then
+      hostname="${BASH_REMATCH[1]}"
+      username="${BASH_REMATCH[2]}"
+      repo="${BASH_REMATCH[3]}"
+      url="https://$hostname/$username/$repo"
+    fi
+  # convert https to git
+  else
+    regex=".+https://([0-9a-zA-Z\-\_\.]+)/([0-9a-zA-Z\-\_]+)/([0-9a-zA-Z\-]+)"
+    if [[ $origin =~ $regex ]]; then
+      hostname="${BASH_REMATCH[1]}"
+      username="${BASH_REMATCH[2]}"
+      repo="${BASH_REMATCH[3]}"
+      repo=${repo%".git"}
+      url="git@$hostname:$username/$repo.git"
+    fi
+  fi
+  [ -n "$url" ] && echo "set origin: $url" && git remote set-url origin "$url"
+}
