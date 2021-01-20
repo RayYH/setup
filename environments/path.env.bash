@@ -22,9 +22,12 @@ append_path "/usr/local/opt/qt/bin"
 # rust
 append_path "$HOME/.cargo/bin"
 
-# Custom Path
+# custom path
 append_path "$HOME/Bin"
 
 # sed: illegal option -- r
 # you should install gnu-sed first via command: brew install gnu-sed
 append_path "/usr/local/opt/gnu-sed/libexec/gnubin"
+
+# openjdk
+append_path "/usr/local/opt/openjdk/bin"
