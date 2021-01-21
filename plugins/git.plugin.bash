@@ -42,3 +42,12 @@ function transform-git-ro() {
   fi
   [ -n "$url" ] && echo "set origin: $url" && git remote set-url origin "$url"
 }
+
+function git-clone() {
+  if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "git-clone <hostname> <username> <repo>"
+  else
+    url="git@$1:$2/$3.git"
+    command -v git &>/dev/null && git clone "$url"
+  fi
+}
