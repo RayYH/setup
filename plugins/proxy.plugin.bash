@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 function set_p() {
-  local port=${SET_UP_PROXY_HTTP_PORT:=8118}
-  local sock_port=${SET_UP_PROXY_SOCKS_PORT:=1080}
+  local port=${SET_UP_PROXY_HTTP_PORT:=1088}
+  local sock_port=${SET_UP_PROXY_SOCKS_PORT:=1086}
   # socks proxy in gnome
   export all_proxy=socks5://127.0.0.1:${sock_port}
   export ftp_proxy=http://127.0.0.1:${port}
