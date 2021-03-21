@@ -9,6 +9,19 @@ WORKING_DIR=$(cd "$WORKING_DIR" && pwd)
 [ -z "$SET_UP_BACKUP" ] && export SET_UP_BACKUP="$SET_UP/backup"
 [ -z "$SET_UP_CUSTOM" ] && export SET_UP_CUSTOM="$SET_UP/custom"
 
+# inside visual studio code, only load essential plugins
+if [[ "x${TERM_PROGRAM}" = "xvscode" ]]; then
+  test -e "$SET_UP"/environments/common.env.bash &&
+    source "$SET_UP"/environments/common.env.bash
+  test -e "$SET_UP"/aliases/common.aliases.bash &&
+    source "$SET_UP"/aliases/common.aliases.bash
+  test -e "$SET_UP"/completions/common.completion.bash &&
+    source "$SET_UP"/completions/common.completion.bash
+  [ -f "$SET_UP/themes/dotfiles/dotfiles.theme.bash" ] &&
+    source "$SET_UP/themes/dotfiles/dotfiles.theme.bash"
+  return
+fi
+
 # Set the configuration file
 SET_UP_CONFIG_FILE="$HOME/.setuprc"
 # If configuration file not exist, use the default configuration template file
