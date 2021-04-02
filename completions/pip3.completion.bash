@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
 # Of course, you should first install the pip, say on Debian:
 # sudo apt-get install python-pip

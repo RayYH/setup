@@ -20,6 +20,12 @@ This repo sets up the development environment **I** need for daily programming.
 └── themes        # themes
 ```
 
+## Getting Started Via Docker
+
+```bash
+$ docker run -it rayyounghong/setup
+```
+
 ## Installation
 
 ### Installing using `install.sh`

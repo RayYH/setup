@@ -20,6 +20,12 @@
 └── themes        # 主题目录
 ```
 
+## 通过 Docker 尝试
+
+```bash
+$ docker run -it rayyounghong/setup
+```
+
 ## 安装
 
 ### 快速安装

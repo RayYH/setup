@@ -36,6 +36,8 @@ USER ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 
 RUN \
-    echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >> ${SERVICE_HOME}/.bashrc
+    echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >> ${SERVICE_HOME}/.bashrc && \
+    echo 'alias reload="exec $SHELL"' >> ${SERVICE_HOME}/.bashrc && \
+    /bin/bash "${SERVICE_HOME}/.bashrc"
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "bash" ]
