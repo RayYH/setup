@@ -38,6 +38,15 @@ function fs() {
   fi
 }
 
+function search() {
+  str="$1"
+  dir=.
+  if [ -n "$2" ]; then
+    dir="$2"
+  fi
+  grep -rin "$str" "$dir"
+}
+
 # create a dataurl of given file
 function dataurl() {
   local mimeType
