@@ -22,6 +22,8 @@ RUN \
     cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
     echo "${SYSTEM_TZ}" > /etc/TZ && \
     git clone --depth 1 https://github.com/rayyh/setup.git /tmp/setup && \
+    cd /tmp/setup && \
+    git pull origin master && \
     cp -R /tmp/setup /root/.setup && \
     cp -R /tmp/setup ${SERVICE_HOME}/.setup && \
     cp ${SERVICE_HOME}/.setup/.setuprc ${SERVICE_HOME}/.setuprc && \
