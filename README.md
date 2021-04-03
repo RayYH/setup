@@ -23,7 +23,7 @@ This repo sets up the development environment **I** need for daily programming.
 ## Getting Started Via Docker
 
 ```bash
-$ docker run -it rayyounghong/setup
+$ docker run -it --rm rayyounghong/setup:latest
 ```
 
 ## Installation

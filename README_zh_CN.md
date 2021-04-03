@@ -23,7 +23,7 @@
 ## 通过 Docker 尝试
 
 ```bash
-$ docker run -it rayyounghong/setup
+$ docker run -it --rm rayyounghong/setup:latest
 ```
 
 ## 安装

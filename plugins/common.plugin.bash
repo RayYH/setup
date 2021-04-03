@@ -38,6 +38,7 @@ function fs() {
   fi
 }
 
+# search keyword in given dir
 function search() {
   str="$1"
   dir=.
@@ -45,6 +46,20 @@ function search() {
     dir="$2"
   fi
   grep -rin "$str" "$dir"
+}
+
+# show datetime of given timestamp
+function ts_d() {
+  local d_format
+  d_format='+%Y-%m-%d %H:%I:%S'
+  case $OSTYPE in
+  darwin*)
+    date -r "$1" "$d_format"
+    ;;
+  *)
+    date -d "@$1" "$d_format"
+    ;;
+  esac
 }
 
 # create a dataurl of given file
