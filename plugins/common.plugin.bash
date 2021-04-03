@@ -51,15 +51,15 @@ function search() {
 # show datetime of given timestamp
 function ts_d() {
   local d_format
-  d_format='+%Y-%m-%d %H:%I:%S'
-  case $OSTYPE in
-  darwin*)
-    date -r "$1" "$d_format"
-    ;;
-  *)
-    date -d "@$1" "$d_format"
-    ;;
-  esac
+  local ts
+  local ms
+  ts=${1:0:10}
+  ms=${1:10:${#1}}
+  d_format='"+%Y-%m-%d %H:%I:%S"'
+  [[ -n "$ms" ]] && d_format="\"+%Y-%m-%d %H:%I:%S,$ms\""
+  cmd="date -r $ts"
+  [[ $"OSTYPE" == "darwin"* ]] && cmd="date -d @$ts"
+  eval "$cmd $d_format"
 }
 
 # create a dataurl of given file
