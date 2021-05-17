@@ -55,8 +55,8 @@ function ts_d() {
   local ms
   ts=${1:0:10}
   ms=${1:10:${#1}}
-  d_format='"+%Y-%m-%d %H:%I:%S"'
-  [[ -n "$ms" ]] && d_format="\"+%Y-%m-%d %H:%I:%S,$ms\""
+  d_format='"+%Y-%m-%d %H:%M:%S"'
+  [[ -n "$ms" ]] && d_format="\"+%Y-%m-%d %H:%M:%S,$ms\""
   cmd="date -r $ts"
   [[ $"OSTYPE" == "darwin"* ]] && cmd="date -d @$ts"
   eval "$cmd $d_format"
