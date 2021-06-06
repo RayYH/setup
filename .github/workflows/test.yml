@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ ubuntu-latest, macos-latest ]
+        operating-system: [ubuntu-latest, macos-latest]
     name: Setup installation & theme tests on ${{ matrix.operating-system }}
     steps:
       - name: Checkout
