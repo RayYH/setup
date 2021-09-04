@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 # follow redirects
-alias cl='curl -L'
+alias cul='curl -L'
 # follow redirects, verbose
-alias clv='curl -L -v'
+alias culv='curl -L -v'
 # follow redirects, download as original name
-alias clo='curl -L -O'
+alias culo='curl -L -O'
 # follow redirects, download as original name, continue
-alias cloc='curl -L -C - -O'
+alias culoc='curl -L -C - -O'
 # follow redirects, download as original name, continue, retry 5 times
-alias clocr='curl -L -C - -O --retry 5'
+alias culocr='curl -L -C - -O --retry 5'
 # follow redirects, fetch banner
-alias clb='curl -L -I'
+alias culb='curl -L -I'
 # see only response headers from a get request
-alias clhead='curl -D - -so /dev/null'
+alias culhead='curl -D - -so /dev/null'
