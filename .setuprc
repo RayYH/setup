@@ -3,7 +3,7 @@
 # `brew install coreutils` since we use the `shuf` command to pick
 # a random theme. You can always get current theme name via
 # `echo $SET_UP_THEME` command
-SET_UP_THEME='agnoster'
+SET_UP_THEME='dos'
 
 # Fallback theme
 # when theme provided but can noly be used when launched `iTerm2.app`
