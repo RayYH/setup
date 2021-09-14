@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # Clear Apple’s System Logs to improve shell startup speed, clear download history from quarantine.
 alias clear_files="sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 # Clean up LaunchServices to remove duplicates in the “Open With” menu
