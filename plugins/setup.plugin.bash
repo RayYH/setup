@@ -7,8 +7,13 @@ function __sync_files() {
   shopt -s dotglob
   for conf_file in "$SET_UP"/config/**/.*; do
     home_conf_file=$HOME/$(basename "$conf_file")
-    [ -f "$home_conf_file" ] && rsync -ah --no-perms "$home_conf_file" "$SET_UP_BACKUP/$now"
-    [ -f "$conf_file" ] && rsync -ah --no-perms "$conf_file" ~
+    if command -v rsync &>/dev/null; then
+      [ -f "$home_conf_file" ] && rsync -ah --no-perms "$home_conf_file" "$SET_UP_BACKUP/$now"
+      [ -f "$conf_file" ] && rsync -ah --no-perms "$conf_file" ~
+    else
+      [ -f "$home_conf_file" ] && cp "$home_conf_file" "$SET_UP_BACKUP/$now"
+      [ -f "$conf_file" ] && cp "$conf_file" ~
+    fi
   done
   echo -e "all old files have been moved into \033[0;32m$SET_UP_BACKUP/$now\033[0m folder"
   shopt -u dotglob
