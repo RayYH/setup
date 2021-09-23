@@ -17,6 +17,8 @@ if [[ "x${TERM_PROGRAM}" = "xvscode" ]]; then
     source "$SET_UP"/aliases/common.aliases.bash
   test -e "$SET_UP"/completions/common.completion.bash &&
     source "$SET_UP"/completions/common.completion.bash
+  [ -f "$SET_UP/themes/dotfiles/dotfiles.theme.bash" ] &&
+    source "$SET_UP/themes/dotfiles/dotfiles.theme.bash"
   return
 fi
 
