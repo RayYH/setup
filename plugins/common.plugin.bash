@@ -230,6 +230,8 @@ function pjson() {
   str="$1"
   if command -v pbpaste &>/dev/null; then
     [ -z "$str" ] && str=$(pbpaste)
+  elif command -v paste &>/dev/null; then
+    [ -z "$str" ] && str=$(paste)
   fi
   # if jq installed
   if command -v jq &>/dev/null; then
@@ -248,6 +250,8 @@ function pjson() {
   if command -v pbcopy &>/dev/null; then
     echo "$res" | pbcopy
     pbpaste
+  elif command -v clip &>/dev/null; then
+    echo "$res" | clip
   else
     echo "$res"
   fi

@@ -107,7 +107,7 @@ PS1+="\[${hostStyle}\]\h"
 PS1+="\[${white}\] in "
 PS1+="\[${green}\]\w"
 PS1+="\$(prompt_git \"\[${white}\] on \[${violet}\]\" \"\[${blue}\]\")"
-PS1+="\n"
+PS1+=$'\n'
 PS1+="\[${white}\]\$ \[${reset}\]"
 export PS1
 PS2="\[${cyan}\]→ \[${reset}\]"
