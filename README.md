@@ -6,6 +6,28 @@ English | [简体中文](README_zh_CN.md)
 
 This repo sets up the development environment **I** need for daily programming.
 
+## Installation
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+```
+
+## Upgrade
+
+```bash
+$ upgrade_set_up
+```
+
+## Sync global configuration files
+
+```bash
+# sync files
+$ sync_set_up_configs
+
+# clean all backup files
+$ clean_set_up_backup_files
+```
+
 ## Thanks to
 
 + [bash-it](https://github.com/Bash-it/bash-it)
