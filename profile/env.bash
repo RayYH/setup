@@ -3,16 +3,17 @@
 # paths
 unshift_path "/usr/local/bin"                                                                 # brew
 unshift_path "/usr/local/sbin"                                                                # brew
-unshift_path "$(brew --prefix)/opt/mysql-client/bin"                                          # mysql client
-unshift_path "$(brew --prefix)/opt/curl/bin"                                                  # curl
+
 unshift_path "$HOME/.composer/vendor/bin"                                                     # composer
 [ -d "$HOME/Code/gopath" ] && export GOPATH="$HOME/Code/gopath" && unshift_path "$GOPATH/bin" # go
 unshift_path "$HOME/.cargo/bin"                                                               # rust
 unshift_path "$HOME/Bin"                                                                      # custom path (jetbrains shell scripts path)
-unshift_path "$(brew --prefix)/opt/gnu-sed/libexec/gnubin"                                    # sed: illegal option -- r, you should install gnu-sed first via command: brew install gnu-sed
+unshift_path "/usr/local/opt/mysql-client/bin"                                                # mysql client
+unshift_path "/usr/local/opt/curl/bin"                                                        # curl
+unshift_path "/usr/local/opt/gnu-sed/libexec/gnubin"                                          # sed: illegal option -- r, you should install gnu-sed first via command: brew install gnu-sed
 # use java8
-if [ -d "$(brew --prefix)/opt/openjdk@8" ]; then
-  unshift_path "$(brew --prefix)/opt/openjdk@8/bin"
+if [ -d "/usr/local/opt/openjdk@8" ]; then
+  unshift_path "/usr/local/opt/openjdk@8/bin"
 else
   [ -f "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 fi

@@ -11,7 +11,3 @@ function unshift_path() {
     PATH="$1:${PATH:+"$PATH:"}"
   fi
 }
-
-function command_exists() {
-  type "$1" &>/dev/null
-}
