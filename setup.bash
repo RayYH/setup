@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 # Get the dir name where this script locates
-WORKING_DIR=$(dirname "${BASH_SOURCE[0]}")
-WORKING_DIR=$(cd "$WORKING_DIR" && pwd)
+SCRIPT_PATH="$(
+  cd -- "$(dirname "$0")" || exit >/dev/null 2>&1
+  pwd -P
+)"
+WORKING_DIR="$(dirname "$SCRIPT_PATH")"
 
 # Set the `SET_UP`, `SET_UP_BACKUP`, `SET_UP_CUSTOM` envs safely
 [ -z "$SET_UP" ] && export SET_UP="$WORKING_DIR"
