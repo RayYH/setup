@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-# Get the dir name where this script locates
-SCRIPT_PATH="$(
-  cd -- "$(dirname "$0")" || exit >/dev/null 2>&1
-  pwd -P
-)"
-WORKING_DIR="$(dirname "$SCRIPT_PATH")"
+WORKING_DIR=$(dirname "${BASH_SOURCE[0]}")
+WORKING_DIR=$(cd "$WORKING_DIR" && pwd)
 
 # Set the `SET_UP`, `SET_UP_BACKUP`, `SET_UP_CUSTOM` envs safely
 [ -z "$SET_UP" ] && export SET_UP="$WORKING_DIR"
@@ -23,6 +19,7 @@ source "$SET_UP"/profile/env.bash
 source "$SET_UP"/profile/aliases.bash
 source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
+source "$SET_UP"/profile/plugins.bash
 source "$SET_UP"/profile/prompt.bash
 
 # Change additional shell optional behavior
@@ -43,12 +40,10 @@ done
 
 # Set git configurations
 if [ -n "$GIT_AUTHOR_NAME" ] && [ "$GIT_AUTHOR_NAME" != " " ]; then
-  GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
   git config --global user.name "$GIT_AUTHOR_NAME"
 fi
 
 if [ -n "$GIT_AUTHOR_EMAIL" ] && [ "$GIT_AUTHOR_EMAIL" != " " ]; then
-  GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
   git config --global user.email "$GIT_AUTHOR_EMAIL"
 fi
 

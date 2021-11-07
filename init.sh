@@ -11,7 +11,7 @@ source "$WORKING_DIR/init/helper.bash"
 source "$WORKING_DIR/init/logger.bash"
 source "$WORKING_DIR/init/packages.bash"
 
-info "This script will setup your macos development environment, please be patient (some script will need root privileges)..."
+info "This script will setup your macos development environment, don't quit when this script is running (some commands will need root privileges)..."
 
 # xcode-select
 sudo xcode-select --install 2 &>/dev/null

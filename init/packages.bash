@@ -98,7 +98,11 @@ function install_nvm() {
 }
 
 function install_global_node_modules() {
-  npm install --global yarn
+  if command_exists yarn; then
+    npm update -g yarn
+  else
+    npm install --global yarn
+  fi
 }
 
 function init_js_development() {
