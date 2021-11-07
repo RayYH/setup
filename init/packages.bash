@@ -184,6 +184,7 @@ function install_guis() {
     "postman"
     "jetbrains-toolbox"
     "iTerm2"
+    "keepassxc"
   )
   for i in "${guis[@]}"; do
     install_cask "$i"
