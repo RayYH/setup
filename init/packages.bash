@@ -107,6 +107,11 @@ function install_global_node_modules() {
 
 function init_js_development() {
   install_nvm
+  if ! command -v nvm &>/dev/null; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+  fi
   nvm install node --latest-npm  # latest version
   nvm install --lts --latest-npm # lts version
   install_global_node_modules
