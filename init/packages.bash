@@ -168,6 +168,7 @@ function install_guis() {
     "vlc"
     "lulu"
     "teamviewer"
+    "superproductivity"
     "raycast"
     "google-chrome"
     "docker"
