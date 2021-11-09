@@ -18,6 +18,3 @@ jobs:
         run: ./install.sh
         shell: bash
 
-      - name: Test
-        run: upgrade_set_up
-        shell: bash
