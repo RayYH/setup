@@ -4,19 +4,20 @@
 #===========================================================================#
 #                         Folder Navigation                                 #
 #===========================================================================#
-alias ..="cd .."                                              # go back 1 directory level
-alias cd..="cd .."                                            # go back 1 directory level
-alias ...="cd ../.."                                          # go back 2 directory levels
-alias .3='cd ../../../'                                       # go back 3 directory levels
-alias .4='cd ../../../../'                                    # go back 4 directory levels
-alias .5='cd ../../../../../'                                 # go back 5 directory levels
-alias .6='cd ../../../../../../'                              # go back 6 directory levels
-alias ~="cd ~"                                                # go Home
-alias -- -="cd -"                                             # go back to previous folder
-alias dl="cd ~/Downloads && clear"                            # Download
-alias dt="cd ~/Desktop && clear"                              # Desktop
-alias one="cd ~/OneDrive && clear"                            # OneDrive
-alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs" # icloud
+alias ..="cd .."                                                        # go back 1 directory level
+alias cd..="cd .."                                                      # go back 1 directory level
+alias ...="cd ../.."                                                    # go back 2 directory levels
+alias .3='cd ../../../'                                                 # go back 3 directory levels
+alias .4='cd ../../../../'                                              # go back 4 directory levels
+alias .5='cd ../../../../../'                                           # go back 5 directory levels
+alias .6='cd ../../../../../../'                                        # go back 6 directory levels
+alias ~="cd ~"                                                          # go Home
+alias -- -="cd -"                                                       # go back to previous folder
+alias dl="cd ~/Downloads && clear"                                      # Download
+alias dt="cd ~/Desktop && clear"                                        # Desktop
+alias one="cd ~/OneDrive && clear"                                      # OneDrive
+alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"           # icloud
+alias obsi="cd ~/Library/Mobile Documents/iCloud~md~obsidian/Documents" # Obsidian
 
 CODE_DIR="$HOME/Code"
 [ -d "$CODE_DIR/projects" ] && CODE_DIR="$CODE_DIR/projects"
