@@ -17,7 +17,7 @@ alias dl="cd ~/Downloads && clear"                                      # Downlo
 alias dt="cd ~/Desktop && clear"                                        # Desktop
 alias one="cd ~/OneDrive && clear"                                      # OneDrive
 alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"           # icloud
-alias obsi="cd ~/Library/Mobile Documents/iCloud~md~obsidian/Documents" # Obsidian
+alias obsi="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents" # Obsidian
 
 CODE_DIR="$HOME/Code"
 [ -d "$CODE_DIR/projects" ] && CODE_DIR="$CODE_DIR/projects"
