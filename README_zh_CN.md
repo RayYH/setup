@@ -32,6 +32,8 @@ $ clean_set_up_backup_files
 
 + [bash-it](https://github.com/Bash-it/bash-it)
 + [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
++ [mac-bootstrap](https://github.com/joshukraine/mac-bootstrap)
++ [mac-bootstrap](https://github.com/deild/mac-bootstrap)
 
 ## License
 

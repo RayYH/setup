@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
 # paths
-unshift_path "/usr/local/bin"                                                                 # brew
-unshift_path "/usr/local/sbin"                                                                # brew
+[ -d "/usr/local/bin" ] && PATH="/usr/local/bin:$PATH"                                               # brew
+[ -d "/usr/local/sbin" ] && PATH="/usr/local/sbin:$PATH"                                             # brew
+[ -d "$HOME/.composer/vendor/bin" ] && PATH="$HOME/.composer/vendor/bin:$PATH"                       # composer
+[ -d "$HOME/Code/gopath" ] && GOPATH="$HOME/Code/gopath" && PATH="$GOPATH/bin:$PATH"                 # go
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"                                           # rust
+[ -d "$HOME/Bin" ] && PATH="$HOME/Bin:$PATH"                                                         # custom path (jetbrains shell scripts path)
+[ -d "/usr/local/opt/curl/bin" ] && PATH="/usr/local/opt/curl/bin:$PATH"                             # curl
+[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ] && PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH" # sed: illegal option -- r, you should install gnu-sed first via command: brew install gnu-sed
 
-unshift_path "$HOME/.composer/vendor/bin"                                                     # composer
-[ -d "$HOME/Code/gopath" ] && export GOPATH="$HOME/Code/gopath" && unshift_path "$GOPATH/bin" # go
-unshift_path "$HOME/.cargo/bin"                                                               # rust
-unshift_path "$HOME/Bin"                                                                      # custom path (jetbrains shell scripts path)
-unshift_path "/usr/local/opt/mysql-client/bin"                                                # mysql client
-unshift_path "/usr/local/opt/curl/bin"                                                        # curl
-unshift_path "/usr/local/opt/gnu-sed/libexec/gnubin"                                          # sed: illegal option -- r, you should install gnu-sed first via command: brew install gnu-sed
 # use java8
 if [ -d "/usr/local/opt/openjdk@8" ]; then
-  unshift_path "/usr/local/opt/openjdk@8/bin"
+  PATH="/usr/local/opt/openjdk@8/bin:$PATH"
 else
   [ -f "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 fi

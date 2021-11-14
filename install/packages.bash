@@ -6,15 +6,16 @@
 function install_brew() {
   if command_exists brew; then
     warning "brew already installed"
-    info "update brew..."
+    info "updating brew..."
     brew update
-    info "upgrade all outdated packages..."
+    info "upgrading all outdated packages..."
     brew upgrade
-    info "cleanup"
+    info "cleaning up all cached files..."
     brew cleanup
   else
     info "installing brew now..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    export PATH="/usr/local/bin:$PATH"
   fi
 }
 
@@ -39,31 +40,6 @@ function install_cask() {
 }
 
 #============================================================
-# PHP Development
-#============================================================
-function install_pecl_package() {
-  if php -m | grep "$1" &>/dev/null; then
-    warning "pecl package $1 exists"
-    warning "update $1 via pecl"
-    pecl upgrade "$1"
-  else
-    pecl install "$1"
-  fi
-}
-
-function init_php_development() {
-  install_formula "php"
-  install_formula "composer"
-  pecl update-channels
-  pecl upgrade
-  yes | install_pecl_package "ds"
-  yes | install_pecl_package "redis"
-  yes | install_pecl_package "xdebug"
-  yes | install_pecl_package "swoole"
-  success "please run php --ini to remove some duplicated configurations inside your php.ini file"
-}
-
-#============================================================
 # Python Development
 #============================================================
 function uninstall_all_packages_installed_by_pip() {
@@ -74,16 +50,23 @@ function install_pip_package() {
   if pip3 list | grep -F "$1" &>/dev/null; then
     warning "pip3 package $1 exists"
     warning "update $1 via pip3"
-    pip3 install "$1" --upgrade
+    pip3 install -U "$1" --upgrade
   else
-    pip3 install "$1"
+    pip3 install -U "$1"
   fi
 }
 
 function init_python_development() {
   install_formula "python3"
   python3 -m pip install --upgrade pip
-  install_pip_package virtualenv
+  declare -a pkgs=(
+    "yapf"
+    "flake8"
+    "pytest"
+  )
+  for i in "${pkgs[@]}"; do
+    install_pip_package "$i"
+  done
 }
 
 #============================================================
@@ -147,7 +130,9 @@ function install_quick_plugins() {
 #============================================================
 function install_formulas() {
   declare -a frs=(
-    "docker-compose"
+    "bash"
+    "fzf"
+    "autojump"
     "tree"
     "ack"
   )
@@ -155,6 +140,8 @@ function install_formulas() {
     install_formula "$i"
   done
   unset frs
+
+  yes | . "$(brew --prefix)"/opt/fzf/install
 }
 
 #============================================================

@@ -14,7 +14,6 @@ SET_UP_CONFIG_FILE="$HOME/.setuprc"
 # Load configuration file
 [ -f "$SET_UP_CONFIG_FILE" ] && source "$SET_UP_CONFIG_FILE" 2>/dev/null
 
-source "$SET_UP"/profile/helper.bash
 source "$SET_UP"/profile/env.bash
 source "$SET_UP"/profile/aliases.bash
 source "$SET_UP"/profile/completions.bash
