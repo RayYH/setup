@@ -17,6 +17,8 @@ else
   [ -f "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 fi
 
+# avoid duplicate path
+PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
 # Common
 export EDITOR='vim'         # Make vim the default editor.
 export LANG='en_US.UTF-8'   # Prefer US English and use UTF-8.
