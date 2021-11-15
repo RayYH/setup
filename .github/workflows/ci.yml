@@ -27,4 +27,4 @@ jobs:
 
       - name: install with one-liner bootstrap and relaunch
         run: |
-          /bin/bash -c "$(curl -fsS https://raw.githubusercontent.com/rayyh/setup/${BRANCH_NAME}/bootstrap.sh)" | tee ~/.bootstrap.log
+          S_UPGRADE=0 /bin/bash -c "$(curl -fsS https://raw.githubusercontent.com/rayyh/setup/${BRANCH_NAME}/bootstrap.sh)" | tee ~/.bootstrap.log
