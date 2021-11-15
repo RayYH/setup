@@ -46,5 +46,3 @@ else
     echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
     echo "setup done, restart your terminal!!"
 fi
-
-. "$BASH_PROFILE"
