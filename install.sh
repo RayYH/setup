@@ -47,4 +47,4 @@ else
     echo "setup done, restart your terminal!!"
 fi
 
-source "$BASH_PROFILE"
+. "$BASH_PROFILE"

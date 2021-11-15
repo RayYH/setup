@@ -514,7 +514,7 @@ function __install_setup() {
 function __setup() {
     __echo "Step $step: Install setup..."
     __install_setup
-    source "$HOME/.bash_profile"
+    . "$HOME/.bash_profile"
     sync_set_up_configs
     __done "$((step++))"
 }
