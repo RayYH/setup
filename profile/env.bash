@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 
+HOMEBREW_PREFIX="/usr/local"
+if command -v brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+fi
+
 # paths
-[ -d "/usr/local/bin" ] && PATH="/usr/local/bin:$PATH"                                               # brew
-[ -d "/usr/local/sbin" ] && PATH="/usr/local/sbin:$PATH"                                             # brew
-[ -d "$HOME/.composer/vendor/bin" ] && PATH="$HOME/.composer/vendor/bin:$PATH"                       # composer
-[ -d "$HOME/Code/gopath" ] && GOPATH="$HOME/Code/gopath" && PATH="$GOPATH/bin:$PATH"                 # go
-[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"                                           # rust
-[ -d "$HOME/Bin" ] && PATH="$HOME/Bin:$PATH"                                                         # custom path (jetbrains shell scripts path)
-[ -d "/usr/local/opt/curl/bin" ] && PATH="/usr/local/opt/curl/bin:$PATH"                             # curl
-[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ] && PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH" # sed: illegal option -- r, you should install gnu-sed first via command: brew install gnu-sed
+[ -d "$HOMEBREW_PREFIX/bin" ] && PATH="$HOMEBREW_PREFIX/bin:$PATH"                                               # brew
+[ -d "$HOMEBREW_PREFIX/sbin" ] && PATH="$HOMEBREW_PREFIX/sbin:$PATH"                                             # brew
+[ -d "$HOME/.composer/vendor/bin" ] && PATH="$HOME/.composer/vendor/bin:$PATH"                                   # composer
+[ -d "$HOME/Code/gopath" ] && GOPATH="$HOME/Code/gopath" && PATH="$GOPATH/bin:$PATH"                             # go
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"                                                       # rust
+[ -d "$HOME/Bin" ] && PATH="$HOME/Bin:$PATH"                                                                     # custom path (jetbrains shell scripts path)
+[ -d "$HOMEBREW_PREFIX/opt/curl/bin" ] && PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"                             # curl
+[ -d "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH" # sed: illegal option -- r, you should install gnu-sed first via command: brew install gnu-sed
+[ -d "$HOMEBREW_PREFIX/opt/make/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 
 # use java8
 if [ -d "/usr/local/opt/openjdk@8" ]; then

@@ -268,8 +268,79 @@ __python
 # build tools
 ################################################################################
 function __build() {
+    __install_formula "make"
     __install_formula "cmake"
 }
+__build
+
+################################################################################
+# go
+################################################################################
+function __go() {
+    __install_formula "go"
+}
+__go
+
+################################################################################
+# go
+################################################################################
+function __qv_plugins() {
+    declare -a qps=(qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package)
+    for i in "${qps[@]}"; do
+        __install_cask "$i"
+    done
+    unset qps
+}
+__qv_plugins
+
+#============================================================
+# Some formulas
+#============================================================
+function __formulas() {
+    declare -a frs=(
+        "bash"
+        "fzf"
+        "autojump"
+        "tree"
+        "ack"
+    )
+    for i in "${frs[@]}"; do
+        __install_formula "$i"
+    done
+    unset frs
+
+    yes | . "$(brew --prefix)"/opt/fzf/install
+}
+
+#============================================================
+# Other GUIs
+#============================================================
+function __guis() {
+    declare -a guis=(
+        "anki"
+        "vlc"
+        "lulu"
+        "raycast"
+        "google-chrome"
+        "docker"
+        "obsidian"
+        "thunderbird"
+        "wireshark"
+        "foxmail"
+        "onedrive"
+        "virtualbox"
+        "the-unarchiver"
+        "postman"
+        "jetbrains-toolbox"
+        "iTerm2"
+        "keepassxc"
+    )
+    for i in "${guis[@]}"; do
+        __install_cask "$i"
+    done
+    unset guis
+}
+# __guis
 
 ################################################################################
 # End
