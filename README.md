@@ -9,7 +9,11 @@ This repo sets up the development environment **I** need for daily programming.
 ## Installation
 
 ```bash
+# install setup only
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+
+# bootstrap new computer (this will install setup at the same time)
+S_ALL=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/bootstrap.sh)"
 ```
 
 ## Upgrade
