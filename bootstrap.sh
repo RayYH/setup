@@ -16,6 +16,7 @@ if [ -z ${S_ALL+x} ]; then
         "__set_gatekeeper"
         "__ensure_brew"
         "__disable_brew_analytics"
+        "__preferences"
         "__setup"
     )
 else
@@ -34,6 +35,7 @@ else
         "__lua"
         "__ql_plugins"
         "__formulas"
+        "__preferences"
         "__setup"
     )
 fi
@@ -435,10 +437,23 @@ function __casks() {
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __casks " ]] && __casks
 
 ################################################################################
+# preferences
+################################################################################
+
+function __preferences() {
+    __echo "Step $step: Setting macOS preferences..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/mac-defaults.sh)"
+    __done "$((step++))"
+}
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __preferences " ]] && __preferences
+
+################################################################################
 # dotfiles
 ################################################################################
 function __setup() {
+    __echo "Step $step: Install setup..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+    __done "$((step++))"
 }
 
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __setup " ]] && __setup
