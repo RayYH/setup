@@ -18,6 +18,7 @@ if [ -z ${S_ALL+x} ]; then
         "__disable_brew_analytics"
         "__preferences"
         "__setup"
+        "__workspace"
     )
 else
     declare -a OPTIONAL_STEPS=(
@@ -37,6 +38,7 @@ else
         "__formulas"
         "__preferences"
         "__setup"
+        "__workspace"
     )
 fi
 
@@ -439,7 +441,6 @@ function __casks() {
 ################################################################################
 # preferences
 ################################################################################
-
 function __preferences() {
     __echo "Step $step: Setting macOS preferences..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/mac-defaults.sh)"
@@ -457,6 +458,34 @@ function __setup() {
 }
 
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __setup " ]] && __setup
+
+################################################################################
+# workspaces
+################################################################################
+function __workspace() {
+    __echo "Step $step: setup workspace..."
+    CODE_DIR="$HOME/Code"
+    [ -d "$CODE_DIR" ] || mkdir -p "$CODE_DIR"
+    declare -a dirs=(
+        "c"
+        "cpp"
+        "go"
+        "gopath" # for GOPATH
+        "java"
+        "python"
+        "javascript"
+        "php"
+        "rust"
+        "shell"
+        "work"
+    )
+    for i in "${dirs[@]}"; do
+        [ -d "$CODE_DIR/$i" ] || mkdir -p "$CODE_DIR/$i"
+    done
+    __done "$((step++))"
+}
+
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __workspace " ]] && __workspace
 
 ################################################################################
 # End
