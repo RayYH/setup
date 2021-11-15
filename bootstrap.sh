@@ -65,9 +65,15 @@ function __install_cask() {
 ################################################################################
 # Detect if running on mac
 ################################################################################
-
 if [ "$(uname)" != "Darwin" ]; then
     __error "Oops, this script only supports macOS."
+fi
+
+################################################################################
+# Detect if network is fine
+################################################################################
+if ! wget -q --spider https://google.com; then
+    __error "Oops, cannot visit google site, please configure your proxy settings"
 fi
 
 ################################################################################
@@ -170,7 +176,7 @@ function __ensure_brew() {
     [[ "$S_CLEANUP" -eq "1" ]] && brew cleanup
     __done "$((step++))"
 }
-__ensure_brew
+#__ensure_brew
 
 ################################################################################
 # disable brew analytics
@@ -182,7 +188,7 @@ function __disable_brew_analytics() {
     fi
     __done "$((step++))"
 }
-__disable_brew_analytics
+#__disable_brew_analytics
 
 ################################################################################
 # rust
@@ -199,7 +205,7 @@ function __rust() {
     cargo install -- cargo-release
     __done "$((step++))"
 }
-__rust
+#__rust
 
 ################################################################################
 # php
@@ -231,7 +237,7 @@ function __php() {
     fi
     __done "$((step++))"
 }
-__php
+#__php
 
 ################################################################################
 # python
@@ -262,64 +268,115 @@ function __python() {
     done
     __done "$((step++))"
 }
-__python
+#__python
 
 ################################################################################
 # build tools
 ################################################################################
 function __build() {
+    __echo "Step $step: setup build tools..."
+    __install_formula "nasm"
     __install_formula "make"
     __install_formula "cmake"
+    __done "$((step++))"
 }
-__build
+#__build
 
 ################################################################################
 # go
 ################################################################################
 function __go() {
+    __echo "Step $step: setup go ..."
     __install_formula "go"
+    __done "$((step++))"
 }
-__go
+#__go
+
+################################################################################
+# java
+################################################################################
+function __java() {
+    __echo "Step $step: setup java ..."
+    __install_formula "gradle"
+    __install_formula "kotlin"
+    __install_formula "maven"
+    __install_formula "openjdk@8"
+    __done "$((step++))"
+}
+#__java
+
+################################################################################
+# lua
+################################################################################
+function __lua() {
+    __echo "Step $step: setup lua..."
+    __install_formula "lua"
+    __done "$((step++))"
+}
+#__lua
 
 ################################################################################
 # go
 ################################################################################
-function __qv_plugins() {
+function __ql_plugins() {
+    __echo "Step $step: install quicklook plugins"
     declare -a qps=(qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package)
     for i in "${qps[@]}"; do
         __install_cask "$i"
     done
     unset qps
+    __done "$((step++))"
 }
-__qv_plugins
+#__ql_plugins
 
 #============================================================
-# Some formulas
+# Other formulas
 #============================================================
 function __formulas() {
     declare -a frs=(
-        "bash"
-        "fzf"
-        "autojump"
-        "tree"
         "ack"
+        "autojump"
+        "bash"
+        "bash-completion@2"
+        "coreutils"
+        "curl"
+        "emacs"
+        "findutils"
+        "gawk"
+        "gh"
+        "git"
+        "gnu-sed"
+        "gnupg"
+        "grep"
+        "imagemagick"
+        "jq"
+        "qemu"
+        "qt"
+        "shellcheck"
+        "telnet"
+        "tmux"
+        "tree"
+        "vim"
+        "wget"
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
     done
     unset frs
 
+    __install_formula "fzf"
     yes | . "$(brew --prefix)"/opt/fzf/install
 }
+#__formulas
 
 #============================================================
 # Other GUIs
 #============================================================
-function __guis() {
+function __casks() {
+    __echo "Step $step: install some casks"
     declare -a guis=(
         "anki"
         "vlc"
-        "lulu"
         "raycast"
         "google-chrome"
         "docker"
@@ -339,8 +396,14 @@ function __guis() {
         __install_cask "$i"
     done
     unset guis
+    __done "$((step++))"
 }
-# __guis
+#__casks
+
+################################################################################
+# dotfiles
+################################################################################
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
 
 ################################################################################
 # End
