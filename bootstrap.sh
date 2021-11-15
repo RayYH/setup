@@ -8,6 +8,28 @@ export S_DEFAULT_PASSPHRASE=""
 export S_UPGRADE="${S_UPGRADE:-1}"
 export S_CLEANUP="${S_CLEANUP:-1}"
 
+# essential steps
+declare -a OPTIONAL_STEPS=(
+    "__set_timezone"
+    "__install_apple_command_line_tools"
+    "__set_gatekeeper"
+    "__php"
+    "__ensure_brew"
+    "__disable_brew_analytics"
+    "__rust"
+    "__python"
+    "__build"
+    "__go"
+    "__java"
+    "__lua"
+    "__ql_plugins"
+    "__formulas"
+    "__setup"
+)
+
+# optional steps
+[ -z ${S_SET_COMPUTER_NAME+x} ] || OPTIONAL_STEPS=("__set_computer_name" "${OPTIONAL_STEPS[@]}")
+
 ################################################################################
 # helper functions
 ################################################################################
@@ -114,7 +136,7 @@ function __set_timezone() {
     sudo systemsetup -settimezone "$S_TIME_ZONE" >/dev/null
     __done "$((step++))"
 }
-__set_timezone
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __set_timezone " ]] && __set_timezone
 
 ################################################################################
 # Set the timezone
@@ -127,7 +149,7 @@ function __set_computer_name() {
     sudo scutil --set LocalHostName "$S_COMPUTER_NAME"
     __done "$((step++))"
 }
-# __set_computer_name
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __set_computer_name " ]] && __set_computer_name
 
 ################################################################################
 # Install Apple's Command Line Tools
@@ -145,7 +167,7 @@ function __install_apple_command_line_tools() {
     fi
     __done "$((step++))"
 }
-__install_apple_command_line_tools
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __install_apple_command_line_tools " ]] && __install_apple_command_line_tools
 
 ################################################################################
 # Gatekeeper
@@ -159,7 +181,7 @@ function __set_gatekeeper() {
     fi
     __done "$((step++))"
 }
-__set_gatekeeper
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __set_gatekeeper " ]] && __set_gatekeeper
 
 ################################################################################
 # Homebrew
@@ -176,7 +198,7 @@ function __ensure_brew() {
     [[ "$S_CLEANUP" -eq "1" ]] && brew cleanup
     __done "$((step++))"
 }
-#__ensure_brew
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __ensure_brew " ]] && __ensure_brew
 
 ################################################################################
 # disable brew analytics
@@ -188,7 +210,7 @@ function __disable_brew_analytics() {
     fi
     __done "$((step++))"
 }
-#__disable_brew_analytics
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __disable_brew_analytics " ]] && __disable_brew_analytics
 
 ################################################################################
 # rust
@@ -205,7 +227,7 @@ function __rust() {
     cargo install -- cargo-release
     __done "$((step++))"
 }
-#__rust
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __rust " ]] && __rust
 
 ################################################################################
 # php
@@ -237,7 +259,7 @@ function __php() {
     fi
     __done "$((step++))"
 }
-#__php
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __php " ]] && __php
 
 ################################################################################
 # python
@@ -268,7 +290,7 @@ function __python() {
     done
     __done "$((step++))"
 }
-#__python
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __python " ]] && __python
 
 ################################################################################
 # build tools
@@ -280,7 +302,7 @@ function __build() {
     __install_formula "cmake"
     __done "$((step++))"
 }
-#__build
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __build " ]] && __build
 
 ################################################################################
 # go
@@ -290,7 +312,7 @@ function __go() {
     __install_formula "go"
     __done "$((step++))"
 }
-#__go
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __go " ]] && __go
 
 ################################################################################
 # java
@@ -303,7 +325,7 @@ function __java() {
     __install_formula "openjdk@8"
     __done "$((step++))"
 }
-#__java
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __java " ]] && __java
 
 ################################################################################
 # lua
@@ -313,10 +335,10 @@ function __lua() {
     __install_formula "lua"
     __done "$((step++))"
 }
-#__lua
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __lua " ]] && __lua
 
 ################################################################################
-# go
+# ql plugins
 ################################################################################
 function __ql_plugins() {
     __echo "Step $step: install quicklook plugins"
@@ -327,7 +349,7 @@ function __ql_plugins() {
     unset qps
     __done "$((step++))"
 }
-#__ql_plugins
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __ql_plugins " ]] && __ql_plugins
 
 #============================================================
 # Other formulas
@@ -367,7 +389,7 @@ function __formulas() {
     __install_formula "fzf"
     yes | . "$(brew --prefix)"/opt/fzf/install
 }
-#__formulas
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __formulas " ]] && __formulas
 
 #============================================================
 # Other GUIs
@@ -398,12 +420,16 @@ function __casks() {
     unset guis
     __done "$((step++))"
 }
-#__casks
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __casks " ]] && __casks
 
 ################################################################################
 # dotfiles
 ################################################################################
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+function __setup() {
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+}
+
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __setup " ]] && __setup
 
 ################################################################################
 # End

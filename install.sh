@@ -45,6 +45,7 @@ else
     echo >>"$BASH_PROFILE"
     # shellcheck disable=SC2016
     echo 'test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"' >>"$BASH_PROFILE"
+    echo "setup done, restart your terminal!!"
 fi
 
 source "$BASH_PROFILE"
