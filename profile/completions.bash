@@ -82,3 +82,5 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 # https://dev.to/ahmedmusallam/how-to-autocomplete-ssh-hosts-1hob
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+
+[ -x "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" ] && . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"

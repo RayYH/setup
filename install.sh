@@ -6,7 +6,7 @@ SETUP_REPO="https://github.com/RayYH/setup"
 
 if ! command -v git &>/dev/null; then
     echo "git not found!"
-    exit
+    return
 fi
 
 if [[ "$SHELL" == *bash ]]; then
@@ -18,7 +18,7 @@ fi
 
 if [ -d "$HOME/.setup" ]; then
     echo "$HOME/.setup already exists, to upgrade, run upgrade_set_up command"
-    exit
+    return
 else
     git clone $SETUP_REPO "$HOME/.setup"
 fi

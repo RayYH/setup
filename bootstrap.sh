@@ -34,6 +34,7 @@ else
         "__go"
         "__java"
         "__lua"
+        "__asdf"
         "__ql_plugins"
         "__formulas"
         "__preferences"
@@ -354,6 +355,58 @@ function __lua() {
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __lua " ]] && __lua
 
 ################################################################################
+# asdf
+################################################################################
+function __install_asdf_plugin() {
+    local name="$1"
+    local url="$2"
+
+    if ! asdf plugin-list | grep -Fq "$name"; then
+        asdf plugin-add "$name" "$url"
+    fi
+}
+
+function __install_asdf_language() {
+    local language="$1"
+    local version="$2"
+    asdf install "$language" "$version"
+    asdf global "$language" "$version"
+}
+
+function __install_global_node_modules() {
+    if __command_exists "npm"; then
+        npm update -g "$1"
+    else
+        npm install --global "$1"
+    fi
+}
+
+function __asdf() {
+    __echo "Step $step: setup asdf and nodejs..."
+    __install_formula "asdf"
+    [ -f "$(brew --prefix)/opt/asdf/libexec/asdf.sh" ] && . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+    [[ "$S_UPGRADE" -eq "1" ]] && "$HOME/.asdf/bin/asdf" update
+    [[ "$S_UPGRADE" -eq "1" ]] && "$HOME/.asdf/bin/asdf" plugin-update --all
+
+    # install nodejs plugin
+    __install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
+
+    # install latest nodejs version
+    __install_asdf_language "nodejs" "latest"
+
+    __echo "Node --> $(command -v node)"
+    node -v
+    __echo "NPM --> $(command -v npm)"
+    npm -v
+    __echo "Installing default npm packages..."
+
+    __install_global_node_modules "typescript"
+    __install_global_node_modules "http-server"
+    __done "$((step++))"
+}
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __asdf " ]] && __asdf
+
+################################################################################
 # ql plugins
 ################################################################################
 function __ql_plugins() {
@@ -403,7 +456,10 @@ function __formulas() {
     unset frs
 
     __install_formula "fzf"
-    yes | . "$(brew --prefix)"/opt/fzf/install
+    yes | /bin/bash "$(brew --prefix)"/opt/fzf/install &>/dev/null
+    # load this file in setup.bash
+    [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
+    [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
 }
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __formulas " ]] && __formulas
 
@@ -443,7 +499,7 @@ function __casks() {
 ################################################################################
 function __preferences() {
     __echo "Step $step: Setting macOS preferences..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/mac-defaults.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/macos-defaults.sh)"
     __done "$((step++))"
 }
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __preferences " ]] && __preferences
@@ -451,9 +507,15 @@ function __preferences() {
 ################################################################################
 # dotfiles
 ################################################################################
+function __install_setup() {
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+}
+
 function __setup() {
     __echo "Step $step: Install setup..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+    __install_setup
+    source "$HOME/.bash_profile"
+    sync_set_up_configs
     __done "$((step++))"
 }
 
