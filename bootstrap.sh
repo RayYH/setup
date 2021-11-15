@@ -9,26 +9,38 @@ export S_UPGRADE="${S_UPGRADE:-1}"
 export S_CLEANUP="${S_CLEANUP:-1}"
 
 # essential steps
-declare -a OPTIONAL_STEPS=(
-    "__set_timezone"
-    "__install_apple_command_line_tools"
-    "__set_gatekeeper"
-    "__php"
-    "__ensure_brew"
-    "__disable_brew_analytics"
-    "__rust"
-    "__python"
-    "__build"
-    "__go"
-    "__java"
-    "__lua"
-    "__ql_plugins"
-    "__formulas"
-    "__setup"
-)
+if [ -z ${S_ALL+x} ]; then
+    declare -a OPTIONAL_STEPS=(
+        "__set_timezone"
+        "__install_apple_command_line_tools"
+        "__set_gatekeeper"
+        "__ensure_brew"
+        "__disable_brew_analytics"
+        "__setup"
+    )
+else
+    declare -a OPTIONAL_STEPS=(
+        "__set_timezone"
+        "__install_apple_command_line_tools"
+        "__set_gatekeeper"
+        "__php"
+        "__ensure_brew"
+        "__disable_brew_analytics"
+        "__rust"
+        "__python"
+        "__build"
+        "__go"
+        "__java"
+        "__lua"
+        "__ql_plugins"
+        "__formulas"
+        "__setup"
+    )
+fi
 
 # optional steps
 [ -z ${S_SET_COMPUTER_NAME+x} ] || OPTIONAL_STEPS=("__set_computer_name" "${OPTIONAL_STEPS[@]}")
+[ -z ${S_CASKS+x} ] || OPTIONAL_STEPS=("__casks" "${OPTIONAL_STEPS[@]}")
 
 ################################################################################
 # helper functions
