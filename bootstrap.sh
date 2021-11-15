@@ -515,7 +515,7 @@ function __setup() {
     __echo "Step $step: Install setup..."
     __install_setup
     if __command_exists "sync_set_up_configs"; then
-        sync_set_up_configs
+        yes | sync_set_up_configs
     fi
     __done "$((step++))"
 }
