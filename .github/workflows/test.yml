@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ ubuntu-latest, macos-latest ]
-    name: Setup installation & theme tests on ${{ matrix.operating-system }}
+    name: Setup installation tests on ${{ matrix.operating-system }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2

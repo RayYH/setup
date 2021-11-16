@@ -11,12 +11,10 @@ export S_CLEANUP="${S_CLEANUP:-1}"
 # essential steps
 if [ -z ${S_ALL+x} ]; then
     declare -a OPTIONAL_STEPS=(
-        "__set_timezone"
         "__install_apple_command_line_tools"
         "__set_gatekeeper"
         "__ensure_brew"
         "__disable_brew_analytics"
-        "__preferences"
         "__setup"
         "__workspace"
     )
