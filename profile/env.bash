@@ -19,6 +19,9 @@ fi
 [ -d "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH" # findutils
 [ -d "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"           # grep
 
+# make sure GOPATH is set
+export GOPATH
+
 # use java8
 if [ -d "/usr/local/opt/openjdk@8" ]; then
   PATH="/usr/local/opt/openjdk@8/bin:$PATH"
@@ -28,6 +31,7 @@ fi
 
 # avoid duplicate path
 PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
+
 # Common
 export EDITOR='vim'         # Make vim the default editor.
 export LANG='en_US.UTF-8'   # Prefer US English and use UTF-8.
