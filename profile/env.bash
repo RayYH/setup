@@ -21,6 +21,7 @@ fi
 
 # make sure GOPATH is set
 export GOPATH="$HOME/Code/gopath"
+export PATH=$GOPATH/bin:$PATH
 
 # use java8
 if [ -d "/usr/local/opt/openjdk@8" ]; then
