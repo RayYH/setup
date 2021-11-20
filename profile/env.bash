@@ -20,7 +20,7 @@ fi
 [ -d "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"           # grep
 
 # make sure GOPATH is set
-export GOPATH
+export GOPATH="$HOME/Code/gopath"
 
 # use java8
 if [ -d "/usr/local/opt/openjdk@8" ]; then
