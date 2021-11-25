@@ -55,8 +55,11 @@ function ts_d() {
   ms=${1:10:${#1}}
   d_format='"+%Y-%m-%d %H:%M:%S"'
   [[ -n "$ms" ]] && d_format="\"+%Y-%m-%d %H:%M:%S,$ms\""
-  cmd="date -r $ts"
-  [[ $"OSTYPE" == "darwin"* ]] && cmd="date -d @$ts"
+  cmd="date --date @$ts"
+  # we will install core utils
+  if [ ! -e "/usr/local/opt/coreutils/libexec/gnubin/date" ]; then
+    [[ $"OSTYPE" == "darwin"* ]] && cmd="date -d @$ts"
+  fi
   eval "$cmd $d_format"
 }
 
