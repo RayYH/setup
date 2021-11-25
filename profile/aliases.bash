@@ -133,3 +133,4 @@ alias python3="PYTHONPATH=. python3"                                            
 alias pdflatex='pdflatex -shell-escape'                                             # Preferred 'pdflatex' implementation
 alias qemu="qemu-system-x86_64"                                                     # qemu emulator
 alias setuprc='${EDITOR:=vi} ${HOME}/.setuprc'                                      # Quick access to the .setuprc file
+alias ee="echo -e"
