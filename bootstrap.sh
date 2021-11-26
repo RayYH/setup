@@ -228,6 +228,49 @@ function __disable_brew_analytics() {
 }
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __disable_brew_analytics " ]] && __disable_brew_analytics
 
+#============================================================
+# install common formulas first
+#============================================================
+function __formulas() {
+    declare -a frs=(
+        "ack"
+        "autojump"
+        "bash"
+        "bash-completion@2"
+        "coreutils"
+        "curl"
+        "emacs"
+        "findutils"
+        "gawk"
+        "gh"
+        "git"
+        "gnu-sed"
+        "gnupg"
+        "grep"
+        "imagemagick"
+        "jq"
+        "qemu"
+        "qt"
+        "shellcheck"
+        "telnet"
+        "tmux"
+        "tree"
+        "vim"
+        "wget"
+    )
+    for i in "${frs[@]}"; do
+        __install_formula "$i"
+    done
+    unset frs
+
+    __install_formula "fzf"
+    yes | /bin/bash "$(brew --prefix)"/opt/fzf/install &>/dev/null
+    # load this file in setup.bash
+    [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
+    [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
+}
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __formulas " ]] && __formulas
+
 ################################################################################
 # rust
 ################################################################################
@@ -418,49 +461,6 @@ function __ql_plugins() {
     __done "$((step++))"
 }
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __ql_plugins " ]] && __ql_plugins
-
-#============================================================
-# Other formulas
-#============================================================
-function __formulas() {
-    declare -a frs=(
-        "ack"
-        "autojump"
-        "bash"
-        "bash-completion@2"
-        "coreutils"
-        "curl"
-        "emacs"
-        "findutils"
-        "gawk"
-        "gh"
-        "git"
-        "gnu-sed"
-        "gnupg"
-        "grep"
-        "imagemagick"
-        "jq"
-        "qemu"
-        "qt"
-        "shellcheck"
-        "telnet"
-        "tmux"
-        "tree"
-        "vim"
-        "wget"
-    )
-    for i in "${frs[@]}"; do
-        __install_formula "$i"
-    done
-    unset frs
-
-    __install_formula "fzf"
-    yes | /bin/bash "$(brew --prefix)"/opt/fzf/install &>/dev/null
-    # load this file in setup.bash
-    [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
-    [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
-}
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __formulas " ]] && __formulas
 
 #============================================================
 # Other GUIs
