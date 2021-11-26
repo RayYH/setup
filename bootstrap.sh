@@ -271,6 +271,37 @@ function __formulas() {
 }
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __formulas " ]] && __formulas
 
+#============================================================
+# Other GUIs
+#============================================================
+function __casks() {
+    __echo "Step $step: install some casks"
+    declare -a guis=(
+        "anki"
+        "vlc"
+        "raycast"
+        "google-chrome"
+        "docker"
+        "obsidian"
+        "thunderbird"
+        "wireshark"
+        "foxmail"
+        "onedrive"
+        "virtualbox"
+        "the-unarchiver"
+        "postman"
+        "jetbrains-toolbox"
+        "iTerm2"
+        "keepassxc"
+    )
+    for i in "${guis[@]}"; do
+        __install_cask "$i"
+    done
+    unset guis
+    __done "$((step++))"
+}
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __casks " ]] && __casks
+
 ################################################################################
 # rust
 ################################################################################
@@ -461,37 +492,6 @@ function __ql_plugins() {
     __done "$((step++))"
 }
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __ql_plugins " ]] && __ql_plugins
-
-#============================================================
-# Other GUIs
-#============================================================
-function __casks() {
-    __echo "Step $step: install some casks"
-    declare -a guis=(
-        "anki"
-        "vlc"
-        "raycast"
-        "google-chrome"
-        "docker"
-        "obsidian"
-        "thunderbird"
-        "wireshark"
-        "foxmail"
-        "onedrive"
-        "virtualbox"
-        "the-unarchiver"
-        "postman"
-        "jetbrains-toolbox"
-        "iTerm2"
-        "keepassxc"
-    )
-    for i in "${guis[@]}"; do
-        __install_cask "$i"
-    done
-    unset guis
-    __done "$((step++))"
-}
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __casks " ]] && __casks
 
 ################################################################################
 # preferences
