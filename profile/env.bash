@@ -2,7 +2,7 @@
 
 HOMEBREW_PREFIX="/usr/local"
 if [[ $(uname -m) == 'arm64' ]]; then
-  HOMEBREW_PREFIX="/opt/home"
+  HOMEBREW_PREFIX="/opt/homebrew"
 fi
 
 if command -v brew &>/dev/null; then

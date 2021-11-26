@@ -229,6 +229,22 @@ function __disable_brew_analytics() {
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __disable_brew_analytics " ]] && __disable_brew_analytics
 
 #============================================================
+# install curl and bash first
+#============================================================
+function __bash_and_curl() {
+    declare -a frs=(
+        "bash"
+        "curl"
+    )
+    for i in "${frs[@]}"; do
+        __install_formula "$i"
+    done
+    unset frs
+    export HOMEBREW_FORCE_BREWED_CURL=1
+}
+__bash_and_curl
+
+#============================================================
 # install common formulas first
 #============================================================
 function __formulas() {
