@@ -232,8 +232,10 @@ function __disable_brew_analytics() {
 # install curl and bash first
 #============================================================
 function __bash_and_curl() {
+    __echo "Step $step: install bash and curl"
     declare -a frs=(
         "bash"
+        "bash-completion@2"
         "curl"
     )
     for i in "${frs[@]}"; do
@@ -241,8 +243,29 @@ function __bash_and_curl() {
     done
     unset frs
     export HOMEBREW_FORCE_BREWED_CURL=1
+    __done "$((step++))"
 }
 __bash_and_curl
+
+################################################################################
+# dotfiles
+################################################################################
+function __install_setup() {
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
+}
+
+function __setup() {
+    __echo "Step $step: Install setup..."
+    __install_setup
+    if __command_exists "sync_set_up_configs"; then
+        yes | sync_set_up_configs
+    else
+        __echo "please run sync_set_up_configs command manually"
+    fi
+    __done "$((step++))"
+}
+
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __setup " ]] && __setup
 
 #============================================================
 # install common formulas first
@@ -251,8 +274,6 @@ function __formulas() {
     declare -a frs=(
         "ack"
         "autojump"
-        "bash"
-        "bash-completion@2"
         "coreutils"
         "curl"
         "emacs"
@@ -518,24 +539,6 @@ function __preferences() {
     __done "$((step++))"
 }
 [[ " ${OPTIONAL_STEPS[*]} " =~ " __preferences " ]] && __preferences
-
-################################################################################
-# dotfiles
-################################################################################
-function __install_setup() {
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
-}
-
-function __setup() {
-    __echo "Step $step: Install setup..."
-    __install_setup
-    if __command_exists "sync_set_up_configs"; then
-        yes | sync_set_up_configs
-    fi
-    __done "$((step++))"
-}
-
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __setup " ]] && __setup
 
 ################################################################################
 # workspaces
