@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 HOMEBREW_PREFIX="/usr/local"
+if [[ $(uname -m) == 'arm64' ]]; then
+  HOMEBREW_PREFIX="/opt/home"
+fi
+
 if command -v brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
 fi
