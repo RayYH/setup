@@ -207,6 +207,7 @@ function __ensure_brew() {
         __echo "Installing Homebrew"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         export PATH="/usr/local/bin:$PATH"
+        export PATH="/opt/homebrew/bin:$PATH" # m1 mac
     fi
     brew update
     [[ "$S_UPGRADE" -eq "1" ]] && brew upgrade
