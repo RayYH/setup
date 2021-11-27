@@ -28,8 +28,8 @@ export GOPATH="$HOME/Code/gopath"
 export PATH=$GOPATH/bin:$PATH
 
 # use java8
-if [ -d "/usr/local/opt/openjdk@8" ]; then
-  PATH="/usr/local/opt/openjdk@8/bin:$PATH"
+if [ -d "$HOMEBREW_PREFIX/opt/openjdk@8" ]; then
+  PATH="$HOMEBREW_PREFIX/opt/openjdk@8/bin:$PATH"
 else
   [ -f "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 fi
