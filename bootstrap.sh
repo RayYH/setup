@@ -2,49 +2,19 @@
 
 # Configuration
 export S_TIME_ZONE="Asia/Shanghai"
-export S_COMPUTER_NAME="Ray-M1-MBP"
+if [[ `uname -m` == 'arm64' ]]; then
+  export S_COMPUTER_NAME="Ray-M1-MBP"
+else
+  export S_COMPUTER_NAME="Ray-MBP"
+fi
 export S_GATEKEEPER_DISABLE="Yes"
 export S_DEFAULT_PASSPHRASE=""
 export S_UPGRADE="${S_UPGRADE:-1}"
 export S_CLEANUP="${S_CLEANUP:-1}"
 
-# essential steps
-if [ -z ${S_ALL+x} ]; then
-    declare -a OPTIONAL_STEPS=(
-        "__install_apple_command_line_tools"
-        "__set_gatekeeper"
-        "__ensure_brew"
-        "__bash_and_curl"
-        "__disable_brew_analytics"
-        "__setup"
-        "__workspace"
-    )
-else
-    declare -a OPTIONAL_STEPS=(
-        "__set_timezone"
-        "__install_apple_command_line_tools"
-        "__set_gatekeeper"
-        "__php"
-        "__ensure_brew"
-        "__disable_brew_analytics"
-        "__rust"
-        "__python"
-        "__build"
-        "__go"
-        "__java"
-        "__lua"
-        "__asdf"
-        "__ql_plugins"
-        "__formulas"
-        "__preferences"
-        "__setup"
-        "__workspace"
-    )
-fi
-
 # optional steps
 [ -z ${S_SET_COMPUTER_NAME+x} ] || OPTIONAL_STEPS=("__set_computer_name" "${OPTIONAL_STEPS[@]}")
-[ -z ${S_CASKS+x} ] || OPTIONAL_STEPS=("__casks" "${OPTIONAL_STEPS[@]}")
+ OPTIONAL_STEPS=("__casks" "${OPTIONAL_STEPS[@]}")
 
 ################################################################################
 # helper functions
@@ -152,7 +122,7 @@ function __set_timezone() {
     sudo systemsetup -settimezone "$S_TIME_ZONE" >/dev/null
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __set_timezone " ]] && __set_timezone
+ __set_timezone
 
 ################################################################################
 # Set the timezone
@@ -165,7 +135,7 @@ function __set_computer_name() {
     sudo scutil --set LocalHostName "$S_COMPUTER_NAME"
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __set_computer_name " ]] && __set_computer_name
+[ -z ${S_SET_COMPUTER_NAME+x} ] || __set_computer_name
 
 ################################################################################
 # Install Apple's Command Line Tools
@@ -183,7 +153,7 @@ function __install_apple_command_line_tools() {
     fi
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __install_apple_command_line_tools " ]] && __install_apple_command_line_tools
+__install_apple_command_line_tools
 
 ################################################################################
 # Gatekeeper
@@ -197,7 +167,7 @@ function __set_gatekeeper() {
     fi
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __set_gatekeeper " ]] && __set_gatekeeper
+__set_gatekeeper
 
 ################################################################################
 # Homebrew
@@ -215,7 +185,7 @@ function __ensure_brew() {
     [[ "$S_CLEANUP" -eq "1" ]] && brew cleanup
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __ensure_brew " ]] && __ensure_brew
+__ensure_brew
 
 ################################################################################
 # disable brew analytics
@@ -227,7 +197,7 @@ function __disable_brew_analytics() {
     fi
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __disable_brew_analytics " ]] && __disable_brew_analytics
+__disable_brew_analytics
 
 #============================================================
 # install curl and bash first
@@ -246,7 +216,7 @@ function __bash_and_curl() {
     export HOMEBREW_FORCE_BREWED_CURL=1
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __bash_and_curl " ]] && __bash_and_curl
+__bash_and_curl
 
 ################################################################################
 # dotfiles
@@ -266,7 +236,7 @@ function __setup() {
     __done "$((step++))"
 }
 
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __setup " ]] && __setup
+__setup
 
 #============================================================
 # install common formulas first
@@ -295,6 +265,7 @@ function __formulas() {
         "tree"
         "vim"
         "wget"
+        "make"
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
@@ -307,7 +278,7 @@ function __formulas() {
     [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
     [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __formulas " ]] && __formulas
+ __formulas
 
 #============================================================
 # Other GUIs
@@ -338,7 +309,7 @@ function __casks() {
     unset guis
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __casks " ]] && __casks
+[ -z ${S_CASKS+x} ] ||  __casks
 
 ################################################################################
 # rust
@@ -355,7 +326,7 @@ function __rust() {
     cargo install -- cargo-release
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __rust " ]] && __rust
+__rust
 
 ################################################################################
 # php
@@ -379,15 +350,15 @@ function __php() {
     if __command_exists pecl; then
         pecl update-channels
         pecl upgrade
-        yes | __install_pecl_package "ds"
-        yes | __install_pecl_package "redis"
+        [ -d "$(pecl config-get ext_dir)" ] || mkdir -p "$(pecl config-get ext_dir)"
+        yes | __install_pecl_package "igbinary"
+        yes | __install_pecl_package "redis" # redis needs it
         yes | __install_pecl_package "xdebug"
-        yes | __install_pecl_package "swoole"
         __echo "please run php --ini to check if your php.ini file contains duplicated configuration entries"
     fi
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __php " ]] && __php
+__php
 
 ################################################################################
 # python
@@ -418,7 +389,7 @@ function __python() {
     done
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __python " ]] && __python
+__python
 
 ################################################################################
 # build tools
@@ -426,11 +397,10 @@ function __python() {
 function __build() {
     __echo "Step $step: setup build tools..."
     __install_formula "nasm"
-    __install_formula "make"
     __install_formula "cmake"
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __build " ]] && __build
+__build
 
 ################################################################################
 # go
@@ -440,7 +410,7 @@ function __go() {
     __install_formula "go"
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __go " ]] && __go
+__go
 
 ################################################################################
 # java
@@ -450,10 +420,11 @@ function __java() {
     __install_formula "gradle"
     __install_formula "kotlin"
     __install_formula "maven"
-    __install_formula "openjdk@8"
+    # m1 cannot install openjdk@8
+    __install_cask "homebrew/cask-versions/adoptopenjdk8"
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __java " ]] && __java
+__java
 
 ################################################################################
 # lua
@@ -463,7 +434,7 @@ function __lua() {
     __install_formula "lua"
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __lua " ]] && __lua
+__lua
 
 ################################################################################
 # asdf
@@ -496,8 +467,8 @@ function __asdf() {
     __echo "Step $step: setup asdf and nodejs..."
     __install_formula "asdf"
     [ -f "$(brew --prefix)/opt/asdf/libexec/asdf.sh" ] && . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
-    [[ "$S_UPGRADE" -eq "1" ]] && "$HOME/.asdf/bin/asdf" update
-    [[ "$S_UPGRADE" -eq "1" ]] && "$HOME/.asdf/bin/asdf" plugin-update --all
+    [[ "$S_UPGRADE" -eq "1" ]] && [ -f "$HOME/.asdf/bin/asdf" ] && "$HOME/.asdf/bin/asdf" update
+    [[ "$S_UPGRADE" -eq "1" ]] && [ -f "$HOME/.asdf/bin/asdf" ] && "$HOME/.asdf/bin/asdf" plugin-update --all
 
     # install nodejs plugin
     __install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
@@ -515,7 +486,7 @@ function __asdf() {
     __install_global_node_modules "http-server"
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __asdf " ]] && __asdf
+__asdf
 
 ################################################################################
 # ql plugins
@@ -529,7 +500,7 @@ function __ql_plugins() {
     unset qps
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __ql_plugins " ]] && __ql_plugins
+__ql_plugins
 
 ################################################################################
 # preferences
@@ -539,7 +510,7 @@ function __preferences() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/macos-defaults.sh)"
     __done "$((step++))"
 }
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __preferences " ]] && __preferences
+__preferences
 
 ################################################################################
 # workspaces
@@ -567,7 +538,7 @@ function __workspace() {
     __done "$((step++))"
 }
 
-[[ " ${OPTIONAL_STEPS[*]} " =~ " __workspace " ]] && __workspace
+__workspace
 
 ################################################################################
 # End
