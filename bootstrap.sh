@@ -12,10 +12,6 @@ export S_DEFAULT_PASSPHRASE=""
 export S_UPGRADE="${S_UPGRADE:-1}"
 export S_CLEANUP="${S_CLEANUP:-1}"
 
-# optional steps
-[ -z ${S_SET_COMPUTER_NAME+x} ] || OPTIONAL_STEPS=("__set_computer_name" "${OPTIONAL_STEPS[@]}")
- OPTIONAL_STEPS=("__casks" "${OPTIONAL_STEPS[@]}")
-
 ################################################################################
 # helper functions
 ################################################################################
