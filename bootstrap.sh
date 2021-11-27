@@ -14,6 +14,7 @@ if [ -z ${S_ALL+x} ]; then
         "__install_apple_command_line_tools"
         "__set_gatekeeper"
         "__ensure_brew"
+        "__bash_and_curl"
         "__disable_brew_analytics"
         "__setup"
         "__workspace"
@@ -206,9 +207,9 @@ function __ensure_brew() {
     if ! command -v brew >/dev/null; then
         __echo "Installing Homebrew"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        export PATH="/usr/local/bin:$PATH"
-        export PATH="/opt/homebrew/bin:$PATH" # m1 mac
     fi
+    export PATH="/usr/local/bin:$PATH"
+    export PATH="/opt/homebrew/bin:$PATH"
     brew update
     [[ "$S_UPGRADE" -eq "1" ]] && brew upgrade
     [[ "$S_CLEANUP" -eq "1" ]] && brew cleanup
@@ -245,7 +246,7 @@ function __bash_and_curl() {
     export HOMEBREW_FORCE_BREWED_CURL=1
     __done "$((step++))"
 }
-__bash_and_curl
+[[ " ${OPTIONAL_STEPS[*]} " =~ " __bash_and_curl " ]] && __bash_and_curl
 
 ################################################################################
 # dotfiles
