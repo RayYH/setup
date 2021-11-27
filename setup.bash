@@ -45,3 +45,16 @@ fi
 if [ -n "$GIT_AUTHOR_EMAIL" ] && [ "$GIT_AUTHOR_EMAIL" != " " ]; then
   git config --global user.email "$GIT_AUTHOR_EMAIL"
 fi
+
+if [ "$GIT_SIGNING_KEY" == "" ]; then
+  if command -v gpg &>/dev/null; then
+    fullKey="$(gpg --list-secret-keys --keyid-format=long | grep sec | awk '{print $2}')"
+    key=${fullKey#"ed25519/"}
+    GIT_SIGNING_KEY="$key"
+  fi
+fi
+
+if [ -n "$GIT_SIGNING_KEY" ] && [ "$GIT_SIGNING_KEY" != " " ]; then
+  git config --global commit.gpgsign true &&
+    git config --global user.signingkey "$GIT_SIGNING_KEY"
+fi
