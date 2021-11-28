@@ -480,6 +480,7 @@ function __asdf() {
 
     __install_global_node_modules "typescript"
     __install_global_node_modules "http-server"
+    __install_global_node_modules "yarn"
     __done "$((step++))"
 }
 __asdf
