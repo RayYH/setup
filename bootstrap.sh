@@ -2,7 +2,7 @@
 
 # Configuration
 export S_TIME_ZONE="Asia/Shanghai"
-if [[ `uname -m` == 'arm64' ]]; then
+if [[ $(uname -m) == 'arm64' ]]; then
   export S_COMPUTER_NAME="Ray-M1-MBP"
 else
   export S_COMPUTER_NAME="Ray-MBP"
