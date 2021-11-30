@@ -4,20 +4,21 @@
 #===========================================================================#
 #                         Folder Navigation                                 #
 #===========================================================================#
-alias ..="cd .."                                                        # go back 1 directory level
-alias cd..="cd .."                                                      # go back 1 directory level
-alias ...="cd ../.."                                                    # go back 2 directory levels
-alias .3='cd ../../../'                                                 # go back 3 directory levels
-alias .4='cd ../../../../'                                              # go back 4 directory levels
-alias .5='cd ../../../../../'                                           # go back 5 directory levels
-alias .6='cd ../../../../../../'                                        # go back 6 directory levels
-alias ~="cd ~"                                                          # go Home
-alias -- -="cd -"                                                       # go back to previous folder
-alias dl="cd ~/Downloads && clear"                                      # Download
-alias dt="cd ~/Desktop && clear"                                        # Desktop
-alias one="cd ~/OneDrive && clear"                                      # OneDrive
-alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"           # icloud
+alias ..="cd .."                                                         # go back 1 directory level
+alias cd..="cd .."                                                       # go back 1 directory level
+alias ...="cd ../.."                                                     # go back 2 directory levels
+alias .3='cd ../../../'                                                  # go back 3 directory levels
+alias .4='cd ../../../../'                                               # go back 4 directory levels
+alias .5='cd ../../../../../'                                            # go back 5 directory levels
+alias .6='cd ../../../../../../'                                         # go back 6 directory levels
+alias ~="cd ~"                                                           # go Home
+alias -- -="cd -"                                                        # go back to previous folder
+alias dl="cd ~/Downloads && clear"                                       # Download
+alias dt="cd ~/Desktop && clear"                                         # Desktop
+alias one="cd ~/OneDrive && clear"                                       # OneDrive
+alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"            # icloud
 alias obsi="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents" # Obsidian
+alias tmp="cd ~/Temp"                                                    # tmp folder
 
 CODE_DIR="$HOME/Code"
 [ -d "$CODE_DIR/projects" ] && CODE_DIR="$CODE_DIR/projects" # compatibility
@@ -36,28 +37,28 @@ alias pwork="cd $CODE_DIR/work"
 #===========================================================================#
 #                         Networking Commands                               #
 #===========================================================================#
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"                                                                                                                                    # public real IP
-alias myip='curl https://api.myip.com'                                                                                                                                                           # public proxied IP
-alias loip="ipconfig getifaddr en0"                                                                                                                                                              # show local ip
-alias sockets='lsof -i'                                                                                                                                                                          # show all TCP/IP sockets
-alias flushdns='dscacheutil -flushcache'                                                                                                                                                         # clear DNS cache
-alias lsock='sudo /usr/sbin/lsof -i -P'                                                                                                                                                          # show opened sockets
-alias lsocku='sudo /usr/sbin/lsof -i -n -P | grep UDP'                                                                                                                                           # show opened UDP sockets
-alias lsockt='sudo /usr/sbin/lsof -i -n -P | grep TCP'                                                                                                                                           # show opened TCP sockets
-alias openports='sudo lsof -i | grep LISTEN'                                                                                                                                                     # show sockets with LISTEN state
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"                                   # show ip addresses
-alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"                                                                                                                # Show active network interfaces
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"                                                                                                  # public real IP
+alias myip='curl https://api.myip.com'                                                                                                                         # public proxied IP
+alias loip="ipconfig getifaddr en0"                                                                                                                            # show local ip
+alias sockets='lsof -i'                                                                                                                                        # show all TCP/IP sockets
+alias flushdns='dscacheutil -flushcache'                                                                                                                       # clear DNS cache
+alias lsock='sudo /usr/sbin/lsof -i -P'                                                                                                                        # show opened sockets
+alias lsocku='sudo /usr/sbin/lsof -i -n -P | grep UDP'                                                                                                         # show opened UDP sockets
+alias lsockt='sudo /usr/sbin/lsof -i -n -P | grep TCP'                                                                                                         # show opened TCP sockets
+alias openports='sudo lsof -i | grep LISTEN'                                                                                                                   # show sockets with LISTEN state
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'" # show ip addresses
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"                                                                              # Show active network interfaces
 
 #===========================================================================#
 #                        Networking Resources                               #
 #===========================================================================#
-alias GET="lwp-request -m 'GET'"                                                                                                                                                                 # GET
-alias HEAD="lwp-request -m 'HEAD'"                                                                                                                                                               # HEAD
-alias POST="lwp-request -m 'POST'"                                                                                                                                                               # POST
-alias PUT="lwp-request -m 'PUT'"                                                                                                                                                                 # PUT
-alias DELETE="lwp-request -m 'DELETE'"                                                                                                                                                           # DELETE
-alias TRACE="lwp-request -m 'TRACE'"                                                                                                                                                             # TRACE
-alias OPTIONS="lwp-request -m 'OPTIONS'"                                                                                                                                                         # OPTIONS
+alias GET="lwp-request -m 'GET'"         # GET
+alias HEAD="lwp-request -m 'HEAD'"       # HEAD
+alias POST="lwp-request -m 'POST'"       # POST
+alias PUT="lwp-request -m 'PUT'"         # PUT
+alias DELETE="lwp-request -m 'DELETE'"   # DELETE
+alias TRACE="lwp-request -m 'TRACE'"     # TRACE
+alias OPTIONS="lwp-request -m 'OPTIONS'" # OPTIONS
 
 #===========================================================================#
 #                           Apple Services                                  #
@@ -76,8 +77,8 @@ alias say="say -v Alex "                                                        
 #===========================================================================#
 #                             Date/Time                                     #
 #===========================================================================#
-alias now="date '+%Y-%m-%d %H:%I:%S'"                   # current time
-alias now_ts="date '+%s'"                               # current timestamp
+alias now="date '+%Y-%m-%d %H:%I:%S'" # current time
+alias now_ts="date '+%s'"             # current timestamp
 
 #===========================================================================#
 #                              Checksum                                     #
@@ -97,18 +98,18 @@ else # macOS
   export colorflag="-G"
   export LSCOLORS='Gxfxcxdxbxegedabagacad'
 fi
-alias cp='cp -iv'                                                                   # Preferred 'cp' implementation
-alias mv='mv -iv'                                                                   # Preferred 'mv' implementation
-alias mkdir='mkdir -p'                                                              # Preferred 'mkdir' implementation
-alias less='less -FSRXc'                                                            # Preferred 'less' implementation
-alias ls='command ls ${colorflag}'                                                  # colorful ls
-alias l='ls -lF ${colorflag}'                                                       # List all files colorized in long format
-alias la='ls -lAF ${colorflag}'                                                     # List all files colorized in long format, excluding . and ..
-alias lsd='ls -lF ${colorflag} | grep --color=never "^d"'                           # List only directories
-alias l1='ls -1 ${colorflag}'                                                       # List one column
-alias grep='grep --color=auto'                                                      # Always enable colored `grep` output
-alias fgrep='fgrep --color=auto'                                                    # Always enable colored `fgrep` output
-alias egrep='egrep --color=auto'                                                    # Always enable colored `egrep` output
+alias cp='cp -iv'                                         # Preferred 'cp' implementation
+alias mv='mv -iv'                                         # Preferred 'mv' implementation
+alias mkdir='mkdir -p'                                    # Preferred 'mkdir' implementation
+alias less='less -FSRXc'                                  # Preferred 'less' implementation
+alias ls='command ls ${colorflag}'                        # colorful ls
+alias l='ls -lF ${colorflag}'                             # List all files colorized in long format
+alias la='ls -lAF ${colorflag}'                           # List all files colorized in long format, excluding . and ..
+alias lsd='ls -lF ${colorflag} | grep --color=never "^d"' # List only directories
+alias l1='ls -1 ${colorflag}'                             # List one column
+alias grep='grep --color=auto'                            # Always enable colored `grep` output
+alias fgrep='fgrep --color=auto'                          # Always enable colored `fgrep` output
+alias egrep='egrep --color=auto'                          # Always enable colored `egrep` output
 
 #===========================================================================#
 #                      Other Commands or Aliases                            #

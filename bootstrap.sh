@@ -3,9 +3,9 @@
 # Configuration
 export S_TIME_ZONE="Asia/Shanghai"
 if [[ $(uname -m) == 'arm64' ]]; then
-  export S_COMPUTER_NAME="Ray-M1-MBP"
+    export S_COMPUTER_NAME="Ray-M1-MBP"
 else
-  export S_COMPUTER_NAME="Ray-MBP"
+    export S_COMPUTER_NAME="Ray-MBP"
 fi
 export S_GATEKEEPER_DISABLE="Yes"
 export S_DEFAULT_PASSPHRASE=""
@@ -118,7 +118,7 @@ function __set_timezone() {
     sudo systemsetup -settimezone "$S_TIME_ZONE" >/dev/null
     __done "$((step++))"
 }
- __set_timezone
+__set_timezone
 
 ################################################################################
 # Set the timezone
@@ -274,7 +274,7 @@ function __formulas() {
     [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
     [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
 }
- __formulas
+__formulas
 
 #============================================================
 # Other GUIs
@@ -305,7 +305,7 @@ function __casks() {
     unset guis
     __done "$((step++))"
 }
-[ -z ${S_CASKS+x} ] ||  __casks
+[ -z ${S_CASKS+x} ] || __casks
 
 ################################################################################
 # rust
