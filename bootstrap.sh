@@ -12,6 +12,10 @@ export S_DEFAULT_PASSPHRASE=""
 export S_UPGRADE="${S_UPGRADE:-1}"
 export S_CLEANUP="${S_CLEANUP:-1}"
 
+if [ -n "${S_ONLY_UPDATE+1}" ]; then
+    S_UPGRADE=1
+fi
+
 ################################################################################
 # helper functions
 ################################################################################
@@ -118,7 +122,7 @@ function __set_timezone() {
     sudo systemsetup -settimezone "$S_TIME_ZONE" >/dev/null
     __done "$((step++))"
 }
-__set_timezone
+[ -n "${S_ONLY_UPDATE+1}" ] || __set_timezone
 
 ################################################################################
 # Set the timezone
@@ -149,7 +153,7 @@ function __install_apple_command_line_tools() {
     fi
     __done "$((step++))"
 }
-__install_apple_command_line_tools
+[ -n "${S_ONLY_UPDATE+1}" ] || __install_apple_command_line_tools
 
 ################################################################################
 # Gatekeeper
@@ -163,7 +167,7 @@ function __set_gatekeeper() {
     fi
     __done "$((step++))"
 }
-__set_gatekeeper
+[ -n "${S_ONLY_UPDATE+1}" ] || __set_gatekeeper
 
 ################################################################################
 # Homebrew
@@ -193,7 +197,7 @@ function __disable_brew_analytics() {
     fi
     __done "$((step++))"
 }
-__disable_brew_analytics
+[ -n "${S_ONLY_UPDATE+1}" ] || __disable_brew_analytics
 
 #============================================================
 # install curl and bash first
@@ -232,7 +236,7 @@ function __setup() {
     __done "$((step++))"
 }
 
-__setup
+[ -n "${S_ONLY_UPDATE+1}" ] || __setup
 
 #============================================================
 # install common formulas first
@@ -262,6 +266,7 @@ function __formulas() {
         "vim"
         "wget"
         "make"
+        "mysql-client"
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
@@ -507,7 +512,7 @@ function __preferences() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/macos-defaults.sh)"
     __done "$((step++))"
 }
-__preferences
+[ -n "${S_ONLY_UPDATE+1}" ] || __preferences
 
 ################################################################################
 # workspaces
@@ -535,7 +540,7 @@ function __workspace() {
     __done "$((step++))"
 }
 
-__workspace
+[ -n "${S_ONLY_UPDATE+1}" ] || __workspace
 
 ################################################################################
 # End
