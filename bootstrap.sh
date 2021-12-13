@@ -297,7 +297,7 @@ function __casks() {
         "wireshark"
         "foxmail"
         "onedrive"
-        "virtualbox"
+        # "virtualbox" not supported on m1 mac
         "the-unarchiver"
         "postman"
         "jetbrains-toolbox"
@@ -352,10 +352,10 @@ function __php() {
         pecl update-channels
         pecl upgrade
         [ -d "$(pecl config-get ext_dir)" ] || mkdir -p "$(pecl config-get ext_dir)"
-        yes | __install_pecl_package "igbinary"
-        yes | __install_pecl_package "redis" # redis needs it
-        yes | __install_pecl_package "xdebug"
-        __echo "please run php --ini to check if your php.ini file contains duplicated configuration entries"
+        # yes | __install_pecl_package "igbinary"
+        # yes | __install_pecl_package "redis" # redis needs it
+        # yes | __install_pecl_package "xdebug"
+        # __echo "please run php --ini to check if your php.ini file contains duplicated configuration entries"
     fi
     __done "$((step++))"
 }
