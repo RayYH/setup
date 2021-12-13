@@ -14,6 +14,9 @@
 
 # bootstrap new computer (this will install setup at the same time)
 S_SET_COMPUTER_NAME=1 S_CASKS=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/bootstrap.sh)"
+
+# update formulas, casks...
+S_ONLY_UPDATE=1 S_CASKS=1 ./bootstrap.sh
 ```
 
 ## 更新
