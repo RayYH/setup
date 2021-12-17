@@ -293,7 +293,6 @@ function __casks() {
         "google-chrome"
         "docker"
         "obsidian"
-        "thunderbird"
         "wireshark"
         "foxmail"
         "onedrive"
