@@ -8,3 +8,5 @@ if type brew &>/dev/null; then
   # fzf
   [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 fi
+
+[ -f "${HOME}/.iterm2_shell_integration.bash" ] && test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

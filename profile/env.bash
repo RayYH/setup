@@ -23,6 +23,7 @@ fi
 [ -d "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH" # findutils
 [ -d "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"           # grep
 [ -d "$HOMEBREW_PREFIX/opt/mysql-client/bin" ] && PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"                 # mysql
+[ -d "$HOME/Code/snippets/bin" ] && PATH="$HOME/Code/snippets/bin:$PATH"                                             # snippets
 
 # make sure GOPATH is set
 export GOPATH="$HOME/Code/gopath"
