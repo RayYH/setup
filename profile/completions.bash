@@ -12,18 +12,6 @@ elif [ -f /etc/bash_completion ]; then
   source /etc/bash_completion
 fi
 
-# brew completion
-if type brew &>/dev/null; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  if [[ -f "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -f "${COMPLETION}" ]] && source "${COMPLETION}"
-    done
-  fi
-fi
-
 # docker and docker-compose
 if ! complete -p docker &>/dev/null; then
   _docker_bash_completion_paths=(
