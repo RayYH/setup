@@ -494,3 +494,14 @@ function upgrade_set_up() {
   [ -d ".git" ] && git pull origin $branch
   cd - >/dev/null || return
 }
+
+function randS() {
+  local len=32
+  if [ -z "${1}" ]; then
+    len=32
+  else
+    len="$1"
+  fi
+  tr -dc A-Za-z0-9 </dev/urandom | head -c "$len"
+  echo ''
+}
