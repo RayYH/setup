@@ -3,9 +3,9 @@
 # Configuration
 export S_TIME_ZONE="Asia/Shanghai"
 if [[ $(uname -m) == 'arm64' ]]; then
-    export S_COMPUTER_NAME="Ray-M1-MBP"
+    export S_COMPUTER_NAME="$USER-M1-MBP"
 else
-    export S_COMPUTER_NAME="Ray-MBP"
+    export S_COMPUTER_NAME="$USER-MBP"
 fi
 export S_GATEKEEPER_DISABLE="Yes"
 export S_DEFAULT_PASSPHRASE=""
