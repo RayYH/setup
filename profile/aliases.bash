@@ -135,3 +135,5 @@ alias pdflatex='pdflatex -shell-escape'                                         
 alias qemu="qemu-system-x86_64"                                                     # qemu emulator
 alias setuprc='${EDITOR:=vi} ${HOME}/.setuprc'                                      # Quick access to the .setuprc file
 alias ee="echo -e"
+alias weather='curl -H "Accept-Language: zh" wttr.in/Shanghai'
+alias weatherc='curl -H "Accept-Language: zh" wttr.in/Chuzhou'
