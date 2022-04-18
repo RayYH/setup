@@ -12,7 +12,7 @@ This repo sets up the development environment **I** need for daily programming.
 # install setup only
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
 
-# bootstrap new computer (this will install setup at the same time)
+# bootstrap new computer (including setup)
 S_SET_COMPUTER_NAME=1 S_CASKS=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/bootstrap.sh)"
 
 # update formulas, casks...
@@ -37,10 +37,10 @@ $ clean_set_up_backup_files
 
 ## Thanks to
 
-+ [bash-it](https://github.com/Bash-it/bash-it)
-+ [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-+ [mac-bootstrap](https://github.com/joshukraine/mac-bootstrap)
-+ [mac-bootstrap](https://github.com/deild/mac-bootstrap)
+* [bash-it](https://github.com/Bash-it/bash-it)
+* [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+* [mac-bootstrap](https://github.com/joshukraine/mac-bootstrap)
+* [mac-bootstrap](https://github.com/deild/mac-bootstrap)
 
 ## License
 
