@@ -134,6 +134,6 @@ alias python3="PYTHONPATH=. python3"                                            
 alias pdflatex='pdflatex -shell-escape'                                             # Preferred 'pdflatex' implementation
 alias qemu="qemu-system-x86_64"                                                     # qemu emulator
 alias setuprc='${EDITOR:=vi} ${HOME}/.setuprc'                                      # Quick access to the .setuprc file
-alias ee="echo -e"
-alias weather='curl -H "Accept-Language: zh" wttr.in/Shanghai'
-alias weatherc='curl -H "Accept-Language: zh" wttr.in/Chuzhou'
+alias ee="echo -e"                                                                  # ee
+alias weather='curl -H "Accept-Language: zh" wttr.in/Shanghai'                      # quick view today's weather
+alias man='man "$@" 2> /dev/null'
