@@ -505,3 +505,12 @@ function randS() {
   tr -dc A-Za-z0-9 </dev/urandom | head -c "$len"
   echo ''
 }
+
+function xl() {
+  if [ ! -f "$1" ]; then
+    echo "file $1 not exists"
+  fi
+  if command -v xelatex &>/dev/null; then
+    xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape "$1"
+  fi
+}
