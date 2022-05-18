@@ -196,7 +196,7 @@ if [ -n "${BASH_VERSION}" ]; then
             prompt+="\033[1m$ \033[0m"
         fi
 
-        prompt="${prompt/   /" "}"
+        # prompt="${prompt/   /" "}"
 
         echo "${prompt}"
     }
