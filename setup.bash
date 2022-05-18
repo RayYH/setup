@@ -22,6 +22,14 @@ source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
 source "$SET_UP"/profile/prompt.bash
 
+if [ -f "$HOME/.oh-my-git/prompt.sh" ]; then
+  PS1="\[\033]0;\W\007\]"
+  S1+="\[${bold}\]"
+  PS1+="\[${green}\]\w "
+  PS1+="\[${white}\]\$ \[${reset}\]"
+  source "$HOME/.oh-my-git/prompt.sh"
+fi
+
 # Change additional shell optional behavior
 # -s (set) -u (unset)
 # http://www.hep.by/gnu/bash/The-Shopt-Builtin.html#The-Shopt-Builtin
