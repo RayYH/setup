@@ -127,7 +127,7 @@ if [ -n "${BASH_VERSION}" ]; then
             prompt+=$(enrich_append true " \u" "${black_on_cyan}")
             prompt="${prompt} ${cyan_on_yellow} ${white_on_yellow}"
 
-            prompt+=$(enrich_append true " \w" "${white_on_yellow}")
+            prompt+=$(enrich_append true "  \w" "${white_on_yellow}")
             prompt="${prompt} ${yellow_on_white} ${blue_on_yellow}"
 
             prompt+=$(enrich_append $is_a_git_repo $omg_is_a_git_repo_symbol "${black_on_white}")
