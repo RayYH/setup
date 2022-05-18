@@ -107,6 +107,7 @@ if [ -n "${BASH_VERSION}" ]; then
         local white_on_red="${white}${background_red}"
         local yellow_on_red="${yellow}${background_red}"
         local black_on_cyan="${black}${background_cyan}"
+        local black_on_yellow="${black}${background_yellow}"
         local cyan_on_black="${cyan}${background_black}"
         local cyan_on_blue="${cyan}${background_blue}"
         local black_on_blue="${black}${background_blue}"
@@ -125,9 +126,9 @@ if [ -n "${BASH_VERSION}" ]; then
             prompt=$'\n'
             prompt+="${black_on_cyan} "
             prompt+=$(enrich_append true " \033[1m\u" "${black_on_cyan}")
-            prompt="${prompt} ${cyan_on_yellow} ${white_on_yellow}"
+            prompt="${prompt} ${cyan_on_yellow} ${black_on_yellow}"
 
-            prompt+=$(enrich_append true "  \033[1m\w" "${white_on_yellow}")
+            prompt+=$(enrich_append true "  \033[1m\w" "${black_on_yellow}")
             prompt="${prompt} ${yellow_on_white} ${blue_on_yellow}"
 
             prompt+=$(enrich_append $is_a_git_repo $omg_is_a_git_repo_symbol "${black_on_white}")
@@ -188,8 +189,8 @@ if [ -n "${BASH_VERSION}" ]; then
             prompt=$'\n'
             prompt+="${black_on_cyan} "
             prompt+=$(enrich_append true " \u" "${black_on_cyan}")
-            prompt="${prompt} ${cyan_on_yellow} ${white_on_yellow}"
-            prompt+=$(enrich_append true "  \w" "${white_on_yellow}")
+            prompt="${prompt} ${cyan_on_yellow} ${black_on_yellow}"
+            prompt+=$(enrich_append true "  \w" "${black_on_yellow}")
             # rprompt="${prompt} ${yellow_on_white}${blue_on_yellow}"
             # prompt+="$(eval_prompt_callback_if_present)"
             prompt+="${yellow_on_black}${reset}\n"
