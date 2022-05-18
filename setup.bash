@@ -20,14 +20,11 @@ source "$SET_UP"/profile/aliases.bash
 source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
-source "$SET_UP"/profile/prompt.bash
 
-if [ -f "$HOME/.oh-my-git/prompt.sh" ]; then
-  PS1="\[\033]0;\W\007\]"
-  S1+="\[${bold}\]"
-  PS1+="\[${green}\]\w "
-  PS1+="\[${white}\]\$ \[${reset}\]"
-  source "$HOME/.oh-my-git/prompt.sh"
+if [ -f "$SET_UP/oh-my-git/prompt.sh" ]; then
+  source "$SET_UP/oh-my-git/prompt.sh"
+else
+  source "$SET_UP"/profile/prompt.bash
 fi
 
 # Change additional shell optional behavior
