@@ -21,7 +21,7 @@ source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
 
-if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
   source "$SET_UP"/profile/prompt.bash
 elif [ -f "$SET_UP/oh-my-git/prompt.sh" ]; then
   source "$SET_UP/oh-my-git/prompt.sh"
