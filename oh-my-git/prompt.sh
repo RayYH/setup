@@ -184,7 +184,7 @@ if [ -n "${BASH_VERSION}" ]; then
             prompt+="${omg_last_symbol_color}${reset}\n"
             # prompt+="$(eval_prompt_callback_if_present)"
             # prompt+="${omg_second_line}"
-            prompt+="\033[1m$ \033[0m"
+            prompt+="\[\033[1m\]\$ \[\033[0m\]"
         else
             prompt=$'\n'
             prompt+="${black_on_cyan} "
@@ -194,7 +194,7 @@ if [ -n "${BASH_VERSION}" ]; then
             # rprompt="${prompt} ${yellow_on_white}${blue_on_yellow}"
             # prompt+="$(eval_prompt_callback_if_present)"
             prompt+="${yellow_on_black}${reset}\n"
-            prompt+="\033[1m$ \033[0m"
+            prompt+="\[\033[1m\]\$ \[\033[0m\]"
         fi
 
         # prompt="${prompt/   /" "}"
