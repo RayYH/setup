@@ -137,3 +137,4 @@ alias setuprc='${EDITOR:=vi} ${HOME}/.setuprc'                                  
 alias ee="echo -e"                                                                  # ee
 alias man='man "$@" 2> /dev/null'                                                   # man
 alias g11='g++ -std=c++11 -O2 -Wall '                                               # g++
+alias lzd='lazydocker'                                                              # lazydocker

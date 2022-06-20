@@ -9,6 +9,10 @@ if command -v brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
 fi
 
+if command -v colima &>/dev/null; then
+  export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
+fi
+
 # paths
 [ -d "$HOMEBREW_PREFIX/bin" ] && PATH="$HOMEBREW_PREFIX/bin:$PATH"                                                   # brew
 [ -d "$HOMEBREW_PREFIX/sbin" ] && PATH="$HOMEBREW_PREFIX/sbin:$PATH"                                                 # brew
@@ -86,3 +90,5 @@ export BASH_SILENCE_DEPRECATION_WARNING=1 # hide the ‘default interactive shel
 
 # python
 export PYTHONIOENCODING='UTF-8' # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export MNT="$HOME/.mnt"
+command -v

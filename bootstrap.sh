@@ -48,7 +48,7 @@ function __command_exists() {
 function __install_formula() {
     if brew list "$1" &>/dev/null; then
         __echo "$1 exists"
-        if [ "$S_UPGRADE" -eq "1" ]; then
+        if [[ "$S_UPGRADE" -eq "1" ]]; then
             __echo "update $1 via brew"
             brew upgrade "$1"
         fi
@@ -61,7 +61,7 @@ function __install_formula() {
 function __install_cask() {
     if brew list --cask "$1" &>/dev/null; then
         __echo "$1 exists"
-        if [ "$S_UPGRADE" -eq "1" ]; then
+        if [[ "$S_UPGRADE" -eq "1" ]]; then
             __echo "update $1 via brew"
             brew upgrade --cask "$1"
         fi
