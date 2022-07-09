@@ -514,3 +514,8 @@ function xl() {
     xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape "$1"
   fi
 }
+
+function mman() {
+  man "$@" 2>/dev/null
+}
+alias man="mman"

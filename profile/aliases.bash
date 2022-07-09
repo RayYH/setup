@@ -135,6 +135,9 @@ alias pdflatex='pdflatex -shell-escape'                                         
 alias qemu="qemu-system-x86_64"                                                     # qemu emulator
 alias setuprc='${EDITOR:=vi} ${HOME}/.setuprc'                                      # Quick access to the .setuprc file
 alias ee="echo -e"                                                                  # ee
-alias man='man "$@" 2> /dev/null'                                                   # man
 alias g11='g++ -std=c++11 -O2 -Wall '                                               # g++
 alias lzd='lazydocker'                                                              # lazydocker
+
+if command -v thefuck &>/dev/null; then
+  eval "$(thefuck --alias)"
+fi
