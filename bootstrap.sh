@@ -294,14 +294,11 @@ function __casks() {
         "docker"
         "obsidian"
         "wireshark"
-        "foxmail"
         "onedrive"
-        # "virtualbox" not supported on m1 mac
         "the-unarchiver"
         "postman"
         "jetbrains-toolbox"
         "iTerm2"
-        "keepassxc"
     )
     for i in "${guis[@]}"; do
         __install_cask "$i"
