@@ -9,9 +9,10 @@ if command -v brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
 fi
 
-if command -v colima &>/dev/null; then
-  export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
-fi
+# colima 还不够稳定，切回 Docker Desktop
+#if command -v colima &>/dev/null; then
+#  export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
+#fi
 
 # paths
 [ -d "$HOMEBREW_PREFIX/bin" ] && PATH="$HOMEBREW_PREFIX/bin:$PATH"                                                   # brew
