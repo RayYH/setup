@@ -21,13 +21,7 @@ source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
 
-if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
-  source "$SET_UP"/profile/prompt.bash
-elif [[ "$OSTYPE" == "darwin"* ]] && [ -f "$SET_UP/oh-my-git/prompt.sh" ]; then
-  source "$SET_UP/oh-my-git/prompt.sh"
-else
-  source "$SET_UP"/profile/prompt.bash
-fi
+source "$SET_UP"/profile/prompt.bash
 
 # Change additional shell optional behavior
 # -s (set) -u (unset)
