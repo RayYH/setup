@@ -4,7 +4,9 @@
 # https://github.com/mathiasbynens/dotfiles
 # https://github.com/paulirish/dotfiles/blob/dd33151f/.bash_prompt#L110-L123
 
-if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+if [[ "${KITTY_PID}" -ge 0 ]]; then
+  export TERM='xterm-kitty'
+elif [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
   export TERM='gnome-256color'
 elif infocmp xterm-256color >/dev/null 2>&1; then
   export TERM='xterm-256color'
