@@ -247,10 +247,8 @@ function __formulas() {
         "autojump"
         "coreutils"
         "curl"
-        "emacs"
         "findutils"
         "gawk"
-        "gh"
         "git"
         "gnu-sed"
         "gnupg"
@@ -267,6 +265,8 @@ function __formulas() {
         "wget"
         "make"
         "mysql-client"
+        "git-delta" # https://github.com/dandavison/delta
+        "viu"       # https://github.com/atanunq/viu
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
@@ -282,6 +282,25 @@ function __formulas() {
 __formulas
 
 #============================================================
+# tap 3rd repos
+#============================================================
+function __taps() {
+    __echo "Step $step: add 3rd repos via bre tap"
+    declare -a taps=(
+        "homebrew/cask-versions"
+        "dart-lang/dart"
+        "ringohub/redis-cli"
+        "shivammathur/php"
+    )
+    for i in "${taps[@]}"; do
+        brew tap "$i"
+    done
+    unset taps
+    __done "$((step++))"
+}
+__taps
+
+#============================================================
 # Other GUIs
 #============================================================
 function __casks() {
@@ -291,10 +310,7 @@ function __casks() {
         "vlc"
         "raycast"
         "google-chrome"
-        "docker"
         "obsidian"
-        "wireshark"
-        "onedrive"
         "the-unarchiver"
         "postman"
         "jetbrains-toolbox"
@@ -316,6 +332,7 @@ function __rust() {
     if ! __command_exists rustup &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     fi
+    rustup update
     if [ -d "$HOME/.cargo/bin" ]; then
         export PATH="$HOME/.cargo/bin:$PATH"
     fi
