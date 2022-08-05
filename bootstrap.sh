@@ -310,11 +310,17 @@ function __casks() {
         "vlc"
         "raycast"
         "google-chrome"
+        "chromedriver"
         "obsidian"
         "the-unarchiver"
         "postman"
         "jetbrains-toolbox"
-        "iTerm2"
+        "iTerm2"    # https://github.com/gnachman/iTerm2
+        "flameshot" # https://github.com/flameshot-org/flameshot
+        "hiddenbar" # https://github.com/dwarvesf/hidden
+        "keycastr"  # https://github.com/keycastr/keycastr
+        "multipass" # https://github.com/canonical/multipass
+        "visual-studio-code"
     )
     for i in "${guis[@]}"; do
         __install_cask "$i"
@@ -434,8 +440,8 @@ function __java() {
     __install_formula "gradle"
     __install_formula "kotlin"
     __install_formula "maven"
-    # m1 cannot install openjdk@8
-    __install_cask "homebrew/cask-versions/adoptopenjdk8"
+    # m1 cannot install java8 runtime
+    __install_cask "temurin8"
     __done "$((step++))"
 }
 __java
@@ -508,7 +514,7 @@ __asdf
 ################################################################################
 function __ql_plugins() {
     __echo "Step $step: install quicklook plugins"
-    declare -a qps=(qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package)
+    declare -a qps=(qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package webpquicklook)
     for i in "${qps[@]}"; do
         __install_cask "$i"
     done
