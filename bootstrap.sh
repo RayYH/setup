@@ -312,6 +312,7 @@ function __casks() {
         "google-chrome"
         "chromedriver"
         "obsidian"
+        "kitty"
         "the-unarchiver"
         "postman"
         "jetbrains-toolbox"
