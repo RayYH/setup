@@ -110,6 +110,7 @@ alias l1='ls -1 ${colorflag}'                             # List one column
 alias grep='grep --color=auto'                            # Always enable colored `grep` output
 alias fgrep='fgrep --color=auto'                          # Always enable colored `fgrep` output
 alias egrep='egrep --color=auto'                          # Always enable colored `egrep` output
+alias ssh='TERM=xterm ssh'                                # Always use xterm
 
 #===========================================================================#
 #                      Other Commands or Aliases                            #
