@@ -267,6 +267,7 @@ function __formulas() {
         "mysql-client"
         "git-delta" # https://github.com/dandavison/delta
         "viu"       # https://github.com/atanunq/viu
+        "gcc"
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
