@@ -309,7 +309,6 @@ function __casks() {
     declare -a guis=(
         "anki"
         "vlc"
-        "raycast"
         "google-chrome"
         "chromedriver"
         "obsidian"
