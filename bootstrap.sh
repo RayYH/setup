@@ -308,7 +308,6 @@ function __casks() {
     __echo "Step $step: install some casks"
     declare -a guis=(
         "anki"
-        "vlc"
         "google-chrome"
         "chromedriver"
         "obsidian"
