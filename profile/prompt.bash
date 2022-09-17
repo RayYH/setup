@@ -112,6 +112,10 @@ fi
 # Set the terminal title and prompt.
 PS1="\[\033]0;\W\007\]"
 PS1+="\[${bold}\]\n"
+# conda
+if [[ -z "${CONDA_DEFAULT_ENV}" ]]; then
+  PS1+="\[${green}\](\$(basename \$CONDA_DEFAULT_ENV)) ";
+fi
 PS1+="\[${userStyle}\]\u"
 PS1+="\[${white}\] at "
 PS1+="\[${hostStyle}\]\h"
