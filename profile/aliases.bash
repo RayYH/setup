@@ -142,3 +142,8 @@ alias lzd='lazydocker'                                                          
 if command -v thefuck &>/dev/null; then
   eval "$(thefuck --alias)"
 fi
+
+# kitty alias
+alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
+alias gdt="git difftool --no-symlinks --dir-diff"
