@@ -147,3 +147,10 @@ fi
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 alias gdt="git difftool --no-symlinks --dir-diff"
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  if command -v xclip &>/dev/null; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+  fi
+fi
