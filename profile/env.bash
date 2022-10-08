@@ -92,3 +92,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1 # hide the ‘default interactive shel
 # python
 export PYTHONIOENCODING='UTF-8' # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export MNT="$HOME/.mnt"
+
+# php-cs-fixer lint
+export PHP_CS_FIXER_IGNORE_ENV=1

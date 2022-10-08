@@ -20,7 +20,6 @@ source "$SET_UP"/profile/aliases.bash
 source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
-
 source "$SET_UP"/profile/prompt.bash
 
 # Change additional shell optional behavior
