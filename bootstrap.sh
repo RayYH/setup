@@ -80,9 +80,9 @@ fi
 ################################################################################
 # Detect if network is fine
 ################################################################################
-if ! ping -q -c 1 -W 1 google.com >/dev/null; then
-    __error "Oops, cannot visit google site, please configure your proxy settings"
-fi
+#if ! ping -q -c 1 -W 1 google.com >/dev/null; then
+#    __error "Oops, cannot visit google site, please configure your proxy settings"
+#fi
 
 ################################################################################
 # Welcome and setup
