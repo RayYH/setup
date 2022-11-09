@@ -14,6 +14,9 @@ fi
 #  export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
 #fi
 
+# reset path --- otherwise conda will not work due to some reasons
+PATH=$(getconf PATH)
+
 # paths
 [ -d "$HOMEBREW_PREFIX/bin" ] && PATH="$HOMEBREW_PREFIX/bin:$PATH"                                                   # brew
 [ -d "$HOMEBREW_PREFIX/sbin" ] && PATH="$HOMEBREW_PREFIX/sbin:$PATH"                                                 # brew
