@@ -44,6 +44,10 @@ else
   [ -f "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 fi
 
+if [ -d "/Applications/Docker.app/Contents/Resources/bin" ]; then
+  PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
+fi
+
 # avoid duplicate path
 PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
 

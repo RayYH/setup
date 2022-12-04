@@ -268,6 +268,7 @@ function __formulas() {
         "git-delta" # https://github.com/dandavison/delta
         "viu"       # https://github.com/atanunq/viu
         "gcc"
+        "cocoapods"
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
