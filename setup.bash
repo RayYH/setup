@@ -51,3 +51,9 @@ if [ -n "$GIT_SIGNING_KEY" ] && [ "$GIT_SIGNING_KEY" != " " ]; then
   git config --global commit.gpgsign true &&
     git config --global user.signingkey "$GIT_SIGNING_KEY"
 fi
+
+if command -v neofetch &>/dev/null; then
+  if infocmp -a xterm-kitty >/dev/null 2>&1; then
+    neofetch
+  fi
+fi
