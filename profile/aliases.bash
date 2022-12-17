@@ -34,6 +34,8 @@ alias prust="cd $CODE_DIR/rust"
 alias pshell="cd $CODE_DIR/shell"
 alias pwork="cd $CODE_DIR/work"
 alias pself="cd $CODE_DIR/self"
+alias pray="cd $CODE_DIR/rayyh"
+alias plily="cd $CODE_DIR/lily"
 
 #===========================================================================#
 #                         Networking Commands                               #
