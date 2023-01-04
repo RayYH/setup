@@ -126,3 +126,10 @@ alias lzd='lazydocker'                                                          
 if command -v thefuck &>/dev/null; then
   eval "$(thefuck --alias)"
 fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  if command -v xclip &>/dev/null; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+  fi
+fi
