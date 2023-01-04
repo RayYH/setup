@@ -16,6 +16,7 @@ SET_UP_CONFIG_FILE="$HOME/.setuprc"
 
 source "$SET_UP"/profile/env.bash
 source "$SET_UP"/profile/aliases.bash
+[ -f "$SET_UP/profile/$USER.bash" ] && source "$SET_UP/profile/$USER.bash"
 [ -f "$SET_UP"/profile/custom.bash ] && source "$SET_UP"/profile/custom.bash
 source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
