@@ -308,6 +308,7 @@ __taps
 function __casks() {
     __echo "Step $step: install some casks"
     declare -a guis=(
+        "warp"
         "anki"
         "google-chrome"
         "chromedriver"
