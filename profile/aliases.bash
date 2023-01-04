@@ -4,19 +4,19 @@
 #===========================================================================#
 #                         Folder Navigation                                 #
 #===========================================================================#
-alias ..="cd .."                                                         # go back 1 directory level
-alias cd..="cd .."                                                       # go back 1 directory level
-alias ...="cd ../.."                                                     # go back 2 directory levels
-alias .3='cd ../../../'                                                  # go back 3 directory levels
-alias .4='cd ../../../../'                                               # go back 4 directory levels
-alias .5='cd ../../../../../'                                            # go back 5 directory levels
-alias .6='cd ../../../../../../'                                         # go back 6 directory levels
-alias ~="cd ~"                                                           # go Home
-alias -- -="cd -"                                                        # go back to previous folder
-alias dl="cd ~/Downloads && clear"                                       # Download
-alias dt="cd ~/Desktop && clear"                                         # Desktop
-alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"            # icloud
-alias tmp="cd ~/Temp"                                                    # tmp folder
+alias ..="cd .."                                              # go back 1 directory level
+alias cd..="cd .."                                            # go back 1 directory level
+alias ...="cd ../.."                                          # go back 2 directory levels
+alias .3='cd ../../../'                                       # go back 3 directory levels
+alias .4='cd ../../../../'                                    # go back 4 directory levels
+alias .5='cd ../../../../../'                                 # go back 5 directory levels
+alias .6='cd ../../../../../../'                              # go back 6 directory levels
+alias ~="cd ~"                                                # go Home
+alias -- -="cd -"                                             # go back to previous folder
+alias dl="cd ~/Downloads && clear"                            # Download
+alias dt="cd ~/Desktop && clear"                              # Desktop
+alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs" # icloud
+alias tmp="cd ~/Temp"                                         # tmp folder
 
 #===========================================================================#
 #                         Networking Commands                               #
@@ -105,7 +105,7 @@ alias week='date +%V'                                                           
 alias co="tr -d '\n' | pbcopy"                                                      # Trim new lines and copy to clipboard: `cat filename | c`
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"                       # Delete all .DS_Store files recursively
 alias path='echo -e ${PATH//:/\\n}'                                                 # Print all paths
-alias reload='exec ${SHELL} -l'                                                     # Reload shell
+alias reload="source ~/.bashrc"                                                     # reload bashrc
 alias map="xargs -n1"                                                               # Intuitive map function, For example, to list all directories that contain a certain file: `find . -name .gitattributes | map dirname`
 alias _="sudo"                                                                      # preferred sudo
 alias vbrc="vim ~/.bashrc"                                                          # edit .bashrc file

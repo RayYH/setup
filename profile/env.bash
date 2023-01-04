@@ -37,6 +37,13 @@ PATH=$(getconf PATH)
 export GOPATH="$HOME/Code/gopath"
 export PATH=$GOPATH/bin:$PATH
 
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# cargo
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
 # use java8
 if [ -d "$HOMEBREW_PREFIX/opt/openjdk@8" ]; then
   PATH="$HOMEBREW_PREFIX/opt/openjdk@8/bin:$PATH"
