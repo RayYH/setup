@@ -313,13 +313,10 @@ function __casks() {
         "google-chrome"
         "chromedriver"
         "obsidian"
-        "kitty"
         "the-unarchiver"
         "postman"
         "jetbrains-toolbox"
-        "iTerm2"    # https://github.com/gnachman/iTerm2
         "flameshot" # https://github.com/flameshot-org/flameshot
-        "hiddenbar" # https://github.com/dwarvesf/hidden
         "keycastr"  # https://github.com/keycastr/keycastr
         "multipass" # https://github.com/canonical/multipass
         "visual-studio-code"
