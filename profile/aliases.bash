@@ -133,3 +133,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias pbpaste='xclip -selection clipboard -o'
   fi
 fi
+
+if command -v g++-12 &>/dev/null; then
+  alias g++="g++-12"
+fi
+
+if command -v gcc-12 &>/dev/null; then
+  alias gcc="gcc-12"
+fi
