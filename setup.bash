@@ -21,12 +21,7 @@ source "$SET_UP"/profile/aliases.bash
 source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
-
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
 source "$SET_UP"/profile/prompt.bash
-##### WHAT YOU WANT TO DISABLE FOR WARP - ABOVE
-fi
 
 # Change additional shell optional behavior
 # -s (set) -u (unset)
