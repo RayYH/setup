@@ -5,7 +5,6 @@ alias one="cd ~/OneDrive && clear"                                       # OneDr
 alias obsi="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents" # Obsidian
 
 CODE_DIR="$HOME/Code"
-[ -d "$CODE_DIR/projects" ] && CODE_DIR="$CODE_DIR/projects" # compatibility
 alias p="cd $CODE_DIR"
 alias pc="cd $CODE_DIR/c"
 alias pcpp="cd $CODE_DIR/cpp"
