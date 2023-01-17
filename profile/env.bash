@@ -18,6 +18,7 @@ fi
 PATH=$(getconf PATH)
 
 # paths
+[ -d "/usr/local/bin" ] && PATH="/usr/local/bin:$PATH"                                                               # sys
 [ -d "$HOMEBREW_PREFIX/bin" ] && PATH="$HOMEBREW_PREFIX/bin:$PATH"                                                   # brew
 [ -d "$HOMEBREW_PREFIX/sbin" ] && PATH="$HOMEBREW_PREFIX/sbin:$PATH"                                                 # brew
 [ -d "$HOME/.composer/vendor/bin" ] && PATH="$HOME/.composer/vendor/bin:$PATH"                                       # composer
