@@ -267,7 +267,6 @@ function __formulas() {
         "mysql-client"
         "git-delta" # https://github.com/dandavison/delta
         "viu"       # https://github.com/atanunq/viu
-        "gcc"
         "cocoapods"
     )
     for i in "${frs[@]}"; do
@@ -540,16 +539,8 @@ function __workspace() {
     CODE_DIR="$HOME/Code"
     [ -d "$CODE_DIR" ] || mkdir -p "$CODE_DIR"
     declare -a dirs=(
-        "c"
-        "cpp"
-        "go"
-        "gopath" # for GOPATH
-        "java"
-        "python"
-        "javascript"
-        "php"
-        "rust"
-        "shell"
+        "projects"
+        "simple"
         "work"
     )
     for i in "${dirs[@]}"; do
