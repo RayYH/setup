@@ -441,7 +441,7 @@ function __sync_files() {
   now=$(date '+%Y%m%d_%H_%I_%S')
   mkdir -p "$SET_UP_BACKUP/$now"
   shopt -s dotglob
-  for conf_file in "$SET_UP"/config/**/.*; do
+  for conf_file in "$SET_UP"/config/*; do
     home_conf_file=$HOME/$(basename "$conf_file")
     if command -v rsync &>/dev/null; then
       [ -f "$home_conf_file" ] && rsync -ah --no-perms "$home_conf_file" "$SET_UP_BACKUP/$now"

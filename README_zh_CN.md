@@ -8,6 +8,8 @@
 
 ## 安装
 
+从 [Nerd fonts site](https://www.nerdfonts.com/) 站点下载 `Inconsolata Nerd Font`.
+
 ```bash
 # install setup only
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"

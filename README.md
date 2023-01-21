@@ -8,6 +8,8 @@ This repo sets up the development environment **I** need for daily programming.
 
 ## Installation
 
+Download `Inconsolata Nerd Font` from [Nerd fonts site](https://www.nerdfonts.com/).
+
 ```bash
 # install setup only
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/rayyh/setup/master/install.sh)"
