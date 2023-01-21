@@ -14,6 +14,9 @@ fi
 #  export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
 #fi
 
+# see https://cs.symfony.com/doc/usage.html#environment-options
+PHP_CS_FIXER_IGNORE_ENV=1
+
 # reset path --- otherwise conda will not work due to some reasons
 PATH=$(getconf PATH)
 
@@ -24,6 +27,7 @@ PATH=$(getconf PATH)
 [ -d "$HOME/.composer/vendor/bin" ] && PATH="$HOME/.composer/vendor/bin:$PATH"                                       # composer
 [ -d "$HOME/Code/gopath" ] && GOPATH="$HOME/Code/gopath" && PATH="$GOPATH/bin:$PATH"                                 # go
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"                                                           # rust
+[ -d "$HOME/Bundles/flutter/bin" ] && PATH="$HOME/Bundles/flutter/bin:$PATH"                                         # rust
 [ -d "$HOME/Bin" ] && PATH="$HOME/Bin:$PATH"                                                                         # custom path (jetbrains shell scripts path)
 [ -d "$HOMEBREW_PREFIX/opt/curl/bin" ] && PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"                                 # curl
 [ -d "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"     # sed: illegal option -- r, you should install gnu-sed first via command: brew install gnu-sed
@@ -33,6 +37,14 @@ PATH=$(getconf PATH)
 [ -d "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"           # grep
 [ -d "$HOMEBREW_PREFIX/opt/mysql-client/bin" ] && PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"                 # mysql
 [ -d "$HOME/Code/snippets/bin" ] && PATH="$HOME/Code/snippets/bin:$PATH"                                             # snippets
+
+# more profiles
+if [ -d $HOME/.profile.d ]; then
+  if [ -n ]; then
+    for __sh in /Users/ray/.profile.d/*.sh; do if [ -r $__sh ]; then . $__sh; fi; done
+    unset __sh
+  fi
+fi
 
 # make sure GOPATH is set
 export GOPATH="$HOME/Code/gopath"
@@ -54,6 +66,12 @@ fi
 
 if [ -d "/Applications/Docker.app/Contents/Resources/bin" ]; then
   PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
+fi
+
+# pnpm
+if [ -d "$HOME/Library/pnpm" ]; then
+  export PNPM_HOME="/Users/ray/Library/pnpm"
+  export PATH="$PNPM_HOME:$PATH"
 fi
 
 # avoid duplicate path
