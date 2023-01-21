@@ -21,7 +21,12 @@ source "$SET_UP"/profile/aliases.bash
 source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
-source "$SET_UP"/profile/prompt.bash
+if command -v starship >/dev/null; then
+  # if starship is installed
+  eval "$(starship init bash)"
+else
+  source "$SET_UP"/profile/prompt.bash
+fi
 
 # Change additional shell optional behavior
 # -s (set) -u (unset)
