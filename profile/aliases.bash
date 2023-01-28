@@ -115,7 +115,6 @@ alias cls='clear'                                                               
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'       # open google chrome
 alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf' # Merge PDF files, preserving hyperlinks, Usage: `mergepdf input{1,2,3}.pdf`
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'                       # laravel sail
-alias composer='[ -f sail ] && sail composer'                                       # override composer
 alias python3="PYTHONPATH=. python3"                                                # Always append current dir to PYTHONPATH when exec python scripts
 alias pdflatex='pdflatex -shell-escape'                                             # Preferred 'pdflatex' implementation
 alias qemu="qemu-system-x86_64"                                                     # qemu emulator
