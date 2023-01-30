@@ -1,0 +1,4 @@
+command_timeout = 1000
+
+[conda]
+format = '[$symbol $environment](dimmed green) '
