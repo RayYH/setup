@@ -37,6 +37,7 @@ PATH=$(getconf PATH)
 [ -d "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin" ] && PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"           # grep
 [ -d "$HOMEBREW_PREFIX/opt/mysql-client/bin" ] && PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"                 # mysql
 [ -d "$HOME/Code/snippets/bin" ] && PATH="$HOME/Code/snippets/bin:$PATH"                                             # snippets
+[ -d "/Library/TeX/texbin" ] && PATH="/Library/TeX/texbin:$PATH"                                                     # latex
 
 # more profiles
 if [ -d $HOME/.profile.d ]; then
