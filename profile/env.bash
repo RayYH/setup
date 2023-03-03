@@ -9,11 +9,6 @@ if command -v brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
 fi
 
-# colima 还不够稳定，切回 Docker Desktop
-#if command -v colima &>/dev/null; then
-#  export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
-#fi
-
 # see https://cs.symfony.com/doc/usage.html#environment-options
 PHP_CS_FIXER_IGNORE_ENV=1
 

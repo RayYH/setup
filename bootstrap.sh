@@ -245,8 +245,12 @@ function __formulas() {
     declare -a frs=(
         "ack"
         "autojump"
+        "colima"
         "coreutils"
         "curl"
+        "docker"
+        "docker-compose"
+        "docker-buildx"
         "findutils"
         "gawk"
         "git"
