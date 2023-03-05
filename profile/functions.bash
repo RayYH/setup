@@ -405,6 +405,8 @@ function chromep() {
   fi
 }
 
+# Set permission for your terminals
+# System Preferences > Security & Privacy > Privacy > Full Disk Access
 # move file to Trash bin
 function trash() {
   command mv "$@" ~/.Trash

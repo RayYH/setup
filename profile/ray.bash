@@ -8,7 +8,6 @@ CODE_DIR="$HOME/Code"
 alias p="cd $CODE_DIR"
 alias pwo="cd $CODE_DIR/work"
 alias ppr="cd $CODE_DIR/projects"
-alias psi="cd $CODE_DIR/simple"
 
 ## kitty alias
 #alias icat="kitty +kitten icat"
@@ -21,3 +20,5 @@ alias psi="cd $CODE_DIR/simple"
 #    alias pbpaste='xclip -selection clipboard -o'
 #  fi
 #fi
+
+alias wiki="cd $CODE_DIR/wiki"
