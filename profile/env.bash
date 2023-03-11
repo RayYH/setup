@@ -34,6 +34,11 @@ PATH=$(getconf PATH)
 [ -d "$HOME/Code/snippets/bin" ] && PATH="$HOME/Code/snippets/bin:$PATH"                                             # snippets
 [ -d "/Library/TeX/texbin" ] && PATH="/Library/TeX/texbin:$PATH"                                                     # latex
 
+# Ubuntu path
+[ -d "/sbin" ] && PATH="/sbin:$PATH"
+[ -d "/usr/sbin" ] && PATH="/usr/sbin:$PATH"
+[ -d "/snap/bin" ] && PATH="/snap/bin:$PATH"
+
 # more profiles
 if [ -d $HOME/.profile.d ]; then
   if [ -n ]; then
