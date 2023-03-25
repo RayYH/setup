@@ -17,3 +17,9 @@ jobs:
       - name: Installation
         run: ./install.sh
         shell: bash
+
+      - name: Test output
+        run: |
+          [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
+          [ -f "$HOME/.bash_profile" ] && source "$HOME/.bash_profile"
+        shell: bash
