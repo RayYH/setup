@@ -20,6 +20,6 @@ jobs:
 
       - name: Test output
         run: |
-          [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
-          [ -f "$HOME/.bash_profile" ] && source "$HOME/.bash_profile"
+          test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
+          echo
         shell: bash
