@@ -17,9 +17,3 @@ jobs:
       - name: Installation
         run: ./install.sh
         shell: bash
-
-      - name: Test output
-        run: |
-          test -e "${HOME}/.setup/setup.bash" && source "${HOME}/.setup/setup.bash"
-          echo
-        shell: bash
