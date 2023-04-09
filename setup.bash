@@ -21,7 +21,8 @@ source "$SET_UP"/profile/aliases.bash
 source "$SET_UP"/profile/completions.bash
 source "$SET_UP"/profile/functions.bash
 source "$SET_UP"/profile/plugins.bash
-if command -v starship >/dev/null; then
+# if startship exists and DISABLE_STARSHIP environment is not set, use starship
+if [ -z "$DISABLE_STARSHIP" ] && command -v starship >/dev/null; then
   # if starship is installed
   eval "$(starship init bash)"
 else

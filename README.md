@@ -8,7 +8,7 @@ This repo sets up the development environment **I** need for daily programming.
 
 ## Installation
 
-Download `Inconsolata Nerd Font` from [Nerd fonts site](https://www.nerdfonts.com/).
+Download one nerd font from [Nerd fonts site](https://www.nerdfonts.com/) if you use [starship](https://starship.rs/) as your prompt.
 
 ```bash
 # install setup only
