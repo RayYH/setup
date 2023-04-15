@@ -8,7 +8,7 @@
 
 ## 安装
 
-从 [Nerd fonts site](https://www.nerdfonts.com/) 站点下载 `Inconsolata Nerd Font`.
+安装 [delta](https://github.com/dandavison/delta)， 从 [Nerd fonts site](https://www.nerdfonts.com/) 站点下载一款 nerd font.
 
 ```bash
 # install setup only

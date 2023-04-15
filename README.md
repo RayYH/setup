@@ -8,7 +8,7 @@ This repo sets up the development environment **I** need for daily programming.
 
 ## Installation
 
-Download one nerd font from [Nerd fonts site](https://www.nerdfonts.com/) if you use [starship](https://starship.rs/) as your prompt.
+Install [delta](https://github.com/dandavison/delta) tool for git-diff, download one nerd font from [Nerd fonts site](https://www.nerdfonts.com/) if you use [starship](https://starship.rs/) as your prompt.
 
 ```bash
 # install setup only
