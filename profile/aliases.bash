@@ -95,6 +95,7 @@ alias grep='grep --color=auto'                            # Always enable colore
 alias fgrep='fgrep --color=auto'                          # Always enable colored `fgrep` output
 alias egrep='egrep --color=auto'                          # Always enable colored `egrep` output
 alias ssh='TERM=xterm ssh'                                # Always use xterm
+alias cheat='cheat -c'                                    # Always colorized
 
 #===========================================================================#
 #                      Other Commands or Aliases                            #
