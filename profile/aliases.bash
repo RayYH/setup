@@ -128,6 +128,10 @@ if command -v thefuck &>/dev/null; then
   eval "$(thefuck --alias)"
 fi
 
+if ! command -v docker-compose &>/dev/null; then
+  alias docker-compose="docker compose"
+fi
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if command -v xclip &>/dev/null; then
     alias pbcopy='xclip -selection clipboard'
