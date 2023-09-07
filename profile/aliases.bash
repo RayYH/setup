@@ -128,6 +128,10 @@ if command -v thefuck &>/dev/null; then
   eval "$(thefuck --alias)"
 fi
 
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init bash)"
+fi
+
 if ! command -v docker-compose &>/dev/null; then
   alias docker-compose="docker compose"
 fi
