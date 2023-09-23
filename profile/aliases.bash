@@ -100,6 +100,7 @@ alias cheat='cheat -c'                                    # Always colorized
 #===========================================================================#
 #                      Other Commands or Aliases                            #
 #===========================================================================#
+alias k="kubectl"                                                                   # kubectl
 alias qfind="find . -name "                                                         # Quickly search for file
 alias sudo='sudo '                                                                  # Enable aliases to be sudo’ed
 alias week='date +%V'                                                               # Get week number
@@ -145,4 +146,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
   fi
+fi
+
+if command -v kubectl &>/dev/null; then
+  complete -o default -F __start_kubectl k
 fi

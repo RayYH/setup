@@ -277,6 +277,7 @@ function __formulas() {
         "composer"                  # https://getcomposer.org/
         "dive"                      # https://github.com/wagoodman/dive
         "docker"                    # https://www.docker.com/ -- colima needs this
+        "docker-credential-helper"  # https://github.com/docker/for-mac/issues/2131#issuecomment-343712703
         "ffmpeg"                    # https://ffmpeg.org/
         "findutils"                 # https://www.gnu.org/software/findutils/
         "fish"                      # https://fishshell.com/
