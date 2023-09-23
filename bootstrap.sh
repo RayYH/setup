@@ -7,8 +7,9 @@ if [[ $(uname -m) == 'arm64' ]]; then
 else
     export S_COMPUTER_NAME="$USER-MBP"
 fi
-export S_GATEKEEPER_DISABLE="Yes"
-export S_DEFAULT_PASSPHRASE=""
+
+# Do not disable gatekeeper
+export S_GATEKEEPER_DISABLE="No"
 export S_UPGRADE="${S_UPGRADE:-1}"
 export S_CLEANUP="${S_CLEANUP:-1}"
 
@@ -100,6 +101,8 @@ sudo -v
 # Authenticate
 if ! sudo -nv &>/dev/null; then
     printf 'Before we get started, we need to have sudo access\n'
+    printf 'If you not trust this bootstrap script, please press Ctrl+C to cancel\n'
+    printf 'I recommend you to read the source code of this script before you continue\n'
     printf 'Enter your password (for sudo access):\n'
     sudo /usr/bin/true
     # Keep-alive: update existing `sudo` time stamp until bootstrap has finished
@@ -122,12 +125,12 @@ function __set_timezone() {
     sudo systemsetup -settimezone "$S_TIME_ZONE" >/dev/null
     __done "$((step++))"
 }
+
 [ -n "${S_ONLY_UPDATE+1}" ] || __set_timezone
 
 ################################################################################
-# Set the timezone
+# Set the computer name
 ################################################################################
-
 function __set_computer_name() {
     __echo "Step $step: Set computer name to $S_COMPUTER_NAME"
     sudo scutil --set ComputerName "$S_COMPUTER_NAME"
@@ -135,6 +138,7 @@ function __set_computer_name() {
     sudo scutil --set LocalHostName "$S_COMPUTER_NAME"
     __done "$((step++))"
 }
+
 [ -z ${S_SET_COMPUTER_NAME+x} ] || __set_computer_name
 
 ################################################################################
@@ -153,6 +157,7 @@ function __install_apple_command_line_tools() {
     fi
     __done "$((step++))"
 }
+
 [ -n "${S_ONLY_UPDATE+1}" ] || __install_apple_command_line_tools
 
 ################################################################################
@@ -167,6 +172,7 @@ function __set_gatekeeper() {
     fi
     __done "$((step++))"
 }
+
 [ -n "${S_ONLY_UPDATE+1}" ] || __set_gatekeeper
 
 ################################################################################
@@ -216,6 +222,7 @@ function __bash_and_curl() {
     export HOMEBREW_FORCE_BREWED_CURL=1
     __done "$((step++))"
 }
+
 __bash_and_curl
 
 ################################################################################
@@ -243,35 +250,30 @@ function __setup() {
 #============================================================
 function __formulas() {
     declare -a frs=(
-        "ack"
-        "autojump"
-        "colima"
-        "coreutils"
-        "curl"
-        "docker"
-        "docker-compose"
-        "docker-buildx"
-        "findutils"
-        "gawk"
-        "git"
-        "gnu-sed"
-        "gnupg"
-        "grep"
-        "imagemagick"
-        "jq"
-        "qemu"
-        "qt"
-        "shellcheck"
-        "telnet"
-        "tmux"
-        "tree"
-        "vim"
-        "wget"
-        "make"
-        "mysql-client"
-        "git-delta" # https://github.com/dandavison/delta
-        "viu"       # https://github.com/atanunq/viu
-        "starship" # https://starship.rs/
+
+        "coreutils"                 # https://www.gnu.org/software/coreutils/
+        "findutils"                 # https://www.gnu.org/software/findutils/
+        "wget"                      # https://www.gnu.org/software/wget/
+        "make"                      # https://www.gnu.org/software/make/
+        "gawk"                      # https://www.gnu.org/software/gawk/
+        "gnu-sed"                   # https://www.gnu.org/software/sed/
+        "grep"                      # https://www.gnu.org/software/grep/
+        "git"                       # https://git-scm.com
+        "ack"                       # https://beyondgrep.com
+        "zoxide"                    # https://github.com/ajeetdsouza/zoxide
+        "gnupg"                     # https://gnupg.org/
+        "imagemagick"               # https://imagemagick.org/index.php
+        "jq"                        # https://jqlang.github.io/jq/
+        "colima"                    # https://github.com/abiosoft/colima
+        "shellcheck"                # https://www.shellcheck.net/
+        "telnet"                    # https://github.com/apple-oss-distributions/remote_cmds
+        "tmux"                      # https://github.com/tmux/tmux
+        "tree"                      # http://mama.indstate.edu/users/ice/tree/
+        "vim"                       # https://www.vim.org/
+        "neovim"                    # https://neovim.io/
+        "mysql-client"              # https://dev.mysql.com/doc/refman/8.0/en/
+        "git-delta"                 # https://dandavison.github.io/delta/
+        "starship"                  # https://starship.rs/
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
@@ -280,7 +282,7 @@ function __formulas() {
 
     __install_formula "fzf"
     yes | /bin/bash "$(brew --prefix)"/opt/fzf/install &>/dev/null
-    # load this file in setup.bash
+    # we will load this file in setup.bash
     [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
     [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
 }
@@ -292,10 +294,7 @@ __formulas
 function __taps() {
     __echo "Step $step: add 3rd repos via bre tap"
     declare -a taps=(
-        "homebrew/cask-versions"
-        "dart-lang/dart"
-        "ringohub/redis-cli"
-        "shivammathur/php"
+        "shivammathur/php" # https://github.com/shivammathur/homebrew-php
     )
     for i in "${taps[@]}"; do
         brew tap "$i"
@@ -311,18 +310,20 @@ __taps
 function __casks() {
     __echo "Step $step: install some casks"
     declare -a guis=(
-        "warp"
-        "anki"
-        "google-chrome"
-        "chromedriver"
-        "obsidian"
-        "the-unarchiver"
-        "postman"
-        "jetbrains-toolbox"
-        "flameshot" # https://github.com/flameshot-org/flameshot
-        "keycastr"  # https://github.com/keycastr/keycastr
-        "multipass" # https://github.com/canonical/multipass
-        "visual-studio-code"
+        "alacritty"             # https://github.com/alacritty/alacritty/
+        "anaconda"              # https://www.anaconda.com/
+        "anki"                  # https://apps.ankiweb.net/
+        "chromedriver"          # https://chromedriver.chromium.org/
+        "jetbrains-toolbox"     # https://www.jetbrains.com/toolbox-app/
+        "obsidian"              # https://obsidian.md/
+        "the-unarchiver"        # https://theunarchiver.com/
+        "keycastr"              # https://github.com/keycastr/keycastr
+        "multipass"             # https://github.com/canonical/multipass
+        "kitty"                 # https://sw.kovidgoyal.net/kitty/
+        "basictex"              # https://www.tug.org/mactex/morepackages.html
+        "raycast"               # https://raycast.com/
+        "rstudio"               # https://rstudio.com/
+        "visual-studio-code"    # https://code.visualstudio.com/
     )
     for i in "${guis[@]}"; do
         __install_cask "$i"
@@ -353,65 +354,13 @@ __rust
 ################################################################################
 # php
 ################################################################################
-function __install_pecl_package() {
-    if php -m | grep "$1" &>/dev/null; then
-        __echo "pecl package $1 exists"
-        if [ "$S_UPGRADE" -eq "1" ]; then
-            __echo "update $1 via pecl"
-            pecl upgrade "$1"
-        fi
-    else
-        pecl install "$1"
-    fi
-}
-
 function __php() {
     __echo "Step $step: setup php development: php, composer, pecl ..."
     __install_formula "php"
     __install_formula "composer"
-    if __command_exists pecl; then
-        pecl update-channels
-        pecl upgrade
-        [ -d "$(pecl config-get ext_dir)" ] || mkdir -p "$(pecl config-get ext_dir)"
-        # yes | __install_pecl_package "igbinary"
-        # yes | __install_pecl_package "redis" # redis needs it
-        # yes | __install_pecl_package "xdebug"
-        # __echo "please run php --ini to check if your php.ini file contains duplicated configuration entries"
-    fi
     __done "$((step++))"
 }
 __php
-
-################################################################################
-# python
-################################################################################
-function __install_pip_package() {
-    if pip3 list | grep -F "$1" &>/dev/null; then
-        __echo "pip3 package $1 exists"
-        if [ "$S_UPGRADE" -eq "1" ]; then
-            __echo "update $1 via pip3"
-            pip3 install -U "$1" --upgrade
-        fi
-    else
-        pip3 install -U "$1"
-    fi
-}
-
-function __python() {
-    __echo "Step $step: setup python development: python3, yapf, flake8, pytest ..."
-    __install_formula "python3"
-    python3 -m pip install --upgrade pip
-    declare -a pkgs=(
-        "yapf"
-        "flake8"
-        "pytest"
-    )
-    for i in "${pkgs[@]}"; do
-        __install_pip_package "$i"
-    done
-    __done "$((step++))"
-}
-__python
 
 ################################################################################
 # build tools
@@ -433,20 +382,6 @@ function __go() {
     __done "$((step++))"
 }
 __go
-
-################################################################################
-# java
-################################################################################
-function __java() {
-    __echo "Step $step: setup java ..."
-    __install_formula "gradle"
-    __install_formula "kotlin"
-    __install_formula "maven"
-    # m1 cannot install java8 runtime
-    __install_cask "temurin8"
-    __done "$((step++))"
-}
-__java
 
 ################################################################################
 # lua
@@ -516,7 +451,7 @@ __asdf
 ################################################################################
 function __ql_plugins() {
     __echo "Step $step: install quicklook plugins"
-    declare -a qps=(qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package webpquicklook)
+    declare -a qps=(qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package webpquicklook)
     for i in "${qps[@]}"; do
         __install_cask "$i"
     done
@@ -534,26 +469,6 @@ function __preferences() {
     __done "$((step++))"
 }
 [ -n "${S_ONLY_UPDATE+1}" ] || __preferences
-
-################################################################################
-# workspaces
-################################################################################
-function __workspace() {
-    __echo "Step $step: setup workspace..."
-    CODE_DIR="$HOME/Code"
-    [ -d "$CODE_DIR" ] || mkdir -p "$CODE_DIR"
-    declare -a dirs=(
-        "projects"
-        "simple"
-        "work"
-    )
-    for i in "${dirs[@]}"; do
-        [ -d "$CODE_DIR/$i" ] || mkdir -p "$CODE_DIR/$i"
-    done
-    __done "$((step++))"
-}
-
-[ -n "${S_ONLY_UPDATE+1}" ] || __workspace
 
 ################################################################################
 # End
