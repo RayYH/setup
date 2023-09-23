@@ -246,54 +246,13 @@ function __setup() {
 [ -n "${S_ONLY_UPDATE+1}" ] || __setup
 
 #============================================================
-# install common formulas first
-#============================================================
-function __formulas() {
-    declare -a frs=(
-        "coreutils"                 # https://www.gnu.org/software/coreutils/
-        "findutils"                 # https://www.gnu.org/software/findutils/
-        "wget"                      # https://www.gnu.org/software/wget/
-        "make"                      # https://www.gnu.org/software/make/
-        "gawk"                      # https://www.gnu.org/software/gawk/
-        "gnu-sed"                   # https://www.gnu.org/software/sed/
-        "grep"                      # https://www.gnu.org/software/grep/
-        "git"                       # https://git-scm.com
-        "ack"                       # https://beyondgrep.com
-        "zoxide"                    # https://github.com/ajeetdsouza/zoxide
-        "gnupg"                     # https://gnupg.org/
-        "imagemagick"               # https://imagemagick.org/index.php
-        "jq"                        # https://jqlang.github.io/jq/
-        "colima"                    # https://github.com/abiosoft/colima
-        "shellcheck"                # https://www.shellcheck.net/
-        "telnet"                    # https://github.com/apple-oss-distributions/remote_cmds
-        "tmux"                      # https://github.com/tmux/tmux
-        "tree"                      # http://mama.indstate.edu/users/ice/tree/
-        "vim"                       # https://www.vim.org/
-        "neovim"                    # https://neovim.io/
-        "mysql-client"              # https://dev.mysql.com/doc/refman/8.0/en/
-        "git-delta"                 # https://dandavison.github.io/delta/
-        "starship"                  # https://starship.rs/
-    )
-    for i in "${frs[@]}"; do
-        __install_formula "$i"
-    done
-    unset frs
-
-    __install_formula "fzf"
-    yes | /bin/bash "$(brew --prefix)"/opt/fzf/install &>/dev/null
-    # we will load this file in setup.bash
-    [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
-    [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
-}
-__formulas
-
-#============================================================
 # tap 3rd repos
 #============================================================
 function __taps() {
     __echo "Step $step: add 3rd repos via bre tap"
     declare -a taps=(
-        "shivammathur/php" # https://github.com/shivammathur/homebrew-php
+        "shivammathur/php"          # https://github.com/shivammathur/homebrew-php
+        "archivebox/archivebox"     # https://github.com/ArchiveBox/ArchiveBox
     )
     for i in "${taps[@]}"; do
         brew tap "$i"
@@ -302,6 +261,85 @@ function __taps() {
     __done "$((step++))"
 }
 __taps
+
+#============================================================
+# install common formulas first
+#============================================================
+function __formulas() {
+    declare -a frs=(
+        "ack"                       # https://beyondgrep.com
+        "asdf"                      # https://asdf-vm.com
+        "bash-completion@2"         # https://github.com/scop/bash-completion
+        "bat"                       # https://github.com/sharkdp/bat
+        "cmake"                     # https://cmake.org/
+        "colima"                    # https://github.com/abiosoft/colima
+        "coreutils"                 # https://www.gnu.org/software/coreutils/
+        "composer"                  # https://getcomposer.org/
+        "dive"                      # https://github.com/wagoodman/dive
+        "ffmpeg"                    # https://ffmpeg.org/
+        "findutils"                 # https://www.gnu.org/software/findutils/
+        "fish"                      # https://fishshell.com/
+        "fzf"                       # https://github.com/junegunn/fzf
+        "gawk"                      # https://www.gnu.org/software/gawk/
+        "gh"                        # https://github.com/cli/cli
+        "git"                       # https://git-scm.com
+        "git-delta"                 # https://dandavison.github.io/delta/
+        "git-lfs"                   # https://git-lfs.github.com/
+        "git-quick-stats"           # https://github.com/arzzen/git-quick-stats
+        "glab"                      # https://gitlab.com/gitlab-org/cli
+        "gnu-sed"                   # https://www.gnu.org/software/sed/
+        "gnu-tar"                   # https://www.gnu.org/software/tar/
+        "gnupg"                     # https://gnupg.org/
+        "go"                        # https://golang.org/
+        "grep"                      # https://www.gnu.org/software/grep/
+        "htop"                      # https://htop.dev/
+        "httpie"                    # https://httpie.io/
+        "imagemagick"               # https://imagemagick.org/index.php
+        "jmeter"                    # https://jmeter.apache.org/
+        "jq"                        # https://jqlang.github.io/jq/
+        "lua"                       # https://www.lua.org/
+        "k9s"                       # https://k9scli.io
+        "kubectx"                   # https://github.com/ahmetb/kubectx
+        "loc"                       # https://github.com/cgag/loc
+        "make"                      # https://www.gnu.org/software/make/
+        "minikube"                  # https://minikube.sigs.k8s.io/
+        "mysql-client"              # https://dev.mysql.com/doc/refman/8.0/en/
+        "nasm"                      # https://www.nasm.us/
+        "neovim"                    # https://neovim.io/
+        "nmap"                      # https://nmap.org/
+        "php"                       # https://www.php.net/
+        "php@8.1"                   # https://www.php.net/
+        "protobuf"                  # https://protobuf.dev/
+        "pyenv"                     # https://github.com/pyenv/pyenv
+        "r"                         # https://www.r-project.org/
+        "rsync"                     # https://rsync.samba.org/
+        "shellcheck"                # https://www.shellcheck.net/
+        "shfmt"                     # https://github.com/mvdan/sh
+        "starship"                  # https://starship.rs/
+        "telnet"                    # https://github.com/apple-oss-distributions/remote_cmds
+        "terminal-notifier"         # https://github.com/julienXX/terminal-notifier
+        "tmux"                      # https://github.com/tmux/tmux
+        "tree"                      # http://mama.indstate.edu/users/ice/tree/
+        "unzip"                     # https://infozip.sourceforge.net/UnZip.html
+        "vim"                       # https://www.vim.org/
+        "websocat"                  # https://github.com/vi/websocat
+        "wget"                      # https://www.gnu.org/software/wget/
+        "zenith"                     # https://github.com/bvaisvil/zenith/
+        "zoxide"                    # https://github.com/ajeetdsouza/zoxide
+    )
+    for i in "${frs[@]}"; do
+        __install_formula "$i"
+    done
+    unset frs
+
+    yes | /bin/bash "$(brew --prefix)"/opt/fzf/install &>/dev/null
+    # we will load this file in setup.bash
+    [ -f "$HOME/.bashrc" ] && /usr/bin/sed -i '' '/fzf\.bash/d' "$HOME/.bashrc"
+    [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
+}
+__formulas
+
+
 
 #============================================================
 # Other GUIs
@@ -349,48 +387,6 @@ function __rust() {
     __done "$((step++))"
 }
 __rust
-
-################################################################################
-# php
-################################################################################
-function __php() {
-    __echo "Step $step: setup php development: php, composer, pecl ..."
-    __install_formula "php"
-    __install_formula "composer"
-    __done "$((step++))"
-}
-__php
-
-################################################################################
-# build tools
-################################################################################
-function __build() {
-    __echo "Step $step: setup build tools..."
-    __install_formula "nasm"
-    __install_formula "cmake"
-    __done "$((step++))"
-}
-__build
-
-################################################################################
-# go
-################################################################################
-function __go() {
-    __echo "Step $step: setup go ..."
-    __install_formula "go"
-    __done "$((step++))"
-}
-__go
-
-################################################################################
-# lua
-################################################################################
-function __lua() {
-    __echo "Step $step: setup lua..."
-    __install_formula "lua"
-    __done "$((step++))"
-}
-__lua
 
 ################################################################################
 # asdf

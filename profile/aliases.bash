@@ -132,6 +132,10 @@ if command -v zoxide &> /dev/null; then
   eval "$(zoxide init bash)"
 fi
 
+if command -v bat &> /dev/null; then
+  alias cat="bat"
+fi
+
 if ! command -v docker-compose &>/dev/null; then
   alias docker-compose="docker compose"
 fi
