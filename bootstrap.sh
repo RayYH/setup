@@ -445,6 +445,22 @@ function __asdf() {
 __asdf
 
 ################################################################################
+# docker plugins
+################################################################################
+function __docker_plugins() {
+    # make sure $HOME/.docker/cli-plugins exists
+    mkdir -p "$HOME/.docker/cli-plugins"
+    __echo "Step $step: install docker plugins"
+    declare -a dps=(buildx compose)
+    for i in "${dps[@]}"; do
+        __install_formula "docker-$i"
+        ln -sfn "$(brew --prefix)/opt/docker-$i/bin/docker-$i" "$HOME/.docker/cli-plugins/docker-$1"
+        chmod +x "$HOME/.docker/cli-plugins/docker-$1"
+    done
+}
+__docker_plugins
+
+################################################################################
 # ql plugins
 ################################################################################
 function __ql_plugins() {
