@@ -250,7 +250,6 @@ function __setup() {
 #============================================================
 function __formulas() {
     declare -a frs=(
-
         "coreutils"                 # https://www.gnu.org/software/coreutils/
         "findutils"                 # https://www.gnu.org/software/findutils/
         "wget"                      # https://www.gnu.org/software/wget/
