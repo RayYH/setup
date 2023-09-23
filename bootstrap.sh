@@ -309,6 +309,7 @@ function __formulas() {
         "nmap"                      # https://nmap.org/
         "php"                       # https://www.php.net/
         "php@8.1"                   # https://www.php.net/
+        "pinentry-mac"              # https://github.com/GPGTools/pinentry -- gnupg needs this
         "protobuf"                  # https://protobuf.dev/
         "pyenv"                     # https://github.com/pyenv/pyenv
         "r"                         # https://www.r-project.org/
