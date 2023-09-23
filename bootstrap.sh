@@ -276,6 +276,7 @@ function __formulas() {
         "coreutils"                 # https://www.gnu.org/software/coreutils/
         "composer"                  # https://getcomposer.org/
         "dive"                      # https://github.com/wagoodman/dive
+        "docker"                    # https://www.docker.com/ -- colima needs this
         "ffmpeg"                    # https://ffmpeg.org/
         "findutils"                 # https://www.gnu.org/software/findutils/
         "fish"                      # https://fishshell.com/
