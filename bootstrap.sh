@@ -268,6 +268,7 @@ __taps
 function __formulas() {
     declare -a frs=(
         "ack"                       # https://beyondgrep.com
+        "archivebox"                # https://archivebox.io/
         "asdf"                      # https://asdf-vm.com
         "bash-completion@2"         # https://github.com/scop/bash-completion
         "bat"                       # https://github.com/sharkdp/bat
