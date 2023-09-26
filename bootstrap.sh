@@ -294,6 +294,7 @@ function __formulas() {
         "gnu-tar"                   # https://www.gnu.org/software/tar/
         "gnupg"                     # https://gnupg.org/
         "go"                        # https://golang.org/
+        "gradle"                    # https://gradle.org/
         "grep"                      # https://www.gnu.org/software/grep/
         "htop"                      # https://htop.dev/
         "httpie"                    # https://httpie.io/
