@@ -467,7 +467,7 @@ __docker_plugins
 ################################################################################
 function __ql_plugins() {
     __echo "Step $step: install quicklook plugins"
-    declare -a qps=(qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package webpquicklook)
+    declare -a qps=(qlstephen quicklook-json qlprettypatch quicklook-csv webpquicklook suspicious-package webpquicklook)
     for i in "${qps[@]}"; do
         __install_cask "$i"
     done
