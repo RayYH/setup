@@ -62,6 +62,11 @@ function __install_formula() {
 function __install_cask() {
     if brew list --cask "$1" &>/dev/null; then
         __echo "$1 exists"
+        # if is anaconda, then skip
+        if [[ "$1" == "anaconda" ]]; then
+            __echo "skip anaconda"
+            return
+        fi
         if [[ "$S_UPGRADE" -eq "1" ]]; then
             __echo "update $1 via brew"
             brew upgrade --cask "$1"
@@ -343,8 +348,6 @@ function __formulas() {
     [ -f "$HOME/.zshrc" ] && /usr/bin/sed -i '' '/fzf\.zsh/d' "$HOME/.zshrc"
 }
 __formulas
-
-
 
 #============================================================
 # Other GUIs
