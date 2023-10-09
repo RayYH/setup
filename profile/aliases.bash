@@ -149,5 +149,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 if command -v kubectl &>/dev/null; then
+  source <(kubectl completion bash)
   complete -o default -F __start_kubectl k
 fi
