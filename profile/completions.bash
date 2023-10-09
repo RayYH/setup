@@ -15,6 +15,12 @@ elif [ -f /etc/bash_completion ]; then
   source /etc/bash_completion
 fi
 
+# ubuntu bash-completion: /usr/share/bash-completion/bash_completion
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+  # shellcheck disable=SC1091
+  source /usr/share/bash-completion/bash_completion
+fi
+
 # docker and docker-compose
 if ! complete -p docker &>/dev/null; then
   _docker_bash_completion_paths=(
