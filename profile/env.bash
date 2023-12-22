@@ -58,13 +58,6 @@ export PATH="$PNPM_HOME:$PATH"
 # cargo
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-# use java8
-if [ -d "$HOMEBREW_PREFIX/opt/openjdk@8" ]; then
-  PATH="$HOMEBREW_PREFIX/opt/openjdk@8/bin:$PATH"
-else
-  [ -f "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-fi
-
 if [ -d "/Applications/Docker.app/Contents/Resources/bin" ]; then
   PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 fi
