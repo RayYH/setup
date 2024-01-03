@@ -21,7 +21,7 @@ alias tmp="cd ~/Temp"                                         # tmp folder
 #===========================================================================#
 #                         Networking Commands                               #
 #===========================================================================#
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"                                                                                                  # public real IP
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"                                                                                                # public real IP
 alias loip="ipconfig getifaddr en0"                                                                                                                            # show local ip
 alias sockets='lsof -i'                                                                                                                                        # show all TCP/IP sockets
 alias flushdns='dscacheutil -flushcache'                                                                                                                       # clear DNS cache
