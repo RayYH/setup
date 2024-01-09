@@ -118,7 +118,6 @@ alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.p
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'                       # laravel sail
 alias python3="PYTHONPATH=. python3"                                                # Always append current dir to PYTHONPATH when exec python scripts
 alias pdflatex='pdflatex -shell-escape'                                             # Preferred 'pdflatex' implementation
-alias qemu="qemu-system-x86_64"                                                     # qemu emulator
 alias setuprc='${EDITOR:=vi} ${HOME}/.setuprc'                                      # Quick access to the .setuprc file
 alias ee="echo -e"                                                                  # ee
 alias g11='g++ -std=c++11 -O2 -Wall '                                               # g++
