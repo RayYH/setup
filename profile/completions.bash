@@ -22,21 +22,21 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
 fi
 
 # docker and docker-compose
-if ! complete -p docker &>/dev/null; then
-  _docker_bash_completion_paths=(
-    '/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion'
-    '/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion'
-  )
+# if ! complete -p docker &>/dev/null; then
+#   _docker_bash_completion_paths=(
+#     '/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion'
+#     '/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion'
+#   )
 
-  for fn in "${_docker_bash_completion_paths[@]}"; do
-    if [ -r "$fn" ]; then
-      source "$fn"
-      break
-    fi
-  done
+#   for fn in "${_docker_bash_completion_paths[@]}"; do
+#     if [ -r "$fn" ]; then
+#       source "$fn"
+#       break
+#     fi
+#   done
 
-  unset _docker_bash_completion_paths
-fi
+#   unset _docker_bash_completion_paths
+# fi
 
 # export
 complete -o nospace -S = -W "$(printenv | awk -F= "{print \$1}")" export

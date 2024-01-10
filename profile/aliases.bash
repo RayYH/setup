@@ -146,3 +146,7 @@ if command -v kubectl &>/dev/null; then
   source <(kubectl completion bash)
   complete -o default -F __start_kubectl k
 fi
+
+if command -v podman &>/dev/null; then
+  alias docker=podman
+fi

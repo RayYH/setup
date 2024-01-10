@@ -58,9 +58,9 @@ export PATH="$PNPM_HOME:$PATH"
 # cargo
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-if [ -d "/Applications/Docker.app/Contents/Resources/bin" ]; then
-  PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
-fi
+# if [ -d "/Applications/Docker.app/Contents/Resources/bin" ]; then
+#   PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
+# fi
 
 # pnpm
 if [ -d "$HOME/Library/pnpm" ]; then
