@@ -20,7 +20,7 @@ PATH=$(getconf PATH)
 [ -d "$HOMEBREW_PREFIX/bin" ] && PATH="$HOMEBREW_PREFIX/bin:$PATH"                                                   # brew
 [ -d "$HOMEBREW_PREFIX/sbin" ] && PATH="$HOMEBREW_PREFIX/sbin:$PATH"                                                 # brew
 [ -d "$HOME/.composer/vendor/bin" ] && PATH="$HOME/.composer/vendor/bin:$PATH"                                       # composer
-[ -d "$HOME/Code/gopath" ] && GOPATH="$HOME/Code/gopath" && PATH="$GOPATH/bin:$PATH"                                 # go
+[ -d "$HOME/Bundles/go" ] && GOPATH="$HOME/Bundles/go" && PATH="$GOPATH/bin:$PATH"                                   # go
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"                                                           # rust
 [ -d "$HOME/Bundles/flutter/bin" ] && PATH="$HOME/Bundles/flutter/bin:$PATH"                                         # rust
 [ -d "$HOME/Bin" ] && PATH="$HOME/Bin:$PATH"                                                                         # custom path (jetbrains shell scripts path)
@@ -47,9 +47,9 @@ if [ -d $HOME/.profile.d ]; then
   fi
 fi
 
-# make sure GOPATH is set
-export GOPATH="$HOME/Code/gopath"
-export PATH=$GOPATH/bin:$PATH
+# # make sure GOPATH is set
+# export GOPATH="$HOME/Bundles/go"
+# export PATH=$GOPATH/bin:$PATH
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
