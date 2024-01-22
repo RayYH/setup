@@ -48,8 +48,8 @@ if [ -d $HOME/.profile.d ]; then
 fi
 
 # # make sure GOPATH is set
-# export GOPATH="$HOME/Bundles/go"
-# export PATH=$GOPATH/bin:$PATH
+export GOPATH="$HOME/Bundles/go"
+export PATH=$GOPATH/bin:$PATH
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
