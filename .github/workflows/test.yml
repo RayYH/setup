@@ -12,7 +12,7 @@ jobs:
     name: Setup installation tests on ${{ matrix.operating-system }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Installation
         run: ./install.sh

@@ -123,10 +123,6 @@ alias ee="echo -e"                                                              
 alias g11='g++ -std=c++11 -O2 -Wall '                                               # g++
 alias lzd='lazydocker'                                                              # lazydocker
 
-if command -v thefuck &>/dev/null; then
-  eval "$(thefuck --alias)"
-fi
-
 if command -v zoxide &> /dev/null; then
   eval "$(zoxide init bash)"
 fi
@@ -145,8 +141,4 @@ fi
 if command -v kubectl &>/dev/null; then
   source <(kubectl completion bash)
   complete -o default -F __start_kubectl k
-fi
-
-if command -v podman &>/dev/null; then
-  alias docker=podman
 fi

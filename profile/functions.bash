@@ -531,3 +531,12 @@ function ya() {
 	fi
 	rm -f -- "$tmp"
 }
+
+function myZip() {
+  if [ -z "${1}" ]; then
+    echo "ERROR: No file specified."
+    return 1
+  fi
+
+  zip -vr "${1}.zip" "${1}/" -x "*.DS_Store" -x "__MACOSX" -x "*.git" -x "*.svn" -x "*.idea" -x "*.vscode" -x "*.vs" -x "*.cache" -x "*.log" -x "*.tmp"
+}

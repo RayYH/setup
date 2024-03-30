@@ -53,16 +53,6 @@ export PATH="$PNPM_HOME:$PATH"
 # cargo
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-# if [ -d "/Applications/Docker.app/Contents/Resources/bin" ]; then
-#   PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
-# fi
-
-# pnpm
-if [ -d "$HOME/Library/pnpm" ]; then
-  export PNPM_HOME="/Users/ray/Library/pnpm"
-  export PATH="$PNPM_HOME:$PATH"
-fi
-
 # avoid duplicate path
 PATH=$(printf "%s" "$PATH" | awk -v RS=':' '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
 

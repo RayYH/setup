@@ -273,27 +273,20 @@ __taps
 function __formulas() {
     declare -a frs=(
         "ack"                       # https://beyondgrep.com
-        "archivebox"                # https://archivebox.io/
-        "asdf"                      # https://asdf-vm.com
         "bash-completion@2"         # https://github.com/scop/bash-completion
         "bat"                       # https://github.com/sharkdp/bat
         "cmake"                     # https://cmake.org/
-        "colima"                    # https://github.com/abiosoft/colima
         "coreutils"                 # https://www.gnu.org/software/coreutils/
         "composer"                  # https://getcomposer.org/
         "dive"                      # https://github.com/wagoodman/dive
-        "docker"                    # https://www.docker.com/ -- colima needs this
-        "docker-credential-helper"  # https://github.com/docker/for-mac/issues/2131#issuecomment-343712703
         "ffmpeg"                    # https://ffmpeg.org/
         "findutils"                 # https://www.gnu.org/software/findutils/
-        "fish"                      # https://fishshell.com/
         "fzf"                       # https://github.com/junegunn/fzf
         "gawk"                      # https://www.gnu.org/software/gawk/
         "gh"                        # https://github.com/cli/cli
         "git"                       # https://git-scm.com
         "git-delta"                 # https://dandavison.github.io/delta/
         "git-lfs"                   # https://git-lfs.github.com/
-        "git-quick-stats"           # https://github.com/arzzen/git-quick-stats
         "glab"                      # https://gitlab.com/gitlab-org/cli
         "gnu-sed"                   # https://www.gnu.org/software/sed/
         "gnu-tar"                   # https://www.gnu.org/software/tar/
@@ -311,13 +304,11 @@ function __formulas() {
         "kubectx"                   # https://github.com/ahmetb/kubectx
         "loc"                       # https://github.com/cgag/loc
         "make"                      # https://www.gnu.org/software/make/
-        "minikube"                  # https://minikube.sigs.k8s.io/
         "mysql-client"              # https://dev.mysql.com/doc/refman/8.0/en/
         "nasm"                      # https://www.nasm.us/
         "neovim"                    # https://neovim.io/
         "nmap"                      # https://nmap.org/
         "php"                       # https://www.php.net/
-        "php@8.1"                   # https://www.php.net/
         "pinentry-mac"              # https://github.com/GPGTools/pinentry -- gnupg needs this
         "protobuf"                  # https://protobuf.dev/
         "pyenv"                     # https://github.com/pyenv/pyenv
@@ -355,7 +346,6 @@ __formulas
 function __casks() {
     __echo "Step $step: install some casks"
     declare -a guis=(
-        "alacritty"             # https://github.com/alacritty/alacritty/
         "anaconda"              # https://www.anaconda.com/
         "anki"                  # https://apps.ankiweb.net/
         "chromedriver"          # https://chromedriver.chromium.org/
@@ -365,7 +355,6 @@ function __casks() {
         "keycastr"              # https://github.com/keycastr/keycastr
         "multipass"             # https://github.com/canonical/multipass
         "kitty"                 # https://sw.kovidgoyal.net/kitty/
-        "basictex"              # https://www.tug.org/mactex/morepackages.html
         "raycast"               # https://raycast.com/
         "rstudio"               # https://rstudio.com/
         "visual-studio-code"    # https://code.visualstudio.com/
@@ -396,74 +385,22 @@ function __rust() {
 }
 __rust
 
-################################################################################
-# asdf
-################################################################################
-function __install_asdf_plugin() {
-    local name="$1"
-    local url="$2"
-
-    if ! asdf plugin-list | grep -Fq "$name"; then
-        asdf plugin-add "$name" "$url"
-    fi
-}
-
-function __install_asdf_language() {
-    local language="$1"
-    local version="$2"
-    asdf install "$language" "$version"
-    asdf global "$language" "$version"
-}
-
-function __install_global_node_modules() {
-    if __command_exists "npm"; then
-        npm update -g "$1"
-    else
-        npm install --global "$1"
-    fi
-}
-
-function __asdf() {
-    __echo "Step $step: setup asdf and nodejs..."
-    __install_formula "asdf"
-    [ -f "$(brew --prefix)/opt/asdf/libexec/asdf.sh" ] && . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
-    [[ "$S_UPGRADE" -eq "1" ]] && [ -f "$HOME/.asdf/bin/asdf" ] && "$HOME/.asdf/bin/asdf" update
-    [[ "$S_UPGRADE" -eq "1" ]] && [ -f "$HOME/.asdf/bin/asdf" ] && "$HOME/.asdf/bin/asdf" plugin-update --all
-
-    # install nodejs plugin
-    __install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
-
-    # install latest nodejs version
-    __install_asdf_language "nodejs" "latest"
-
-    __echo "Node --> $(command -v node)"
-    node -v
-    __echo "NPM --> $(command -v npm)"
-    npm -v
-    __echo "Installing default npm packages..."
-
-    __install_global_node_modules "typescript"
-    __install_global_node_modules "http-server"
-    __install_global_node_modules "yarn"
-    __done "$((step++))"
-}
-__asdf
-
-################################################################################
-# docker plugins
-################################################################################
-function __docker_plugins() {
-    # make sure $HOME/.docker/cli-plugins exists
-    mkdir -p "$HOME/.docker/cli-plugins"
-    __echo "Step $step: install docker plugins"
-    declare -a dps=(buildx compose)
-    for i in "${dps[@]}"; do
-        __install_formula "docker-$i"
-        ln -sfn "$(brew --prefix)/opt/docker-$i/bin/docker-$i" "$HOME/.docker/cli-plugins/docker-$i"
-        chmod +x "$HOME/.docker/cli-plugins/docker-$i"
-    done
-}
-__docker_plugins
+# We will use OrbStack, skip this funciton for now
+# ################################################################################
+# # docker plugins
+# ################################################################################
+# function __docker_plugins() {
+#     # make sure $HOME/.docker/cli-plugins exists
+#     mkdir -p "$HOME/.docker/cli-plugins"
+#     __echo "Step $step: install docker plugins"
+#     declare -a dps=(buildx compose)
+#     for i in "${dps[@]}"; do
+#         __install_formula "docker-$i"
+#         ln -sfn "$(brew --prefix)/opt/docker-$i/bin/docker-$i" "$HOME/.docker/cli-plugins/docker-$i"
+#         chmod +x "$HOME/.docker/cli-plugins/docker-$i"
+#     done
+# }
+# __docker_plugins
 
 ################################################################################
 # ql plugins

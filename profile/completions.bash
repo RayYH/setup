@@ -21,23 +21,6 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
   source /usr/share/bash-completion/bash_completion
 fi
 
-# docker and docker-compose
-# if ! complete -p docker &>/dev/null; then
-#   _docker_bash_completion_paths=(
-#     '/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion'
-#     '/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion'
-#   )
-
-#   for fn in "${_docker_bash_completion_paths[@]}"; do
-#     if [ -r "$fn" ]; then
-#       source "$fn"
-#       break
-#     fi
-#   done
-
-#   unset _docker_bash_completion_paths
-# fi
-
 # export
 complete -o nospace -S = -W "$(printenv | awk -F= "{print \$1}")" export
 
@@ -79,5 +62,3 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 # https://dev.to/ahmedmusallam/how-to-autocomplete-ssh-hosts-1hob
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" "$HOME/.ssh/config" | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
-
-type brew &>/dev/null && [ -x "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash" ] && . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"

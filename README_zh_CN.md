@@ -21,6 +21,16 @@ S_SET_COMPUTER_NAME=1 S_CASKS=1 /bin/bash -c "$(curl -fsSL https://raw.githubuse
 S_ONLY_UPDATE=1 S_CASKS=1 ./bootstrap.sh
 ```
 
+## Troubleshooting
+
+```
+warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+```
+
+```shell
+sudo dpkg-reconfigure locales
+```
+
 ## 更新
 
 ```bash
