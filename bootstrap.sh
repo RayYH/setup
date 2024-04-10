@@ -325,8 +325,9 @@ function __formulas() {
         "vim"                       # https://www.vim.org/
         "websocat"                  # https://github.com/vi/websocat
         "wget"                      # https://www.gnu.org/software/wget/
-        "zenith"                     # https://github.com/bvaisvil/zenith/
+        "zenith"                    # https://github.com/bvaisvil/zenith/
         "zoxide"                    # https://github.com/ajeetdsouza/zoxide
+        "protobuf"                  # https://protobuf.dev/
     )
     for i in "${frs[@]}"; do
         __install_formula "$i"
