@@ -82,6 +82,9 @@ export HISTFILESIZE="${HISTSIZE}"                        # Increase Bash history
 export HISTCONTROL=${HISTCONTROL:-ignorespace:erasedups} # erase duplicates; alternative option: export HISTCONTROL=ignoredups
 export HISTCONTROL='ignoreboth'                          # Omit duplicates and commands that begin with a space from history.
 export AUTOFEATURE=${AUTOFEATURE:-true autotest}         # Cucumber / Autotest integration
+export PROMPT_COMMAND="history -a; history -n"
+export HISTTIMEFORMAT="%F %T "
+export HISTIGNORE="&:ls:[bf]g:exit:clear:reset:history:pwd:df:du:ls:ll:la:l:cd:cd -:cd ..:cd ~:cd /:cd -"
 
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
