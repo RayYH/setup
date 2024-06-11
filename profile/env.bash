@@ -32,6 +32,7 @@ PATH=$(getconf PATH)
 [ -d "$HOMEBREW_PREFIX/opt/mysql-client/bin" ] && PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"                 # mysql
 [ -d "$HOME/Code/snippets/bin" ] && PATH="$HOME/Code/snippets/bin:$PATH"                                             # snippets
 [ -d "/Library/TeX/texbin" ] && PATH="/Library/TeX/texbin:$PATH"                                                     # latex
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 # Ubuntu path
 [ -d "/sbin" ] && PATH="/sbin:$PATH"

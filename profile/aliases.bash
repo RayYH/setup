@@ -95,6 +95,8 @@ alias fgrep='fgrep --color=auto'                          # Always enable colore
 alias egrep='egrep --color=auto'                          # Always enable colored `egrep` output
 alias ssh='TERM=xterm ssh'                                # Always use xterm
 alias cheat='cheat -c'                                    # Always colorized
+alias vim='nvim'                                          # Preferred 'vim' implementation
+alias vi='nvim'                                           # Preferred 'vi' implementation
 
 #===========================================================================#
 #                      Other Commands or Aliases                            #
@@ -122,6 +124,7 @@ alias setuprc='${EDITOR:=vi} ${HOME}/.setuprc'                                  
 alias ee="echo -e"                                                                  # ee
 alias g11='g++ -std=c++11 -O2 -Wall '                                               # g++
 alias lzd='lazydocker'                                                              # lazydocker
+alias javadecompile='java -jar ${HOME}/Bin/vineflower.jar'                          # Decompile Java class files
 
 if command -v zoxide &> /dev/null; then
   eval "$(zoxide init bash)"
