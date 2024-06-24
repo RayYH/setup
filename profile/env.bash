@@ -97,12 +97,15 @@ export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 export MANPAGER='less -X'                 # don’t clear the screen after quitting a manual page
 
+export LESSHISTFILE="${HOME}/.cache/less/history" # where history file will be saved
+
 # node
 export NODE_REPL_HISTORY=~/.node_history # Enable persistent REPL history for `node`, see https://nodejs.org/api/repl.html
 export NODE_REPL_HISTORY_SIZE='32768'    # Allow 32³ entries; the default is 1000.
 export NODE_REPL_MODE='sloppy'           # Use sloppy mode by default, matching web browsers.
 
 # osx
+export SAVEHIST=0
 export BASH_SILENCE_DEPRECATION_WARNING=1 # hide the ‘default interactive shell is now zsh’
 
 # python
