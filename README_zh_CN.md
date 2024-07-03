@@ -1,5 +1,7 @@
 # Setup
 
+> 该仓库已经不再维护，[新仓库](https://github.com/RayYH/dotfiles) 正在开发中，私有状态。当准备好后，我会将其公开。
+
 [English](README.md) | 简体中文
 
 ---
