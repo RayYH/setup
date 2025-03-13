@@ -1,6 +1,6 @@
 # Setup
 
-> This repository is deprecated, the [new one](https://github.com/RayYH/dotfiles) is still under development and is private. When it's ready, I will make it public.
+This repository is **DEPRECATED**, you can use [dotfiles](https://github.com/RayYH/dotfiles) instead.
 
 English | [简体中文](README_zh_CN.md)
 
